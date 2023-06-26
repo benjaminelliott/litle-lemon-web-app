@@ -1,3 +1,4 @@
+import React from 'react';
 import { Flex, Spacer, HStack, VStack, UnorderedList, ListItem, Text } from "@chakra-ui/react"
 import logo from '../assets/Logo.svg';
 
@@ -8,7 +9,8 @@ const textSX = {
 
 const listSX = {
     spacing: "30px",
-    styleType: "none"
+    styleType: "none",
+    fontFamily: "`Karla`, sans-serif"
 };
 
 function Footer() {
@@ -17,6 +19,7 @@ function Footer() {
             <Flex
             as="nav"
             p="10px"
+            maxWidth="xxl" pl="125px"  pr="125px"
             align="center"
             justify="space-around">
                 <img src={logo} alt="default"></img>

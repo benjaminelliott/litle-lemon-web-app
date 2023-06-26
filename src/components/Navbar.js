@@ -7,6 +7,7 @@ function Navbar() {
             <Flex
             as="nav"
             p="10px"
+            maxWidth="xxl" pl="125px"  pr="125px"
             align="center"
             justify="space-around">
                 <img src={logo} alt="default"></img>
