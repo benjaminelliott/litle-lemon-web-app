@@ -1,4 +1,7 @@
 import { Flex, Spacer, HStack, UnorderedList, ListItem } from "@chakra-ui/react"
+import { Link, Router } from "@reach/router";
+import Homepage from './Homepage.js'
+import BookingPage from './BookingPage.js'
 import logo from '../assets/Logo.svg';
 
 function Navbar() {
@@ -17,15 +20,20 @@ function Navbar() {
                 styleType="none"
                 fontWeight="bold">
                     <HStack>
-                        <ListItem><a href="">Home</a></ListItem>
-                        <ListItem><a href="">About</a></ListItem>
-                        <ListItem><a href="">Menu</a></ListItem>
-                        <ListItem><a href="">Reservations</a></ListItem>
-                        <ListItem><a href="">Order Online</a></ListItem>
-                        <ListItem><a href="">Login</a></ListItem>
+                        <Link to="/">Home</Link>
+                        <Link to="/about">About</Link>
+                        <Link to="/menu">Menu</Link>
+                        <Link to="/order">Order Online</Link>
+                        <Link to="/BookingPage">Booking</Link>
+                        <Link to="/login">Login</Link>
                     </HStack>
                 </UnorderedList>
             </Flex>
+            <Router>
+                        <Homepage path="/" />
+                        <BookingPage path="/BookingPage" />
+
+                    </Router>
         </div>
     );
 }
