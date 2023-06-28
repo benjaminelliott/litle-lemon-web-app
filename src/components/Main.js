@@ -1,19 +1,14 @@
-import { Container, Heading, HStack, VStack, Text, Square, Card } from '@chakra-ui/react'
+import React from 'react'
+import { Container }  from '@chakra-ui/react'
 import HomePage from './HomePage.js'
-import Navbar from './Navbar.js'
-import restaurantFood from '../assets/restauranfood.jpg';
 import BookingPage from './BookingPage.js';
 
-function Main() {
+export default function Main() {
 
     return (
-        <div>
-            <Container as="section" className="main"  maxWidth="xxl" p="0">
-                <HomePage />
-                <BookingPage />
-            </Container>
-        </div>
+        <Container as="section" className="main"  maxWidth="xxl" p="0">
+            <HomePage />
+            <BookingPage />
+        </Container>
     );
 }
-
-export default Main;

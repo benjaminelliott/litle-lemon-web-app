@@ -59,10 +59,11 @@
 .booking {
   min-width: 100vw;
   background-color:#495e57;
-  color: white;
 }
 
-
+.date {
+  color: black;
+}
 
 .testimonial-cards {
   display: flex;
@@ -78,10 +79,13 @@
   color: #F4CE14;
   font-weight: 500;
   font-size: 64pt;
+  padding-bottom: 0;
+  line-height: 1;
 }
 
 .title-sub {
   font-size: 56pt;
+  line-height: 1;
 }
 
 .title-regular {

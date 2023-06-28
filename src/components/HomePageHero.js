@@ -1,3 +1,4 @@
+import React from 'react'
 import { Container, Heading, VStack, Flex, Text, Button, Center, Square } from '@chakra-ui/react'
 import restaurantFood from '../assets/restauranfood.jpg';
 
@@ -10,7 +11,7 @@ function Hero() {
                 <VStack alignItems="left" spacing={5}>
                     <Heading class='title title-display'>Little Lemon</Heading>
                     <Heading class="title title-sub">Chicago</Heading>
-                    <Text class="text text-paragraph">Incididunt exercitation sint nostrud in do duis mollit labore mollit excepteur. Sit ea fugiat anim magna laborum consectetur laboris deserunt adipisicing. Esse exercitation nisi cupidatat do. Sit id labore eiusmod magna ex Lorem velit. Do cupidatat reprehenderit sunt nisi non ex cupidatat.</Text>
+                    <Text class="text text-paragraph">Incididunt sint nostrud in do duis mollit labore mollit excepteur. Sit ea fugiat anim magna laborum consectetur laboris deserunt adipisicing. Esse exercitation nisi cupidatat do. Sit id labore eiusmod magna ex Lorem velit. Do cupidatat reprehenderit sunt nisi non ex cupidatat.</Text>
                     <Button width="33%" height="50px" borderRadius={16}>Reserve a table</Button>
                 </VStack>
             </Center>

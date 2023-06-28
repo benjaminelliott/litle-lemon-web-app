@@ -1,11 +1,11 @@
 import React from 'react';
 import { Container, HStack, Heading, Button, Spacer } from '@chakra-ui/react'
 import SpecialsCard from './HomePageSpecialsCard.js';
-import restaurantFood from  '../assets/restauranfood.jpg'
+//import restaurantFood from  '../assets/restauranfood.jpg'
 
 
  const specials  = [{
-    image: restaurantFood,
+    image: "restaurantFood",
     title: "Greek Salad",
     price: "$4.50",
     text:  "Non anim cillum ullamco duis aliqua. Proident quis ad dolore dolor labore officia Lorem.",
@@ -13,7 +13,7 @@ import restaurantFood from  '../assets/restauranfood.jpg'
     include: true
 },
 {
-    image: restaurantFood,
+    image: "restaurantFood",
     title: "Greek Salad",
     price: "$4.50",
     text:  "Non anim cillum ullamco duis aliqua. Proident quis ad dolore dolor labore officia Lorem.",
