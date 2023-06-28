@@ -1,7 +1,9 @@
-import { Flex, Spacer, HStack, UnorderedList, ListItem } from "@chakra-ui/react"
-import { Link, Router } from "@reach/router";
-import Homepage from './Homepage.js'
-import BookingPage from './BookingPage.js'
+import { Flex, Spacer, HStack, UnorderedList } from "@chakra-ui/react"
+import { Link } from '@chakra-ui/react'
+import { Link as ReachLink } from "@reach/router";
+import { Router } from "@reach/router";
+import HomePage from './HomePage'
+import BookingPage from './BookingPage'
 import logo from '../assets/Logo.svg';
 
 function Navbar() {
@@ -20,20 +22,19 @@ function Navbar() {
                 styleType="none"
                 fontWeight="bold">
                     <HStack>
-                        <Link to="/">Home</Link>
-                        <Link to="/about">About</Link>
-                        <Link to="/menu">Menu</Link>
-                        <Link to="/order">Order Online</Link>
-                        <Link to="/BookingPage">Booking</Link>
-                        <Link to="/login">Login</Link>
+                        <Link as={ReachLink} to="homepage">Home</Link>
+                        <Link as={ReachLink} to="about">About</Link>
+                        <Link as={ReachLink} to="menu">Menu</Link>
+                        <Link as={ReachLink} to="order">Order Online</Link>
+                        <Link as={ReachLink} to="bookingpage">Booking</Link>
+                        <Link as={ReachLink} to="login">Login</Link>
                     </HStack>
                 </UnorderedList>
             </Flex>
             <Router>
-                        <Homepage path="/" />
-                        <BookingPage path="/BookingPage" />
-
-                    </Router>
+                <HomePage path="/homepage" />
+                <BookingPage path="/bookingpage" />
+            </Router>
         </div>
     );
 }

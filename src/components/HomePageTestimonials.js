@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, HStack, Heading, VStack } from '@chakra-ui/react'
-import TestimonialsCard from './TestimonialsCard.js';
+import TestimonialsCard from './HomePageTestimonialsCard.js';
 import person1 from '../assets/pexels-pixabay-220453.jpg';
 import person2 from '../assets/k2zaltb9.bmp'
 import person3 from '../assets/epwc4khm.bmp'
@@ -33,17 +33,15 @@ const testimonials  = [
 export default function Testimonials() {
     
     return (
-        <div>
-            <Container as="section" maxWidth="xxl" pl="125px"  pr="125px" pt="50px" pb="50px">
-                <VStack pb="50px" justifyContent="space-evenly">
-                    <Heading className="text-section-title">Testimonials</Heading>
-                    <HStack className="testimonials" display="flex">
-                    {
-                        testimonials.map((testimonial) => <TestimonialsCard user={testimonial.user} image={testimonial.image} title={testimonial.title} rating={testimonial.price} text={testimonial.text}/>)
-                    }
-                    </HStack>
-                </VStack>
-            </Container>
-        </div>
+        <Container as="section" className="testimonials" pl="125px"  pr="125px" pt="50px" pb="50px">
+            <VStack pb="50px" justifyContent="space-evenly">
+                <Heading className="text-section-title">Testimonials</Heading>
+                <HStack className="testimonial-cards">
+                {
+                    testimonials.map((testimonial) => <TestimonialsCard user={testimonial.user} image={testimonial.image} title={testimonial.title} rating={testimonial.price} text={testimonial.text}/>)
+                }
+                </HStack>
+            </VStack>
+        </Container>
     );
 }
