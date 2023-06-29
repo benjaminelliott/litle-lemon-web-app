@@ -146,7 +146,6 @@
   max-width: 100%;
 }
 
-
 .card-testimonials {
   background-color: #EDEFEE;
   min-height: 30vh;
@@ -164,7 +163,75 @@
   min-width: 100vw;
 }
 
+.container-booking {
+  
+}
 
+.label-booking {
+  color: white;
+}
+
+.label-booking:focus {
+  color:#F4CE14;
+}
+
+input[type="email"] {
+  width: 400px;
+  padding: 10px;
+  margin: 1px;
+  border-radius: 16px;
+}
+
+input[type="text"] {
+  width: 200px;
+  padding: 10px;
+  margin: 1px;
+  border-radius: 16px;
+}
+
+input[type="email"]:focus {
+  border: 1px solid #F4CE14;
+}
+
+input[type="text"]:focus {
+  border: 1px solid #F4CE14;
+}
+
+select{
+  width: 200px;
+  padding: 10px;
+  margin: 1px;
+  border-radius: 16px;
+}
+
+select:focus{
+  border: 1px solid #F4CE14;
+}
+
+.field-booking {
+  border-radius: 20px;
+}
+
+.hstack-booking {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  min-width: 80vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.email-error {
+  color:#F4CE14;
+  display: relative;
+}
+
+.vstack-booking{
+  align-items: flex-start;
+}
+
+.break-booking {
+  color: pink;
+}
 
 .button {
   border-radius: 16%;
