@@ -65,6 +65,11 @@
   color: black;
 }
 
+.email-span {
+  display: block;
+  overflow: hidden;
+}
+
 .testimonial-cards {
   display: flex;
   justify-content: space-between;
@@ -162,12 +167,18 @@
 
 
 .button {
-  border-radius: 16;
-  width: "33%";
-  height: "50px"
+  border-radius: 16%;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .button-dark {
   background-color: #495e57;
   color: #F4CE14;
+}
+
+.button-light {
+  color: #495e57;
+  background-color: #F4CE14;
 }
