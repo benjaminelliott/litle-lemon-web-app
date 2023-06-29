@@ -25,6 +25,10 @@ import {
 
 export default function BookingPageForm() {
 
+    const bookingTimes = ({availableTimes}) => {
+        console.log(availableTimes);
+    }
+
     const validate = value => {
 
         let errorMessage;
@@ -34,10 +38,7 @@ export default function BookingPageForm() {
         return errorMessage;
       };
 
-    const [availableTimes, setAvailableTimes] = useState(new Array( "5:00", "6:00", "7:00", "8:00", "9:00", "10:00"));
-    const updateTimes = (k,v) => {
-        setAvailableTimes(new Array(availableTimes.set(k,v)));
-    }
+    
 
     return (
         
