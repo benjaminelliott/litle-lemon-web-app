@@ -1,8 +1,7 @@
-import React from "react";
 import { Container } from '@chakra-ui/react'
-import Hero from './HomePageHero.js';
-import Specials from './HomePageSpecials.js';
-import Testimonials from './HomePageTestimonials.js'
+import Hero from './HomePageHero';
+import Specials from './HomePageSpecials';
+import Testimonials from './HomePageTestimonials'
 
 export default function HomePage() {
 

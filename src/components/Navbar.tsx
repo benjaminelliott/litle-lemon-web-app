@@ -1,9 +1,6 @@
 import React from 'react'
 import { Flex, Spacer, HStack, UnorderedList } from "@chakra-ui/react"
 import { Link } from '@chakra-ui/react'
-//import { BrowserRouter as Router, Switch, Route, Redirect,} from "react-router-dom";
-import HomePage from './HomePage'
-import BookingPage from './BookingPage'
 import logo from '../assets/Logo.svg';
 
 function Navbar() {

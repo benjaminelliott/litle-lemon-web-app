@@ -1,4 +1,3 @@
-import { React, useState } from "react";
 import ReactDOM from "react-dom";
 import { Formik, Field, Form, useFormik } from "formik";
 import {
@@ -21,30 +20,29 @@ import {
   } from '@chakra-ui/react'
     import DatePicker from "react-datepicker";
     import "react-datepicker/dist/react-datepicker.css";
-    import { DatePickerField } from "./BookingPageFormDatePicker.js";
+    import { DatePickerField } from "./BookingPageFormDatePicker";
+    import Select from "./Select"
 
-export default function BookingPageForm() {
+interface Props {
+    availableTimes: () => void;
+}
 
-    const bookingTimes = ({availableTimes}) => {
-        console.log(availableTimes);
-    }
+const BookingPageForm = ({availableTimes}: Props) => {
 
-    const validate = value => {
+    function validate(e: string) {
 
-        let errorMessage;
-        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+        let errorMessage = "";
+        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e)) {
           errorMessage = 'Invalid email address';
         }
         return errorMessage;
       };
 
-    
-
     return (
         
         <VStack>
             <Formik
-                initialValues={{ email: '', firstName: '', lastName: '', time:'', occasion: '', guests: '' }}
+                initialValues={{ email: '', firstName: '', lastName: '', time:'', occasion: '', guests: '', date: '' }}
                 onSubmit={ async (values, actions) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
                     setTimeout(() => {
@@ -55,35 +53,35 @@ export default function BookingPageForm() {
                 }}
             >
                 {({ errors, touched }) => (
-                <Form display="flex" className="form-booking">
+                <Form className="form-booking">
                     <VStack display="flex" className="container-booking">
                         <Heading className="text-section-title" color="#F4CE14">Book a table</Heading>
                         <HStack className="hstack-booking">
                             <VStack className="vstack-booking" alignItems="flex-start">
-                                <label htmlFor="firstName" class="label-booking">First Name</label>
+                                <label htmlFor="firstName" className="label-booking">First Name</label>
                                 <Field name="firstName" type="text"/>
                             </VStack>
                             <VStack alignItems="flex-start">
-                                <label htmlFor="lastName" class="label-booking">Last Name</label>
+                                <label htmlFor="lastName" className="label-booking">Last Name</label>
                                 <Field name="lastName" type="text"/>
                             </VStack>
                             <VStack alignItems="flex-start">
-                                <label htmlFor="email" class="label-booking">Email address</label>
+                                <label htmlFor="email" className="label-booking">Email address</label>
                                 <Field validate={validate} name="email" type="email" />
                             </VStack>
                         </HStack>
-                        {errors.email && touched.email ? <div class="email-error">{errors.email}</div> : null}
+                        {errors.email && touched.email ? <div className="email-error">{errors.email}</div> : null}
                         <HStack className="hstack-booking">
                             <VStack alignItems="flex-start">
-                                <label htmlFor="occasion" class="label-booking">Occasion</label>
+                                <label htmlFor="occasion" className="label-booking">Occasion</label>
                                 <Field name="occasion" as="select">
-                                    <option value="birthday" class="label-booking">Birthday</option>
+                                    <option value="birthday" className="label-booking">Birthday</option>
                                     <option value="anniversary">Anniversary</option>
                                     <option value="other">Other</option>
                                 </Field>
                             </VStack>
                             <VStack alignItems="flex-start">
-                                <label htmlFor="guests" class="label-booking">Guests</label>
+                                <label htmlFor="guests" className="label-booking">Guests</label>
                                 <Field name="guests" as="select" className="field-booking">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -98,15 +96,12 @@ export default function BookingPageForm() {
                                 </Field>
                             </VStack>
                             <VStack alignItems="flex-start">
-                                <label htmlFor="time" class="label-booking">Time</label>
-                                    <Field name="time" as="select">
-                                        {[...availableTimes.values()].map(v => (
-                                            <option value={v}>{v}</option>
-                                        ))}
-                                    </Field>
+                                <label htmlFor="time" className="label-booking">Time</label>
+                                <Select arr={availableTimes}>{availableTimes}
+                                    </Select>
                             </VStack>
                             <VStack alignItems="flex-start">
-                                <label htmlFor="date" class="label-booking">Date</label>
+                                <label htmlFor="date" className="label-booking">Date</label>
                                 <DatePickerField name="date" />
                             </VStack>
                         </HStack>
@@ -120,3 +115,9 @@ export default function BookingPageForm() {
         </VStack>
     )
 }
+
+//<Field name="time" as="select" color="black">
+//{availableTimesList.map((availableTime) => <option>{availableTime.time}</option>)}
+//</Field>
+
+export default BookingPageForm;

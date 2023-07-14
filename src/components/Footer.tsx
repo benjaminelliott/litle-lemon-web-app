@@ -1,6 +1,5 @@
-import React from 'react';
 import { Flex, Spacer, HStack, VStack, UnorderedList, ListItem, Text } from "@chakra-ui/react"
-import logo from '../assets/Logo.svg';
+import logo from "Logo.svg"
 
 const textSX = {
     fontWeight: "bold",
@@ -22,7 +21,7 @@ function Footer() {
             maxWidth="xxl" pl="125px"  pr="125px"
             align="center"
             justify="space-around">
-                <img src={logo} alt="default"></img>
+                <img src="favicon.ico" alt="default" />
                 <UnorderedList
                 >
                     <VStack>

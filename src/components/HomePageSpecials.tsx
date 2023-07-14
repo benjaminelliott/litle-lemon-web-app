@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, HStack, Heading, Button, Spacer } from '@chakra-ui/react'
-import SpecialsCard from './HomePageSpecialsCard.js';
+import SpecialsCard from './HomePageSpecialsCard';
 //import restaurantFood from  '../assets/restauranfood.jpg'
 
 

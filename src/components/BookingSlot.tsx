@@ -1,17 +1,21 @@
-import { React, useState } from 'react';
+import { useState } from 'react';
 import { VStack, Text, Button } from '@chakra-ui/react';
 
-export default function BookingSlot(props) {
+interface Slot {
+    time: number;
+    guests: number;
+}
 
-    const [ booking, setBooking ] = useState( [ {time: "", guests: ""}] )
+export default function BookingSlot(props: Slot) {
+
+    const [ booking, setBooking ] = useState( {time: 0, guests: 0} )
 
     function updateBooking() {
         const newBooking = {...booking};
         newBooking.time = props.time;
-        newBooking.guests = props.guest;
+        newBooking.guests = props.guests;
         setBooking(newBooking);
     }
-
     return (
 
         <div>
