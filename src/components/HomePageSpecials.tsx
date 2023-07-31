@@ -1,11 +1,8 @@
-import React from 'react';
 import { Container, HStack, Heading, Button, Spacer } from '@chakra-ui/react'
-import SpecialsCard from './HomePageSpecialsCard';
-//import restaurantFood from  '../assets/restauranfood.jpg'
-
+import { SpecialsCard } from './HomePageSpecialsCard';
 
  const specials  = [{
-    image: "restaurantFood",
+    image: "restauranfood.jpg",
     title: "Greek Salad",
     price: "$4.50",
     text:  "Non anim cillum ullamco duis aliqua. Proident quis ad dolore dolor labore officia Lorem.",
@@ -13,7 +10,7 @@ import SpecialsCard from './HomePageSpecialsCard';
     include: true
 },
 {
-    image: "restaurantFood",
+    image: "restauranfood.jpg",
     title: "Greek Salad",
     price: "$4.50",
     text:  "Non anim cillum ullamco duis aliqua. Proident quis ad dolore dolor labore officia Lorem.",
@@ -21,8 +18,7 @@ import SpecialsCard from './HomePageSpecialsCard';
     include: true
 }];
 
-export default function Specials() {
-    
+export const Specials = () => {
     return (
         <Container as="section" className="specials" pl="125px"  pr="125px" pt="50px" pb="50px">
             <HStack justifyContent="space-evenly">
@@ -32,7 +28,11 @@ export default function Specials() {
             </HStack>
             <HStack justifyContent="space-evenly">
                 {
-                    specials.map((special) => special.include ? <SpecialsCard image={special.image} title={special.title} price={special.price} text={special.text}/> : "")
+                    specials.map(special => {
+                        return (
+                            special.include ? <SpecialsCard image={special.image} title={special.title} price={special.price} text={special.text}/> : ""
+                        )
+                    })
                 }
             </HStack>
         </Container>

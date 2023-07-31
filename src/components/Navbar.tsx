@@ -1,9 +1,6 @@
-import React from 'react'
 import { Flex, Spacer, HStack, UnorderedList } from "@chakra-ui/react"
-import { Link } from '@chakra-ui/react'
-import logo from '../assets/Logo.svg';
 
-function Navbar() {
+export const Navbar = () => {
     return (
         <Flex
         as="nav"
@@ -11,23 +8,21 @@ function Navbar() {
         maxWidth="xxl" pl="125px"  pr="125px"
         align="center"
         justify="space-around">
-            <img src={logo} alt="default"></img>
+            <img src="Logo .svg" alt="default"></img>
             <Spacer />
             <UnorderedList
             spacing="30px"
             styleType="none"
             fontWeight="bold">
                 <HStack>
-                    <Link to="homepage">Home</Link>
-                    <Link to="about">About</Link>
-                    <Link to="menu">Menu</Link>
-                    <Link to="order">Order Online</Link>
-                    <Link to="bookingpage">Booking</Link>
-                    <Link to="login">Login</Link>
+                    <a>Home</a>
+                    <a>About</a>
+                    <a>Menu</a>
+                    <a>Order Online</a>
+                    <a>Booking</a>
+                    <a>Login</a>
                 </HStack>
             </UnorderedList>
         </Flex>
     );
 }
-
-export default Navbar;

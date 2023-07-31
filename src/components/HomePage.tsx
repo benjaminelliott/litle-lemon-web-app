@@ -1,12 +1,12 @@
 import { Container } from '@chakra-ui/react'
-import Hero from './HomePageHero';
-import Specials from './HomePageSpecials';
-import Testimonials from './HomePageTestimonials'
+import { Hero } from './HomePageHero';
+import { Specials } from './HomePageSpecials';
+import { Testimonials } from './HomePageTestimonials'
 
-export default function HomePage() {
+export const HomePage = () => {
 
     return (
-        <Container as="section" className="home" m="0" p="0">
+        <Container as="section" className="home" m="0" p="0" w="100vw">
             <Hero />
             <Specials />
             <Testimonials />

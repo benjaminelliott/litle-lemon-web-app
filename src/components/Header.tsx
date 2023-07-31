@@ -1,4 +1,4 @@
-function Header() {
+export const Header = () => {
     return (
         <head>
             <meta name="description" content="This is the website for the Little Lemon restaurant"/>
@@ -7,6 +7,4 @@ function Header() {
             <meta name="og:image" content="favicon.ico"/>
         </head>
     );
-}
-
-export default Header;
+};

@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { HStack, VStack, Text, Card, Spacer, CardBody, Image } from '@chakra-ui/react'
 
-type TestimonialsCardProps = {
+type Props = {
     user: string;
     title: string;
     rating: number;
@@ -9,33 +8,31 @@ type TestimonialsCardProps = {
     image: string;
 }
 
-const TestimonialsCard:React.FC<TestimonialsCardProps> = () => {
+export const TestimonialsCard = (props: Props) => {
 
-    const [user, setUser ] = useState<string>("");
-
-    const [title, setTitle ] = useState<string>("");
-
-    const [rating, setRating ] = useState<number>(0);
-
-    const [text, setText ] = useState<string>("");
-
-    const [image, setImage ] = useState<string>("");
+    const stars = [...Array(props.rating)];
+    console.log(stars);
 
     return (
         <Card borderRadius={16}>
-            <CardBody className="card-testimonials" borderRadius={16} p="0px" w="25vw">
-                <VStack display="flex" flexWrap="wrap" maxWidth="300px" p="0px" m="0px">
-                    <Text p="0px" className="text-card-title">{title}</Text>
+            <CardBody className="card-testimonials" borderRadius={16} p="0px" pt="20px" pb="20px" w="25vw" display="flex">
+                <VStack display="flex" w="25vw" p="0px" m="0px">
                     <HStack display="flex" p="20px" justifyContent="space-between">
-                        <Image src={image} boxSize="300px" className="image-testimonials" objectFit="cover" borderRadius={360} h="200px" w="200px"/>
+                        <Image src={props.image} boxSize="300px" className="image-testimonials" objectFit="cover" borderRadius={360} h="200px" w="200px"/>
                         <Spacer></Spacer>
-                        <Text className="text-highlight">{user}</Text>
+                        <Text className="text-highlight">{props.user}</Text>
                     </HStack>
-                    <Text h="300px" w="400px" pl="20px" pr="10px" m="0px">{text}</Text>
+                    <HStack className="stars" display="flex">
+                        {stars.map(star => {
+                            return (
+                                <img src="star-icon.svg" className="star-rating" />
+                            )
+                        })}
+                    </HStack>
+                    <Text p="0px" className="text-card-title">{props.title}</Text>
+                    <Text className ="text-testimoials" h="10vw" w="25vw" pl="20px" pr="10px" m="0px">{props.text}</Text>
                 </VStack>
             </CardBody>
         </Card>
     );
-}
-
-export default TestimonialsCard;
+};

@@ -1,9 +1,13 @@
+import {useState} from "react";
 import { useField, useFormikContext } from "formik";
 import DatePicker from "react-datepicker";
+import setHours from "date-fns/setHours";
+import setMinutes from "date-fns/setMinutes";
 
 export const DatePickerField = ({ ...props }) => {
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props.name);
+  const [startDate, setStartDate] = useState(setHours(setMinutes(new Date(), 30), 17));
   return (
     <DatePicker
       {...field}
@@ -12,6 +16,12 @@ export const DatePickerField = ({ ...props }) => {
       onChange={val => {
         setFieldValue(field.name, val);
       }}
+      showTimeSelect
+      timeFormat="HH:mm"
+      timeIntervals={60}
+      dateFormat="hh:mm, MMMM d, yyyy "
+      minTime={setHours(setMinutes(new Date(), 0), 17)}
+      maxTime={setHours(setMinutes(new Date(), 0), 22)}
     />
   );
 };

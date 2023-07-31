@@ -8,7 +8,7 @@ type SpecialsCardProps = {
     text: string;
 }
 
-const SpecialsCard:React.FC<SpecialsCardProps> = () => {
+export const SpecialsCard = (props: SpecialsCardProps) => {
 
     const [image, setImage ] = useState<string>("");
     const [title, setTitle ] = useState<string>("");
@@ -19,13 +19,13 @@ const SpecialsCard:React.FC<SpecialsCardProps> = () => {
         <Card borderRadius={16}>
             <CardBody className="card-specials" borderRadius={16} p="0px">
                 <VStack display="flex" flexWrap="wrap" maxWidth="300px" p="0px" m="0px">
-                    <Image src={image} boxSize="300px" className="image-specials" objectFit="cover" borderTopRadius={16}/>
+                    <Image src={props.image} boxSize="300px" className="image-specials" objectFit="cover" borderTopRadius={16}/>
                     <HStack display="flex" p="20px" justifyContent="space-between">
-                        <Text className="text-card-title">{title}</Text>
+                        <Text className="text-card-title">{props.title}</Text>
                         <Spacer></Spacer>
-                        <Text className="text-highlight">{price}</Text>
+                        <Text className="text-highlight">{props.price}</Text>
                     </HStack>
-                    <Text pl="20px" pr="10px" m="0px">{text}</Text>
+                    <Text pl="20px" pr="10px" m="0px">{props.text}</Text>
                     <HStack p="20px">
                         <Text className="text-specials">Order a delivery</Text>
                         <Image src="favicon.ico" width="20px"></Image>
@@ -34,5 +34,4 @@ const SpecialsCard:React.FC<SpecialsCardProps> = () => {
             </CardBody>
         </Card>
     );
-}
- export default SpecialsCard;
+};

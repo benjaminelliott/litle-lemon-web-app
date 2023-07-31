@@ -1,7 +1,6 @@
 import { Heading, VStack, Flex, Text, Button, Center, Square } from '@chakra-ui/react'
-import restaurantFood from 'restauranfood.jpg';
 
-function Hero() {
+export const Hero = () => {
     return (
         <Flex className="hero" pl="125px"  pr="125px" pt="50px" pb="50px">
             <Center
@@ -15,11 +14,9 @@ function Hero() {
                 </VStack>
             </Center>
             <Square maxWidth="30%" >
-                <img src="favicon.ico" alt="restaurant 1">
+                <img src="restauranfood.jpg" alt="restaurant 1">
                 </img>
             </Square>
         </Flex>
     );
 }
-
-export default Hero;
