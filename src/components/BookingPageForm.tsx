@@ -17,8 +17,6 @@ type Props = {
 
 export const BookingPageForm = (props: Props) => {
 
-    console.log(props.availableTimes);
-
     const validate = (e: string) => {
         let errorMessage = "";
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e)) {
