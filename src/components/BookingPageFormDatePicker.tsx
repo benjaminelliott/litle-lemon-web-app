@@ -9,19 +9,21 @@ export const DatePickerField = ({ ...props }) => {
   const [field] = useField(props.name);
   const [startDate, setStartDate] = useState(setHours(setMinutes(new Date(), 30), 17));
   return (
-    <DatePicker
+    <DatePicker className="datepicker"
       {...field}
       {...props}
       selected={(field.value && new Date(field.value)) || null}
       onChange={val => {
         setFieldValue(field.name, val);
       }}
-      showTimeSelect
-      timeFormat="HH:mm"
-      timeIntervals={60}
-      dateFormat="hh:mm, MMMM d, yyyy "
-      minTime={setHours(setMinutes(new Date(), 0), 17)}
-      maxTime={setHours(setMinutes(new Date(), 0), 22)}
+      dateFormat="MMMM d, yyyy"
     />
   );
 };
+
+//showTimeSelect
+//      timeFormat="HH:mm"
+////      timeIntervals={60}
+//minTime={setHours(setMinutes(new Date(), 0), 17)}
+//      maxTime={setHours(setMinutes(new Date(), 0), 22)}
+//dateFormat="hh:mm, MMMM d, yyyy"

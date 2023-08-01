@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react'
+import { useReducer } from 'react'
 import { Container }  from '@chakra-ui/react'
 import { HomePage } from './HomePage'
 import { BookingPage } from './BookingPage';
@@ -10,6 +10,7 @@ type State = {
 }
 
 type Booking = {
+    times: [{}]
     id: number
     time: string
     booked: boolean
@@ -21,111 +22,107 @@ type Action = {
     payload: any
 }
 
-const initializeTimes: Booking[] = [
-    {
-        id: 1,
-        time: "17:00",
-        booked: false
-    },
-    {
-        id: 2,
-        time: "18:00",
-        booked: false
-    },
-    {
-        id: 3,
-        time: "19:00",
-        booked: false
-    },
-    {
-        id: 4,
-        time: "20:00",
-        booked: false
-    },
-    {
-        id: 5,
-        time: "21:00",
-        booked: false
-    },
-    {
-        id: 6,
-        time: "22:00",
-        booked: false
+const initialState: any = {
+    times: [
+        {
+            id: 0,
+            time: "17:00",
+            booked: false
+        },
+        {
+            id: 1,
+            time: "18:00",
+            booked: false
+        },
+        {
+            id: 2,
+            time: "19:00",
+            booked: false
+        },
+        {
+            id: 3,
+            time: "20:00",
+            booked: false
+        },
+        {
+            id: 4,
+            time: "21:00",
+            booked: false
+        },
+        {
+            id: 5,
+            time: "22:00",
+            booked: false
+        }
+    ],
+    occasions: [
+        {
+            id: 0,
+            occasion: "Birthday"
+        },
+        {
+            id: 1,
+            occasion: "Anniversary"
+        },
+        {
+            id: 2,
+            occasion: "Other"
+        },
+    ],
+    guests: [
+        {
+            min: 1,
+            max: 10
+        }
+    ],
+    show: {
+        times: false,
+        user: true
     }
-];
+};
+
+const ACTION = {
+    SHOW_TIMES: "SHOW-TIMES",
+    SHOW_USER: "SHOW-USER",
+    MAKE_BOOKING: "MAKE-BOOKING"
+}
 
 export const Main = () => {
 
-    const [occasions, setOccasions] = useState([
-        {
-            occasion: "Birthday",
-        },
-        {
-            occasion: "Anniversary",
-        },
-        {
-            occasion: "Other",
-        }
-    ]);
-    
-    const [guests, setGuests] = useState([
-        {
-            guests: 1,
-        },
-        {
-            guests: 2,
-        },
-        {
-            guests: 3,
-        },
-        {
-            guests: 4,
-        },
-        {
-            guests: 5,
-        },
-        {
-            guests: 6,
-        },
-        {
-            guests: 7,
-        },
-        {
-            guests: 8,
-        },
-        {
-            guests: 9,
-        },
-        {
-            guests: 10,
-        }
-    ]);
-
-    const reducer = (state: State[], action: Action) => {
+    const reducer = (state: any, action: any) => {
         switch (action.type) {
-            case "MAKE-BOOKING":
-                return state.map(booking => {
-                    booking.id === action.payload.id ? {...state, booked: !state.booked}
-                })
+            case ACTION.MAKE_BOOKING:
+                return {...state, booked: !state.booked}
+            case ACTION.SHOW_TIMES:
+                return {...state, times: !state.times}
+            case ACTION.SHOW_USER:
+                return {...state, user: !state.users}
             default:
-                return state;
+                throw Error('Unknown action.');
         }
     }
 
-    const [state, dispatch ] = useReducer(reducer, initializeTimes);
+    const [state, dispatch ] = useReducer(reducer, initialState);
 
-    const handleConfirm = (e: any) => {
+    const handleSubmit = () => {
+        dispatch({ type: ACTION.MAKE_BOOKING })
+    }
+
+    const toggleShowTimes = (e: any) => {
         e.preventDefault();
-        dispatch({ 
-            type: "MAKE-BOOKING",
-            payload: {id: booking.id, time: booking.time, booked: booking.booked}});
-      };
+        console.log("hello", initialState.show.times)
+        dispatch({ type: ACTION.SHOW_TIMES });
+        console.log("goodbye", initialState.show.times)
+    }
+
+    const toggleShowUser = () => {
+        dispatch({ type: ACTION.SHOW_USER })
+    }
 
     return (
         <Container as="section" className="main"  maxWidth="xxl" p="0">
             <HomePage />
-            <BookingPage occasions={occasions} guests={guests} availableTimes={state} />
-            <button onClick={() => dispatch({ type: "MAKE-BOOKING", id})}>Make booking</button>
+            <BookingPage occasions={state.occasions} guests={state.guests} availableTimes={state.times} show={state.show} handleSubmit={handleSubmit} toggleShowTimes={toggleShowTimes} ACTION={ACTION} dispatch={dispatch}/>
         </Container>
     );
 };

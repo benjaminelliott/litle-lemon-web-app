@@ -1,21 +1,33 @@
 import { Formik, Field, Form } from "formik";
+import { useReducer } from 'react'
 import { HStack, VStack, Button, Heading } from '@chakra-ui/react'
 import "react-datepicker/dist/react-datepicker.css";
 import { DatePickerField } from "./BookingPageFormDatePicker";
+import { BookingSlot } from './BookingSlot';
 
 type Props = {
     occasions: {
         occasion: string
     }[]
     guests: {
-        guests: number
+        min: number,
+        max: number
     }[]
     availableTimes: {
         time: string
+        booked: boolean
     }[]
+    handleSubmit: any
+    show: {
+        times: boolean
+        user: boolean
+    }
+    ACTION: any
+    dispatch: any
+    toggleShowTimes: any
 }
 
-export const BookingPageForm = (props: Props) => {
+export const BookingPageForm = (props: Props, dispatch: any) => {
 
     const validate = (e: string) => {
         let errorMessage = "";
@@ -50,27 +62,28 @@ export const BookingPageForm = (props: Props) => {
                     <VStack display="flex" className="container-booking">
                         <Heading className="text-section-title" color="#F4CE14">Book a table</Heading>
                         <HStack className="hstack-booking">
-                            {
-                                <Field name="occasion" as="select">{props.occasions.map(occasion => {
-                                    return (
-                                        <option value={occasion.occasion}>{occasion.occasion}</option>
-                                    )})}
-                                </Field>
-                            }
-                                <Field name="guests" as="select" className="field-booking">{props.guests.map(guests => {
-                                    return (
-                                        <option value={guests.guests}>{guests.guests}</option>
+                            <Field name="occasion" as="select">{props.occasions.map(occasion => {
+                                return (
+                                    <option value={occasion.occasion}>{occasion.occasion}</option>
+                                )})}
+                            </Field>
+                            <Field name="guests" as="select" className="field-booking">{props.guests.map(guests => {
+                                return Array.from(
+                                    {length: guests.max},
+                                    (_, i) => (
+                                        <option value={i+1}>{i+1}</option>
                                     )
-                                })}
-                                </Field>
-                            {
-                                <Field type="number" name="times" as="select" className="field-times">{props.availableTimes.map(time => {
-                                    return (
-                                        <option value={time.time}>{time.time}</option>
-                                    )
-                                })}</Field>
-                            }
+                                )
+                            })}
+                            </Field>
                             <DatePickerField name="date" />
+                        </HStack>
+                        <HStack as="ul" className="container-booking-slots">
+                        {props.show.times && props.availableTimes.map(booking => {
+                            return (
+                                <BookingSlot time={booking.time} booked={booking.booked} />
+                            )
+                        })}
                         </HStack>
                         <HStack className="hstack-booking">
                             <VStack className="vstack-booking" alignItems="flex-start">
@@ -85,7 +98,8 @@ export const BookingPageForm = (props: Props) => {
                         </HStack>
                         {errors.email && touched.email ? <div className="email-error">{errors.email}</div> : null}
                         <HStack className="hstack-booking">
-                            <Button type="submit" width="33%" height="50px" borderRadius={16} className="button-light">Confirm booking</Button>
+                            <button onClick={(() => dispatch({ type: props.ACTION.MAKE_BOOKING}))} type="submit" className="button-light">Confirm booking</button>
+                            <button onClick={props.toggleShowTimes}>SHOW TIMES</button>
                         </HStack>
                     </VStack>
                 </Form>
