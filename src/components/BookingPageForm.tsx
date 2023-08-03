@@ -7,25 +7,33 @@ import { BookingSlot } from './BookingSlot';
 
 type Props = {
     occasions: {
-        occasion: string
+        occasion: string,
+        disabled: boolean
     }[]
     guests: {
         min: number,
-        max: number
+        max: number,
+        placeholder: string
     }[]
     availableTimes: {
         time: string
         booked: boolean
     }[]
-    handleSubmit: any
+    handleComplete: any
     show: {
         times: boolean
         user: boolean
+        submit: boolean
+        confirm: boolean
     }
     ACTION: any
     dispatch: any
     toggleShowTimes: any
+    toggleShowUser: any
+    toggleShowSubmit: any
 }
+
+
 
 export const BookingPageForm = (props: Props, dispatch: any) => {
 
@@ -34,14 +42,8 @@ export const BookingPageForm = (props: Props, dispatch: any) => {
         if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e)) {
             errorMessage = 'Invalid email address';
         }
-        return errorMessage;
+        props.toggleShowSubmit();
     };
-
-    const bookings = [
-        {
-
-        }
-    ]
 
     return (
         <VStack>
@@ -53,54 +55,61 @@ export const BookingPageForm = (props: Props, dispatch: any) => {
                         alert(`Thanks for your booking, ` + values.firstName + ` ` + values.lastName + `! We at Little Lemon look forward to seeing you at ` + values.time + ` PM on ` + values.date + `. A confirmation email has been sent to ` + values.email + ` .`);
                         actions.setSubmitting(false);
                     }, 1000);
-                    bookings.push(values);
-                    console.log(bookings);
                 }}
             >
                 {({ errors, touched }) => (
                 <Form className="form-booking">
                     <VStack display="flex" className="container-booking">
-                        <Heading className="text-section-title" color="#F4CE14">Book a table</Heading>
-                        <HStack className="hstack-booking">
-                            <Field name="occasion" as="select">{props.occasions.map(occasion => {
-                                return (
-                                    <option value={occasion.occasion}>{occasion.occasion}</option>
-                                )})}
-                            </Field>
-                            <Field name="guests" as="select" className="field-booking">{props.guests.map(guests => {
-                                return Array.from(
-                                    {length: guests.max},
-                                    (_, i) => (
-                                        <option value={i+1}>{i+1}</option>
+                        { !props.show.confirm ?
+                        <>
+                            <Heading className="text-section-title" color="#F4CE14">Book a table</Heading>
+                            <HStack className="hstack-booking">
+                                <Field name="occasion" as="select" placeholder="Occasion">{props.occasions.map(occasion => {
+                                    return (
+                                        <option disabled={occasion.disabled} value={ occasion.disabled ? "" : occasion.occasion }>{occasion.occasion}</option>
+                                    )})}
+                                </Field>
+                                <Field name="guests" as="select" placeholder="Guests" className="field-booking">{props.guests.map(guests => {
+                                    return Array.from(
+                                        {length: guests.max+1},
+                                        (_, i) => (
+                                            <option disabled={ i == 0 ? true : false } value={ i === 0 ? guests.placeholder : i}>{i === 0 ? guests.placeholder : i}</option>
+                                        )
                                     )
+                                })}
+                                </Field>
+                                <DatePickerField name="date" toggleShowTimes={props.toggleShowTimes}/>
+                            </HStack>
+                            <HStack as="ul" className="container-booking-slots">
+                            {props.show.times && props.availableTimes.map(booking => {
+                                return (
+                                    <BookingSlot time={booking.time} booked={booking.booked} toggleShowUser={props.toggleShowUser} />
                                 )
                             })}
-                            </Field>
-                            <DatePickerField name="date" />
-                        </HStack>
-                        <HStack as="ul" className="container-booking-slots">
-                        {props.show.times && props.availableTimes.map(booking => {
-                            return (
-                                <BookingSlot time={booking.time} booked={booking.booked} />
-                            )
-                        })}
-                        </HStack>
-                        <HStack className="hstack-booking">
-                            <VStack className="vstack-booking" alignItems="flex-start">
-                                <Field name="firstName" type="text" placeholder={ "" ? "First Name" : ""}/>
+                            </HStack>
+                            <VStack className="hstack-booking">
+                                {props.show.times && props.show.user &&
+                                <HStack className="vstack-booking" alignItems="flex-start">
+                                    <Field name="firstName" type="text" placeholder={ "" ? "First Name" : ""}/>
+                                    <Field name="lastName" type="text"/>
+                                    <Field validate={validate} name="email" type="email" />
+                                </HStack>
+                                }
+                                <HStack>
+                                    {errors.email && touched.email ? <div className="email-error">{errors.email}</div> : null}
+                                </HStack>
+
                             </VStack>
-                            <VStack alignItems="flex-start">
-                                <Field name="lastName" type="text"/>
-                            </VStack>
-                            <VStack alignItems="flex-start">
-                                <Field validate={validate} name="email" type="email" />
-                            </VStack>
-                        </HStack>
-                        {errors.email && touched.email ? <div className="email-error">{errors.email}</div> : null}
-                        <HStack className="hstack-booking">
-                            <button onClick={(() => dispatch({ type: props.ACTION.MAKE_BOOKING}))} type="submit" className="button-light">Confirm booking</button>
-                            <button onClick={props.toggleShowTimes}>SHOW TIMES</button>
-                        </HStack>
+                            <HStack className="hstack-booking">
+                                {props.show.times && props.show.user && props.show.submit &&
+                                    <button onClick={props.handleComplete} type="submit" className="button-light">Confirm booking</button>
+                                }
+                            </HStack>
+                            </>
+                        :
+                        <Heading className="text-section-title" color="#F4CE14">Booking confirmed</Heading>
+
+                        }
                     </VStack>
                 </Form>
                 )}

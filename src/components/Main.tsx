@@ -2,6 +2,7 @@ import { useReducer } from 'react'
 import { Container }  from '@chakra-ui/react'
 import { HomePage } from './HomePage'
 import { BookingPage } from './BookingPage';
+import { Formik } from 'formik';
 
 type State = {
     id: number
@@ -58,26 +59,37 @@ const initialState: any = {
     occasions: [
         {
             id: 0,
-            occasion: "Birthday"
+            occasion: "Occasion",
+            disabled: true
         },
         {
             id: 1,
-            occasion: "Anniversary"
+            occasion: "Birthday",
+            disabled: false
         },
         {
             id: 2,
-            occasion: "Other"
+            occasion: "Anniversary",
+            disabled: false
+        },
+        {
+            id: 3,
+            occasion: "Other",
+            disabled: false
         },
     ],
     guests: [
         {
+            placeholder: "Guests",
             min: 1,
             max: 10
         }
     ],
     show: {
         times: false,
-        user: true
+        user: false,
+        submit: false,
+        confirm: false
     }
 };
 
@@ -87,42 +99,81 @@ const ACTION = {
     MAKE_BOOKING: "MAKE-BOOKING"
 }
 
+const reducer = (state: any, action: any) => {
+    let array = [];
+    switch (action.type) {
+        case "SHOW-TIMES":
+            return {
+                ...state,
+                show: {
+                    times: true
+                }
+            }
+        case "SHOW-USER":
+            return {
+                ...state,
+                show: {
+                    times: true,
+                    user: true
+                }
+            }
+        case "SHOW-SUBMIT":
+            return {
+                ...state,
+                show: {
+                    times: true,
+                    user: true,
+                    submit: true
+                }
+            }
+        case "MAKE-BOOKING":
+            return {
+                ...state,
+                times: [
+                    { booked: true }
+                ],
+                show: {
+                    times: false,
+                    user: false,
+                    confirm: false
+                }
+            }
+        default:
+            throw new Error('Unknown action.');
+    }
+}
+
 export const Main = () => {
 
-    const reducer = (state: any, action: any) => {
-        switch (action.type) {
-            case ACTION.MAKE_BOOKING:
-                return {...state, booked: !state.booked}
-            case ACTION.SHOW_TIMES:
-                return {...state, times: !state.times}
-            case ACTION.SHOW_USER:
-                return {...state, user: !state.users}
-            default:
-                throw Error('Unknown action.');
-        }
+    const [ state, dispatch ] = useReducer(reducer, initialState);
+
+    const handleComplete = (e: any) => {
+        dispatch({ type: "MAKE-BOOKING" })
+        console.log(state)
     }
 
-    const [state, dispatch ] = useReducer(reducer, initialState);
-
-    const handleSubmit = () => {
-        dispatch({ type: ACTION.MAKE_BOOKING })
-    }
-
-    const toggleShowTimes = (e: any) => {
-        e.preventDefault();
+    const toggleShowTimes = () => {
         console.log("hello", initialState.show.times)
-        dispatch({ type: ACTION.SHOW_TIMES });
-        console.log("goodbye", initialState.show.times)
+        dispatch({ type: "SHOW-TIMES" });
+        console.log("goodbye", state.show.times)
     }
 
     const toggleShowUser = () => {
-        dispatch({ type: ACTION.SHOW_USER })
+        dispatch({ type: "SHOW-USER" })
+    }
+
+    const toggleShowSubmit = () => {
+        dispatch({ type: "SHOW-SUBMIT" })
+    }
+
+    const toggleConfirm = () => {
+        dispatch({ type: "SHOW-CONFIRM "})
     }
 
     return (
         <Container as="section" className="main"  maxWidth="xxl" p="0">
             <HomePage />
-            <BookingPage occasions={state.occasions} guests={state.guests} availableTimes={state.times} show={state.show} handleSubmit={handleSubmit} toggleShowTimes={toggleShowTimes} ACTION={ACTION} dispatch={dispatch}/>
+            <BookingPage occasions={state.occasions} guests={state.guests} availableTimes={state.times} show={state.show} handleComplete={handleComplete} toggleShowTimes={toggleShowTimes} toggleShowUser={toggleShowUser} toggleShowSubmit={toggleShowSubmit} ACTION={ACTION} dispatch={dispatch}/>
         </Container>
     );
 };

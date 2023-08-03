@@ -1,6 +1,7 @@
 interface Props {
     time: string;
     booked: boolean
+    toggleShowUser: any
 }
 
 export const BookingSlot = (props: Props) => {
@@ -8,7 +9,7 @@ export const BookingSlot = (props: Props) => {
         <>
         {props.booked ?
         ""
-        : <button className="booking-slot">
+        : <button onClick={props.toggleShowUser} className="booking-slot" type="button">
         <span>{props.time}</span>
     </button>
     }

@@ -11,7 +11,6 @@ type Props = {
 export const TestimonialsCard = (props: Props) => {
 
     const stars = [...Array(props.rating)];
-    console.log(stars);
 
     return (
         <Card borderRadius={16}>
