@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import { useField, useFormikContext } from "formik";
 import DatePicker from "react-datepicker";
 import setHours from "date-fns/setHours";
@@ -7,7 +7,7 @@ import setMinutes from "date-fns/setMinutes";
 export const DatePickerField = ({ ...props }) => {
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props.name);
-  const [startDate, setStartDate] = useState(setHours(setMinutes(new Date(), 30), 17));
+
   return (
     <DatePicker className="datepicker"
       {...field}

@@ -135,7 +135,7 @@ const reducer = (state: any, action: any) => {
                 show: {
                     times: false,
                     user: false,
-                    confirm: false
+                    confirm: true
                 }
             }
         default:

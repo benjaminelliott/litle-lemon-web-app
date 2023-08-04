@@ -1,5 +1,5 @@
 import { Formik, Field, Form } from "formik";
-import { useReducer } from 'react'
+import { useRef } from 'react'
 import { HStack, VStack, Button, Heading } from '@chakra-ui/react'
 import "react-datepicker/dist/react-datepicker.css";
 import { DatePickerField } from "./BookingPageFormDatePicker";
@@ -33,7 +33,15 @@ type Props = {
     toggleShowSubmit: any
 }
 
-
+interface Values {
+    firstName: string
+    lastName: string
+    email: string
+    time: string
+    occasion: string
+    guests: number
+    date: string
+  }
 
 export const BookingPageForm = (props: Props, dispatch: any) => {
 
@@ -45,19 +53,33 @@ export const BookingPageForm = (props: Props, dispatch: any) => {
         props.toggleShowSubmit();
     };
 
+    let booking = {
+        email: '',
+        firstName: '',
+        lastName: '',
+        time:'',
+        occasion: '',
+        guests: 0,
+        date: ''
+    };
+
+
+
     return (
         <VStack>
             <Formik
-                initialValues={{ email: '', firstName: '', lastName: '', time:'', occasion: '', guests: 0, date: '' }}
-                onSubmit={ async (values, actions) => {
+                initialValues={ booking }
+                onSubmit={ async (values: Values, actions) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
                     setTimeout(() => {
-                        alert(`Thanks for your booking, ` + values.firstName + ` ` + values.lastName + `! We at Little Lemon look forward to seeing you at ` + values.time + ` PM on ` + values.date + `. A confirmation email has been sent to ` + values.email + ` .`);
+                        booking = values;
+                        console.log(booking, values)
+                        props.handleComplete();
                         actions.setSubmitting(false);
                     }, 1000);
                 }}
             >
-                {({ errors, touched }) => (
+                {({ errors, touched, values, setFieldValue, setFieldTouched }) => (
                 <Form className="form-booking">
                     <VStack display="flex" className="container-booking">
                         { !props.show.confirm ?
@@ -102,13 +124,18 @@ export const BookingPageForm = (props: Props, dispatch: any) => {
                             </VStack>
                             <HStack className="hstack-booking">
                                 {props.show.times && props.show.user && props.show.submit &&
-                                    <button onClick={props.handleComplete} type="submit" className="button-light">Confirm booking</button>
+                                    <button type="submit" className="button-light">Confirm booking</button>
                                 }
                             </HStack>
                             </>
                         :
-                        <Heading className="text-section-title" color="#F4CE14">Booking confirmed</Heading>
-
+                        <VStack className="confirmation-booking">
+                            <Heading className="text-section-title" color="#F4CE14">Booking confirmed</Heading>
+                            <h3>Thanks for booking with us, {values.firstName}, {values.lastName}!</h3>
+                            <p>We at Little Lemon are looking forward to seeing your party of {values.guests} on {values.date} at {values.time}</p>
+                            <p>A confirmation email has been sent to {values.email}</p>
+                            <p>See you soon!</p>
+                        </VStack>
                         }
                     </VStack>
                 </Form>
