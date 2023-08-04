@@ -1,0 +1,95 @@
+export {};
+
+declare global {
+    interface initialStateProps {
+        times: {
+            id: number
+            time: string
+            booked: boolean
+        }[],
+        occasions:{
+            id: number
+            occasion: string
+            disabled: boolean
+        }[],
+        guests: {
+            placeholder: string
+            min: number
+            max: number
+        }[],
+        show: {
+            times: boolean
+            user: boolean
+            submit: boolean
+            confirm: boolean
+        },
+        confirmedBookings: {
+            id: number,
+            firstName: string
+            lastName: string
+            email: string
+            occasion: string
+            guests: number
+            date: string
+            time: string
+        }[]
+    }
+
+    interface BookingPageProps {
+        occasions: {
+            occasion: string,
+            disabled: boolean
+        }[]
+        guests: {
+            min: number,
+            max: number,
+            placeholder: string
+        }[]
+        availableTimes: {
+            time: string
+            booked: boolean
+        }[]
+        handleComplete: any
+        show: {
+            times: boolean
+            user: boolean
+            submit: boolean
+            confirm: boolean
+        },
+        confirmedBookings: {
+            id: number,
+            firstName: string
+            lastName: string
+            email: string
+            occasion: string
+            guests: number
+            date: string
+            time: string
+        }[],
+        ACTION: any
+        toggleShowTimes: any
+        toggleShowUser: any
+        toggleShowSubmit: any
+        handleAnotherBooking: any
+    }
+
+    interface BookingListProps {
+        show: {
+            times: boolean
+            user: boolean
+            submit: boolean
+            confirm: boolean
+        },
+        confirmedBookings: {
+            id: number,
+            firstName: string
+            lastName: string
+            email: string
+            occasion: string
+            guests: number
+            date: string
+            time: string
+        }[],
+    }
+}
+

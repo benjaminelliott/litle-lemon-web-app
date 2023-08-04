@@ -1,6 +1,6 @@
-import { Formik, Field, Form } from "formik";
 import { useRef } from 'react'
-import { HStack, VStack, Button, Heading } from '@chakra-ui/react'
+import { Formik, Field, Form } from "formik";
+import { HStack, VStack, Heading } from '@chakra-ui/react'
 import "react-datepicker/dist/react-datepicker.css";
 import { DatePickerField } from "./BookingPageFormDatePicker";
 import { BookingSlot } from './BookingSlot';
@@ -27,10 +27,10 @@ type Props = {
         confirm: boolean
     }
     ACTION: any
-    dispatch: any
     toggleShowTimes: any
     toggleShowUser: any
     toggleShowSubmit: any
+    handleAnotherBooking: any
 }
 
 interface Values {
@@ -43,7 +43,17 @@ interface Values {
     date: string
   }
 
-export const BookingPageForm = (props: Props, dispatch: any) => {
+  interface Confirmed {
+    firstName: string
+    lastName: string
+    email: string
+    time: string
+    occasion: string
+    guests: number
+    date: string
+  }
+
+export const BookingPageForm = (props: Props) => {
 
     const validate = (e: string) => {
         let errorMessage = "";
@@ -53,7 +63,7 @@ export const BookingPageForm = (props: Props, dispatch: any) => {
         props.toggleShowSubmit();
     };
 
-    let booking = {
+    let blankBooking = {
         email: '',
         firstName: '',
         lastName: '',
@@ -62,24 +72,35 @@ export const BookingPageForm = (props: Props, dispatch: any) => {
         guests: 0,
         date: ''
     };
+    let confirmed:Confirmed = {
+        email: '',
+        firstName: '',
+        lastName: '',
+        time:'',
+        occasion: '',
+        guests: 0,
+        date: ''
+    }
+    let confirmedBookings:any = [];
 
-
+    const formikRef:any = useRef();
 
     return (
         <VStack>
             <Formik
-                initialValues={ booking }
+                initialValues={ blankBooking }
+                innerRef={formikRef}
                 onSubmit={ async (values: Values, actions) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
                     setTimeout(() => {
-                        booking = values;
-                        console.log(booking, values)
-                        props.handleComplete();
+                        confirmed = values;
+                        confirmedBookings.push(values)
+                        props.handleComplete(confirmed);
                         actions.setSubmitting(false);
                     }, 1000);
                 }}
             >
-                {({ errors, touched, values, setFieldValue, setFieldTouched }) => (
+                {({ errors, touched, values }) => (
                 <Form className="form-booking">
                     <VStack display="flex" className="container-booking">
                         { !props.show.confirm ?
@@ -88,27 +109,34 @@ export const BookingPageForm = (props: Props, dispatch: any) => {
                             <HStack className="hstack-booking">
                                 <Field name="occasion" as="select" placeholder="Occasion">{props.occasions.map(occasion => {
                                     return (
-                                        <option disabled={occasion.disabled} value={ occasion.disabled ? "" : occasion.occasion }>{occasion.occasion}</option>
+                                        <option
+                                            disabled={occasion.disabled}
+                                            value={ occasion.disabled
+                                                ? ""
+                                                : occasion.occasion }
+                                        >
+                                            {occasion.occasion}
+                                        </option>
                                     )})}
                                 </Field>
                                 <Field name="guests" as="select" placeholder="Guests" className="field-booking">{props.guests.map(guests => {
                                     return Array.from(
                                         {length: guests.max+1},
                                         (_, i) => (
-                                            <option disabled={ i == 0 ? true : false } value={ i === 0 ? guests.placeholder : i}>{i === 0 ? guests.placeholder : i}</option>
+                                            <option disabled={ i === 0 ? true : false } value={ i === 0 ? guests.placeholder : i}>{i === 0 ? guests.placeholder : i}</option>
                                         )
                                     )
                                 })}
                                 </Field>
-                                <DatePickerField name="date" toggleShowTimes={props.toggleShowTimes}/>
+                                <DatePickerField name="date" id="date" toggleShowTimes={props.toggleShowTimes} values={values} />
                             </HStack>
-                            <HStack as="ul" className="container-booking-slots">
+                            <Field  as="ul" className="container-booking-slots">
                             {props.show.times && props.availableTimes.map(booking => {
                                 return (
-                                    <BookingSlot time={booking.time} booked={booking.booked} toggleShowUser={props.toggleShowUser} />
+                                    <BookingSlot id="time" name="time" time={booking.time} booked={booking.booked} toggleShowUser={props.toggleShowUser} />
                                 )
                             })}
-                            </HStack>
+                            </Field>
                             <VStack className="hstack-booking">
                                 {props.show.times && props.show.user &&
                                 <HStack className="vstack-booking" alignItems="flex-start">
@@ -131,9 +159,9 @@ export const BookingPageForm = (props: Props, dispatch: any) => {
                         :
                         <VStack className="confirmation-booking">
                             <Heading className="text-section-title" color="#F4CE14">Booking confirmed</Heading>
-                            <h3>Thanks for booking with us, {values.firstName}, {values.lastName}!</h3>
-                            <p>We at Little Lemon are looking forward to seeing your party of {values.guests} on {values.date} at {values.time}</p>
-                            <p>A confirmation email has been sent to {values.email}</p>
+                            <h3>Thanks for booking with us, <strong>{values.firstName} {values.lastName.charAt(0)}!</strong></h3>
+                            <p>We at Little Lemon are looking forward to seeing your party of <strong>{values.guests}</strong> on <strong>{values.date}</strong> at <strong>{values.time}</strong>.</p>
+                            <p>A confirmation email has been sent to <strong>{values.email}</strong>.</p>
                             <p>See you soon!</p>
                         </VStack>
                         }
@@ -141,6 +169,16 @@ export const BookingPageForm = (props: Props, dispatch: any) => {
                 </Form>
                 )}
             </Formik>
+            {props.show.confirm
+            ? <button onSubmit={() => {
+                props.handleAnotherBooking();
+                formikRef.current.resetForm();
+                console.log(formikRef.current.values);
+                formikRef.current.values = blankBooking;
+                console.log(formikRef.current.values);
+            }}>Make another booking</button>
+            : ""
+            }
         </VStack>
     )
 }

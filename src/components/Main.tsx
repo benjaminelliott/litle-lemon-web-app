@@ -2,28 +2,8 @@ import { useReducer } from 'react'
 import { Container }  from '@chakra-ui/react'
 import { HomePage } from './HomePage'
 import { BookingPage } from './BookingPage';
-import { Formik } from 'formik';
 
-type State = {
-    id: number
-    time: string
-    booked: boolean
-}
-
-type Booking = {
-    times: [{}]
-    id: number
-    time: string
-    booked: boolean
-}
-
-type Action = {
-    type: string;
-    id: number
-    payload: any
-}
-
-const initialState: any = {
+const initialState: initialStateProps = {
     times: [
         {
             id: 0,
@@ -90,7 +70,8 @@ const initialState: any = {
         user: false,
         submit: false,
         confirm: false
-    }
+    },
+    confirmedBookings: []
 };
 
 const ACTION = {
@@ -100,13 +81,15 @@ const ACTION = {
 }
 
 const reducer = (state: any, action: any) => {
-    let array = [];
     switch (action.type) {
         case "SHOW-TIMES":
             return {
                 ...state,
                 show: {
-                    times: true
+                    times: true,
+                    user: false,
+                    submit: false,
+                    confirm: false
                 }
             }
         case "SHOW-USER":
@@ -114,7 +97,12 @@ const reducer = (state: any, action: any) => {
                 ...state,
                 show: {
                     times: true,
-                    user: true
+                    user: true,
+                    submit: false,
+                    confirm: false
+                },
+                bookings: {
+                    time: state.time
                 }
             }
         case "SHOW-SUBMIT":
@@ -123,7 +111,8 @@ const reducer = (state: any, action: any) => {
                 show: {
                     times: true,
                     user: true,
-                    submit: true
+                    submit: true,
+                    confirm: false
                 }
             }
         case "MAKE-BOOKING":
@@ -135,7 +124,30 @@ const reducer = (state: any, action: any) => {
                 show: {
                     times: false,
                     user: false,
+                    submit: false,
                     confirm: true
+                },
+                confirmedBookings: [
+                    {
+                        id: action.payload.firstName + action.payload.guests,
+                        firstName: action.payload.firstName,
+                        lastName: action.payload.lastName,
+                        email: action.payload.email,
+                        occasion: action.payload.occasion,
+                        guests: action.payload.guests,
+                        date: action.payload.date,
+                        time: action.payload.time
+                    }
+                ]
+            }
+        case "ANOTHER-BOOKING":
+            return {
+                ...state,
+                show: {
+                    times: false,
+                    user: false,
+                    submit: false,
+                    confirm: false
                 }
             }
         default:
@@ -147,15 +159,24 @@ export const Main = () => {
 
     const [ state, dispatch ] = useReducer(reducer, initialState);
 
-    const handleComplete = (e: any) => {
-        dispatch({ type: "MAKE-BOOKING" })
-        console.log(state)
+    const handleComplete = (values: any) => {
+        dispatch({
+            type: "MAKE-BOOKING",
+            payload: {
+                id: values.id,
+                firstName: values.firstName,
+                lastName: values.lastName,
+                email: values.email,
+                occasion: values.occasion,
+                guests: values.guests,
+                date: values.date,
+                time: values.time
+            }
+        });
     }
 
     const toggleShowTimes = () => {
-        console.log("hello", initialState.show.times)
         dispatch({ type: "SHOW-TIMES" });
-        console.log("goodbye", state.show.times)
     }
 
     const toggleShowUser = () => {
@@ -170,10 +191,27 @@ export const Main = () => {
         dispatch({ type: "SHOW-CONFIRM "})
     }
 
+    const handleAnotherBooking = () => {
+        dispatch({ type: "ANOTHER-BOOKING"})
+        console.log(state.show)
+    }
+
     return (
         <Container as="section" className="main"  maxWidth="xxl" p="0">
             <HomePage />
-            <BookingPage occasions={state.occasions} guests={state.guests} availableTimes={state.times} show={state.show} handleComplete={handleComplete} toggleShowTimes={toggleShowTimes} toggleShowUser={toggleShowUser} toggleShowSubmit={toggleShowSubmit} ACTION={ACTION} dispatch={dispatch}/>
+            <BookingPage
+                confirmedBookings={state.confirmedBookings}
+                occasions={state.occasions}
+                guests={state.guests}
+                availableTimes={state.times}
+                show={state.show}
+                toggleShowTimes={toggleShowTimes}
+                toggleShowUser={toggleShowUser}
+                toggleShowSubmit={toggleShowSubmit}
+                handleComplete={handleComplete}
+                handleAnotherBooking={handleAnotherBooking}
+                ACTION={ACTION}
+            />
         </Container>
     );
 };
