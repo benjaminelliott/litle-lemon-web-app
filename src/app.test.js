@@ -6,3 +6,9 @@ test('Renders the BookingForm heading', () => {
     const headingElement = screen.getByText("Book a table");
     expect(headingElement).toBeInTheDocument();
 })
+
+test('initializeTimes returns the correct expected value', () => {
+    render(<BookingPageForm />);
+    const bookingConfirmed = screen.getByText("Booking confirmed");
+    expect(bookingConfirmed).toBeInTheDocument();
+})

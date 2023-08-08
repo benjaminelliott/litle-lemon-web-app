@@ -3,43 +3,41 @@ import { TestimonialsCard } from './HomePageTestimonialsCard';
 
 const testimonials  = [
     {
-        user: "bigshoota87",
-        title: "awesome",
+        user: "Benjamin E",
+        title: "Awesome",
         rating: 5,
-        text: "Tempor ut dolore pariatur elit ea reprehenderit ut ipsum amet aute tempor labore dolore ullamco.",
+        text: "The Lemon Dessert is out of this world. I had a wonderful time for my birthday",
         image: "pexels-pixabay-220453.jpg"
     },
     {
-        user: "timbuktu22",
-        title: "epic",
+        user: "Timothy E",
+        title: "Epic",
         rating: 4,
-        text: "Consectetur pariatur labore ex quis do tempor.",
+        text: "I would've liked more feta with my greek salad. ",
         image: "k2zaltb9.bmp"
     },
     {
-        user: "stacyannJ86",
-        title: "average",
+        user: "Stacy E",
+        title: "Average",
         rating: 3,
-        text: "Id ut commodo esse elit mollit id. Ullamco ipsum laboris non nostrud occaecat proident aliqua.",
+        text: "The restaurant was too cold for my liking.",
         image: "epwc4khm.bmp"
     },
 ];
 
 export const Testimonials = () => {
     return (
-        <Container as="section" className="testimonials" pl="125px"  pr="125px" pt="50px" pb="50px">
-            <VStack pb="50px" justifyContent="space-evenly">
-                <Heading className="text-section-title">Testimonials</Heading>
-                <HStack className="testimonial-cards">
-                {
-                    testimonials.map(testimonial => {
-                        return (
-                            <TestimonialsCard user={testimonial.user} title={testimonial.title} rating={testimonial.rating} text={testimonial.text} image={testimonial.image} />
-                        )
-                    })
-                }
-                </HStack>
-            </VStack>
-        </Container>
+        <section className="testimonials">
+            <h1 className="text-section-title">Testimonials</h1>
+            <div className="testimonial-cards">
+            {
+                testimonials.map(testimonial => {
+                    return (
+                        <TestimonialsCard user={testimonial.user} title={testimonial.title} rating={testimonial.rating} text={testimonial.text} />
+                    )
+                })
+            }
+            </div>
+        </section>
     );
 }

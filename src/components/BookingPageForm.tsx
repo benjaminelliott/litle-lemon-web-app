@@ -86,7 +86,7 @@ export const BookingPageForm = (props: Props) => {
     const formikRef:any = useRef();
 
     return (
-        <VStack>
+        <div className='form-booking-page'>
             <Formik
                 initialValues={ blankBooking }
                 innerRef={formikRef}
@@ -102,11 +102,11 @@ export const BookingPageForm = (props: Props) => {
             >
                 {({ errors, touched, values }) => (
                 <Form className="form-booking">
-                    <VStack display="flex" className="container-booking">
+                    <div className="container-booking">
                         { !props.show.confirm ?
                         <>
-                            <Heading className="text-section-title" color="#F4CE14">Book a table</Heading>
-                            <HStack className="hstack-booking">
+                            <h1 className="text-section-title title-booking">Book a table</h1>
+                            <div className="inputs-top">
                                 <Field name="occasion" as="select" placeholder="Occasion">{props.occasions.map(occasion => {
                                     return (
                                         <option
@@ -129,8 +129,8 @@ export const BookingPageForm = (props: Props) => {
                                 })}
                                 </Field>
                                 <DatePickerField name="date" id="date" toggleShowTimes={props.toggleShowTimes} values={values} />
-                            </HStack>
-                            <Field  as="ul" className="container-booking-slots">
+                            </div>
+                            <Field  as="ul" className="inputs-middle">
                             {props.show.times && props.availableTimes.map(booking => {
                                 return (
                                     <BookingSlot id="time" name="time" time={booking.time} booked={booking.booked} toggleShowUser={props.toggleShowUser} />
@@ -165,20 +165,10 @@ export const BookingPageForm = (props: Props) => {
                             <p>See you soon!</p>
                         </VStack>
                         }
-                    </VStack>
+                    </div>
                 </Form>
                 )}
             </Formik>
-            {props.show.confirm
-            ? <button onSubmit={() => {
-                props.handleAnotherBooking();
-                formikRef.current.resetForm();
-                console.log(formikRef.current.values);
-                formikRef.current.values = blankBooking;
-                console.log(formikRef.current.values);
-            }}>Make another booking</button>
-            : ""
-            }
-        </VStack>
+        </div>
     )
 }

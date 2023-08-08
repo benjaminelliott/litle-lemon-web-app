@@ -1,17 +1,15 @@
-
-
 export const BookingPageList = (props: BookingListProps) => {
 
     return (
         <>
             {props.show.confirm &&
-                <div>
-                    <h1>Current Bookings</h1>
+                <div className="bookings-list">
+                    <h1 className="text-highlight">Current Bookings</h1>
                     {props.confirmedBookings.map(booking => [
-                        <div>
-                        <p>{booking.time}</p>
-                        <p>{booking.date}</p>
-                        <p>{booking.occasion} party of {booking.guests}</p>
+                        <div className="confirmed-booking">
+                        <p className="text">{booking.time}, {booking.date}</p>
+                        <p className="text"></p>
+                        <p className="text text-paragraph">{booking.occasion} party of {booking.guests}</p>
                         </div>
                     ])}
                 </div>

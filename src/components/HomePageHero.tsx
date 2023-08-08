@@ -1,22 +1,15 @@
-import { Heading, VStack, Flex, Text, Button, Center, Square } from '@chakra-ui/react'
-
 export const Hero = () => {
     return (
-        <Flex className="hero" pl="125px"  pr="125px" pt="50px" pb="50px">
-            <Center
-            flex="1"
-            justifyContent="flex-start">
-                <VStack alignItems="left" spacing={5}>
-                    <Heading className='title title-display'>Little Lemon</Heading>
-                    <Heading className="title title-sub">Chicago</Heading>
-                    <Text className="text text-paragraph">Incididunt sint nostrud in do duis mollit labore mollit excepteur. Sit ea fugiat anim magna laborum consectetur laboris deserunt adipisicing. Esse exercitation nisi cupidatat do. Sit id labore eiusmod magna ex Lorem velit. Do cupidatat reprehenderit sunt nisi non ex cupidatat.</Text>
-                    <Button width="33%" height="50px" borderRadius={16}>Reserve a table</Button>
-                </VStack>
-            </Center>
-            <Square maxWidth="30%" >
-                <img src="restauranfood.jpg" alt="restaurant 1">
-                </img>
-            </Square>
-        </Flex>
+        <article className="hero">
+            <div className="hero-text">
+                <div>
+                    <h1 className='title title-display'>Little Lemon</h1>
+                    <h2 className="title title-sub">Chicago</h2>
+                </div>
+                <p className="text text-paragraph">We are a family owned Mediterranean restaurant, focused on traditional recipes & served with a modern twist.</p>
+                <button className="buttonh1">Reserve a table</button>
+            </div>
+            <img className="hero-image" src="restauranfood.jpg" alt="restaurant 1" />
+        </article>
     );
 }

@@ -91,5 +91,17 @@ declare global {
             time: string
         }[],
     }
+    type SpecialsCardProps = {
+        image: string;
+        title: string;
+        price: string;
+        text: string;
+    }
+    type TestimonialsCardProps = {
+        user: string;
+        title: string;
+        rating: number;
+        text: string;
+    }
 }
 
