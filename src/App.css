@@ -69,33 +69,7 @@
   padding: 5% 10%;
 }
 
-.booking-slot {
-  padding: 20px;
-  margin: 0px 5px;
-  background-color: var(--h1);
-  border-radius: 16px;
-  width: 10vw;
-  list-style: none;
-  transition: all 0.5s;
-}
 
-.booking-slot:hover {
-  padding: 20px;
-  background-color: var(--p2);
-  list-style: none;
-  scale: 1.1;
-  font-weight: bold;
-  color: var(--h1);
-}
-
-.booking-slot:focus {
-  
-}
-
-.selected {
-  background-color: var(--p2);
-  color: var(--h2);
-}
 
 
 .form-booking {
@@ -289,13 +263,20 @@
   align-items: center;
 }
 
+.container-booking {
+  display: grid;
+  grid-template-rows: repeat(4, 25%);
+}
+
 .title-booking {
   color: var(--p2);
   text-align: left;
 }
 
 .inputs-top {
-
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .inputs-middle {
@@ -307,6 +288,34 @@
 
 .inputs-bottom {
 
+}
+
+.booking-slot {
+  padding: 20px;
+  margin: 0px 5px;
+  background-color: var(--h1);
+  border-radius: 16px;
+  width: 10vw;
+  list-style: none;
+  transition: all 0.5s;
+}
+
+.booking-slot:hover {
+  padding: 20px;
+  background-color: var(--p2);
+  list-style: none;
+  scale: 1.1;
+  font-weight: bold;
+  color: var(--h1);
+}
+
+.booking-slot:focus {
+  
+}
+
+.selected {
+  background-color: var(--s2);
+  color: var(--h2);
 }
 
 .label-booking {
@@ -329,11 +338,11 @@ input[type="text"] {
   border-radius: 16px;
 }
 
-input[type="text"] .datepicker {
-  width: 200px;
+.datepicker {
   padding: 10px;
   border-radius: 16px;
   width: 400px;
+  min-width: 400px;
 }
 
 input[type="email"]:focus {
