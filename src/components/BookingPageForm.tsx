@@ -1,6 +1,5 @@
-import { useRef } from 'react'
 import { Formik, Field, Form } from "formik";
-import { HStack, VStack, Heading } from '@chakra-ui/react'
+import * as Yup from 'yup';
 import "react-datepicker/dist/react-datepicker.css";
 import { DatePickerField } from "./BookingPageFormDatePicker";
 import { BookingSlot } from './BookingSlot';
@@ -53,15 +52,16 @@ interface Values {
     date: string
   }
 
-export const BookingPageForm = (props: Props) => {
+  const SignupSchema = Yup.object().shape({
 
-    const validate = (e: string) => {
-        let errorMessage = "";
-        if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e)) {
-            errorMessage = 'Invalid email address';
-        }
-        props.toggleShowSubmit();
-    };
+    firstName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+    lastName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+    email: Yup.string().email('Invalid email').required('Required'),
+    date: Yup.string().nullable().required(),
+    occasions: Yup.string()
+  });
+
+export const BookingPageForm = (props: Props) => {
 
     let blankBooking = {
         email: '',
@@ -83,13 +83,11 @@ export const BookingPageForm = (props: Props) => {
     }
     let confirmedBookings:any = [];
 
-    const formikRef:any = useRef();
-
     return (
-        <div className='form-booking-page'>
+        <article className='form-booking-page'>
             <Formik
                 initialValues={ blankBooking }
-                innerRef={formikRef}
+                validationSchema={SignupSchema}
                 onSubmit={ async (values: Values, actions) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
                     setTimeout(() => {
@@ -101,74 +99,62 @@ export const BookingPageForm = (props: Props) => {
                 }}
             >
                 {({ errors, touched, values }) => (
-                <Form className="form-booking">
-                    <div className="container-booking">
-                        { !props.show.confirm ?
-                        <>
-                            <h1 className="text-section-title title-booking">Book a table</h1>
-                            <div className="inputs-top">
-                                <Field name="occasion" as="select" placeholder="Occasion">{props.occasions.map(occasion => {
+                <Form className='form-booking'>
+                    { !props.show.confirm ?
+                    <>
+                        <div className="inputs-top">
+                        <h1 className="text-section-title title-booking">Book a table</h1>
+                            <Field name="occasion" as="select" placeholder="Occasion" className={ !touched.occasion ? "field-booking" : "field-booking-confirmed"}>
+                            <option disabled selected value="">Occasion</option>
+                                {
+                                props.occasions.map(occasion => {
                                     return (
-                                        <option
-                                            disabled={occasion.disabled}
-                                            value={ occasion.disabled
-                                                ? ""
-                                                : occasion.occasion }
-                                        >
+                                        <option>
                                             {occasion.occasion}
                                         </option>
                                     )})}
-                                </Field>
-                                <Field name="guests" as="select" placeholder="Guests" className="field-booking">{props.guests.map(guests => {
-                                    return Array.from(
-                                        {length: guests.max+1},
-                                        (_, i) => (
-                                            <option disabled={ i === 0 ? true : false } value={ i === 0 ? guests.placeholder : i}>{i === 0 ? guests.placeholder : i}</option>
-                                        )
+                            </Field>
+                            <Field name="guests" as="select" placeholder="Guests" className={ !touched.guests ? "field-booking" : "field-booking-confirmed"}>{props.guests.map(guests => {
+                                return Array.from(
+                                    {length: guests.max+1},
+                                    (_, i) => (
+                                        <option disabled={ i === 0 ? true : false } value={ i === 0 ? guests.placeholder : i}>{i === 0 ? guests.placeholder : i}</option>
                                     )
-                                })}
-                                </Field>
-                                <DatePickerField name="date" id="date" toggleShowTimes={props.toggleShowTimes} values={values} />
-                            </div>
-                            <Field  as="ul" className="inputs-middle">
-                            {props.show.times && props.availableTimes.map(booking => {
-                                return (
-                                    <BookingSlot id="time" name="time" time={booking.time} booked={booking.booked} toggleShowUser={props.toggleShowUser} />
                                 )
                             })}
                             </Field>
-                            <VStack className="hstack-booking">
-                                {props.show.times && props.show.user &&
-                                <HStack className="vstack-booking" alignItems="flex-start">
-                                    <Field name="firstName" type="text" placeholder={ "" ? "First Name" : ""}/>
-                                    <Field name="lastName" type="text"/>
-                                    <Field validate={validate} name="email" type="email" />
-                                </HStack>
-                                }
-                                <HStack>
-                                    {errors.email && touched.email ? <div className="email-error">{errors.email}</div> : null}
-                                </HStack>
-
-                            </VStack>
-                            <HStack className="hstack-booking">
-                                {props.show.times && props.show.user && props.show.submit &&
-                                    <button type="submit" className="button-light">Confirm booking</button>
-                                }
-                            </HStack>
-                            </>
-                        :
-                        <VStack className="confirmation-booking">
-                            <Heading className="text-section-title" color="#F4CE14">Booking confirmed</Heading>
-                            <h3>Thanks for booking with us, <strong>{values.firstName} {values.lastName.charAt(0)}!</strong></h3>
-                            <p>We at Little Lemon are looking forward to seeing your party of <strong>{values.guests}</strong> on <strong>{values.date}</strong> at <strong>{values.time}</strong>.</p>
-                            <p>A confirmation email has been sent to <strong>{values.email}</strong>.</p>
-                            <p>See you soon!</p>
-                        </VStack>
+                            <DatePickerField name="date" id="date" className={ !values.date ? "field-booking" : "field-booking-confirmed"} toggleShowTimes={props.toggleShowTimes} values={values} />
+                        </div>
+                        <Field  as="ul" className="inputs-middle">
+                        {props.show.times && props.availableTimes.map(booking => {
+                            return (
+                                <BookingSlot id="time" name="time" time={booking.time} booked={booking.booked} toggleShowUser={props.toggleShowUser} />
+                            )
+                        })}
+                        </Field>
+                        {values.time !== "" &&
+                        <div className="inputs-bottom">
+                            <Field name="firstName" type="text" placeholder="First Name" className={ errors.firstName ? "field-booking" : "field-booking-confirmed"}/>
+                            <Field name="lastName" type="text" placeholder="Last Name" className={ errors.lastName ? "field-booking" : "field-booking-confirmed"}/>
+                            <Field name="email" type="email" placeholder="Email address" className={ errors.email ? "field-booking" : "field-booking-confirmed"}/>
+                            {props.show.times && props.show.user && !errors.firstName && !errors.lastName && !errors.email &&
+                            <button type="submit" className="buttonh1">Confirm booking</button>
                         }
-                    </div>
+                        </div>
+                        }
+                        </>
+                    :
+                    <article className="confirmation-booking">
+                        <h1 className="text-section-title">Booking confirmed</h1>
+                        <h3>Thanks for booking with us, <strong>{values.firstName} {values.lastName.charAt(0)}!</strong></h3>
+                        <p>We at Little Lemon are looking forward to seeing your party of <strong>{values.guests}</strong> on <strong>{values.date}</strong> at <strong>{values.time}</strong>.</p>
+                        <p>A confirmation email has been sent to <strong>{values.email}</strong>.</p>
+                        <h3>See you soon!</h3>
+                    </article>
+                    }
                 </Form>
                 )}
             </Formik>
-        </div>
+        </article>
     )
 }

@@ -14,8 +14,8 @@ export const BookingSlot = ({...props}) => {
 
     selectedList.forEach(selected => {
         selected.addEventListener('click', () => {
-            document.querySelector('.selected')?.classList.remove('selected')
-            selected.classList.add('selected');
+            document.querySelector('.field-booking-confirmed')?.classList.remove('field-booking-confirmed')
+            selected.classList.add('field-booking-confirmed');
         })
     })
 
@@ -29,10 +29,12 @@ export const BookingSlot = ({...props}) => {
                         name="time"
                         type="button"
                         className="booking-slot"
-                        onClick={() => {
+                        onClick={(e) => {
                             props.toggleShowUser();
                             setFieldValue(field.name, props.time);
                             setFieldValue(field.value, props.time);
+                            console.log(field, props.values)
+                            e.preventDefault();
                         }}
                     >
                         <span>{props.time}</span>

@@ -1,55 +1,90 @@
-import { Flex, VStack, UnorderedList, ListItem, Text } from "@chakra-ui/react"
-
-const textSX = {
-    fontWeight: "bold",
-    color: "#495E57"
-};
-
-const listSX = {
-    spacing: "30px",
-    styleType: "none",
-    fontFamily: "`Karla`, sans-serif"
-};
+const navItems = {
+    sitemap: [
+        {
+            name: "Home",
+            link: ""
+        },
+        {
+            name: "About",
+            link: ""
+        },
+        {
+            name: "Menu",
+            link: ""
+        },
+        {
+            name: "Order Online",
+            link: ""
+        },
+        {
+            name: "Booking",
+            link: ""
+        },
+        {
+            name: "Login",
+            link: ""
+        }
+    ],
+    contact: [
+        {
+            name: "Address",
+            link: ""
+        },
+        {
+            name: "Phone",
+            link: ""
+        },
+        {
+            name: "Email",
+            link: ""
+        }
+    ],
+    socials: [
+        {
+            icon: "icons/facebook.svg",
+            link: "www.facebook.com"
+        },
+        {
+            icon: "icons/instagram.svg",
+            link: "www.instagram.com"
+        },
+        {
+            icon: "icons/twitter.svg",
+            link: "www.twitter.com"
+        }
+    ]
+}
 
 export const Footer = () => {
     return (
-        <div>
-            <Flex
-            as="nav"
-            p="10px"
-            maxWidth="xxl" pl="125px"  pr="125px"
-            align="center"
-            justify="space-around">
-                <img src="Logo .svg" alt="default" />
-                <UnorderedList
-                >
-                    <VStack>
-                        <Text sx={textSX}>Doormat Navigation</Text>
-                        <ListItem><a href="">Home</a></ListItem>
-                        <ListItem><a href="">About</a></ListItem>
-                        <ListItem><a href="">Menu</a></ListItem>
-                        <ListItem><a href="">Reservations</a></ListItem>
-                        <ListItem><a href="">Order Online</a></ListItem>
-                        <ListItem><a href="">Login</a></ListItem>
-                    </VStack>
-                </UnorderedList>
-                <UnorderedList >
-                    <VStack >
-                        <Text sx={textSX}>Contact</Text>
-                        <ListItem><a href="">Address</a></ListItem>
-                        <ListItem><a href="">Phone</a></ListItem>
-                        <ListItem><a href="">Email</a></ListItem>
-                    </VStack>
-                </UnorderedList>
-                <UnorderedList>
-                    <VStack>
-                        <Text sx={textSX}>Social Media</Text>
-                        <ListItem><a href="">Address</a></ListItem>
-                        <ListItem><a href="">Phone</a></ListItem>
-                        <ListItem><a href="">Email</a></ListItem>
-                    </VStack>
-                </UnorderedList>
-            </Flex>
-        </div>
+        <footer className="nav">
+            <a href=""><img className="nav-logo" src="Logo .svg" alt="default" /></a>
+            <ul className="nav-list-footer">
+                <h1 className="nav-title-footer">Sitemap</h1>
+                {navItems.sitemap.map(item => {
+                    return (
+                        <li><a href={item.link}>{item.name}</a></li>
+                    )
+                })}
+            </ul>
+            <ul className="nav-list-footer" >
+                <h1 className="nav-title-footer">Contact</h1>
+                {navItems.contact.map(item => {
+                    return (
+                        <li><a href={item.link}>{item.name}</a></li>
+                    )
+                })}
+            </ul>
+            <ul className="nav-list-footer" >
+                <h1 className="nav-title-footer">Socials</h1>
+                <div className="nav-list-footer-socials">
+                    {navItems.socials.map(item => {
+                        return (
+                                <a href={item.link}><img src={item.icon} className="nav-list-footer-social"/></a>
+                        )
+                    })}
+                </div>
+            </ul>
+        </footer>
     );
 };

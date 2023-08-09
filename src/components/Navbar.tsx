@@ -1,28 +1,40 @@
-import { Flex, Spacer, HStack, UnorderedList } from "@chakra-ui/react"
-
+const navItems = [
+    {
+        name: "Home",
+        link: ""
+    },
+    {
+        name: "About",
+        link: ""
+    },
+    {
+        name: "Menu",
+        link: ""
+    },
+    {
+        name: "Order Online",
+        link: ""
+    },
+    {
+        name: "Booking",
+        link: ""
+    },
+    {
+        name: "Login",
+        link: ""
+    }
+]
 export const Navbar = () => {
     return (
-        <Flex
-        as="nav"
-        p="10px"
-        maxWidth="xxl" pl="125px"  pr="125px"
-        align="center"
-        justify="space-around">
-            <img src="Logo .svg" alt="default"></img>
-            <Spacer />
-            <UnorderedList
-            spacing="30px"
-            styleType="none"
-            fontWeight="bold">
-                <HStack>
-                    <a>Home</a>
-                    <a>About</a>
-                    <a>Menu</a>
-                    <a>Order Online</a>
-                    <a>Booking</a>
-                    <a>Login</a>
-                </HStack>
-            </UnorderedList>
-        </Flex>
+        <nav className="nav">
+            <a href=""><img className="nav-logo" src="Logo .svg" alt="default" /></a>
+            <ul className="nav-list-header">
+                {navItems.map(item => {
+                    return (
+                        <li><a href={item.link}>{item.name}</a></li>
+                    )
+                })}
+            </ul>
+        </nav>
     );
 }

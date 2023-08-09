@@ -1,6 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import './App.css';
-import { Header } from './components/Header';
 import { Navbar } from './components/Navbar';
 import { Main } from './components/Main';
 import { Footer } from './components/Footer';
@@ -8,12 +7,17 @@ import { Footer } from './components/Footer';
 const App = () => {
   return (
     <ChakraProvider>
-      <Header />
+      <header>
+          <meta name="description" content="This is the website for the Little Lemon restaurant"/>
+          <meta name="og:title" content="Little Lemon restaurant"/>
+          <meta name="og:description" content="The Little Lemon Restaurant specialises in modern Mediterranean cuisine"/>
+          <meta name="og:image" content="favicon.ico"/>
+          <Navbar />
+      </header>
       <div className="App">
-        <Navbar />
         <Main />
-        <Footer />
       </div>
+      <Footer />
     </ChakraProvider>
   );
 }

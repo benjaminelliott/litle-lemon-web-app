@@ -3,7 +3,7 @@ import { Container }  from '@chakra-ui/react'
 import { HomePage } from './HomePage'
 import { BookingPage } from './BookingPage';
 
-const initialState: initialStateProps = {
+const initialState = {
     times: [
         {
             id: 0,
@@ -38,24 +38,13 @@ const initialState: initialStateProps = {
     ],
     occasions: [
         {
-            id: 0,
-            occasion: "Occasion",
-            disabled: true
-        },
-        {
-            id: 1,
             occasion: "Birthday",
-            disabled: false
         },
         {
-            id: 2,
             occasion: "Anniversary",
-            disabled: false
         },
         {
-            id: 3,
             occasion: "Other",
-            disabled: false
         },
     ],
     guests: [
@@ -86,10 +75,7 @@ const reducer = (state: any, action: any) => {
             return {
                 ...state,
                 show: {
-                    times: true,
-                    user: false,
-                    submit: false,
-                    confirm: false
+                    times: true
                 }
             }
         case "SHOW-USER":
@@ -97,9 +83,7 @@ const reducer = (state: any, action: any) => {
                 ...state,
                 show: {
                     times: true,
-                    user: true,
-                    submit: false,
-                    confirm: false
+                    user: true
                 },
                 bookings: {
                     time: state.time
@@ -111,8 +95,7 @@ const reducer = (state: any, action: any) => {
                 show: {
                     times: true,
                     user: true,
-                    submit: true,
-                    confirm: false
+                    submit: true
                 }
             }
         case "MAKE-BOOKING":
@@ -197,7 +180,7 @@ export const Main = () => {
     }
 
     return (
-        <Container as="section" className="main"  maxWidth="xxl" p="0">
+        <main className="main">
             <HomePage />
             <BookingPage
                 confirmedBookings={state.confirmedBookings}
@@ -212,6 +195,6 @@ export const Main = () => {
                 handleAnotherBooking={handleAnotherBooking}
                 ACTION={ACTION}
             />
-        </Container>
+        </main>
     );
 };
