@@ -173,10 +173,6 @@ const App = () => {
       dispatch({ type: "SHOW-SUBMIT" })
   }
 
-  const toggleConfirm = () => {
-      dispatch({ type: "SHOW-CONFIRM "})
-  }
-
   const handleAnotherBooking = () => {
       dispatch({ type: "ANOTHER-BOOKING"})
 

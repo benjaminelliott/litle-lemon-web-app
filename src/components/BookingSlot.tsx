@@ -1,4 +1,3 @@
-import { useRef, useEffect } from 'react'
 import { useField, useFormikContext } from "formik";
 
 export const BookingSlot = ({...props}) => {

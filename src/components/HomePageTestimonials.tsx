@@ -1,4 +1,3 @@
-import { Container, HStack, Heading, VStack } from '@chakra-ui/react'
 import { TestimonialsCard } from './HomePageTestimonialsCard';
 
 const testimonials  = [

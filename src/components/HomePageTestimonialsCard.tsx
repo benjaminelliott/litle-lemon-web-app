@@ -9,7 +9,7 @@ export const TestimonialsCard = (props: TestimonialsCardProps) => {
                 <span className="stars">
                     {stars.map(() => {
                         return (
-                            <img src="star-icon.svg" className="star-rating" />
+                            <img src="star-icon.svg" className="star-rating" alt="star" />
                         )
                     })}
                 </span>

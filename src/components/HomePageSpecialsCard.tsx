@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const SpecialsCard = (props: SpecialsCardProps) => {
 
     return (
@@ -13,8 +15,8 @@ export const SpecialsCard = (props: SpecialsCardProps) => {
                             <p>{props.text}</p>
                         </div>
                         <div className='hStack'>
-                            <a className='card-specials-delivery' href="">Order a delivery</a>
-                            <a href=""><img className='card-specials-icon' src="icons/Basket.svg" alt="icon"/></a>
+                            <Link className='card-specials-delivery' to={"/orders"}>Order a delivery</Link>
+                            <Link to={"/orders"}><img className='card-specials-icon' src="icons/Basket.svg" alt="icon"/></Link>
                         </div>
                     </div>
             </div>

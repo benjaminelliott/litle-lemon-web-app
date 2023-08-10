@@ -46,14 +46,17 @@ const navItems = {
     ],
     socials: [
         {
+            name: "facebook",
             icon: "icons/facebook.svg",
             link: "www.facebook.com"
         },
         {
+            name: "instagram",
             icon: "icons/instagram.svg",
             link: "www.instagram.com"
         },
         {
+            name: "twitter",
             icon: "icons/twitter.svg",
             link: "www.twitter.com"
         }
@@ -63,7 +66,7 @@ export const Layout = () => {
     return (
         <>
             <nav className="nav">
-                <a href=""><img className="nav-logo" src="Logo .svg" alt="default" /></a>
+                <Link to={"/"}><img className="nav-logo" src="Logo .svg" alt="default" /></Link>
                 <ul className="nav-list-header">
                     {navItems.sitemap.map(item => {
                         return (
@@ -74,7 +77,7 @@ export const Layout = () => {
             </nav>
             <Outlet />
             <footer className="nav">
-                <a href=""><img className="nav-logo" src="Logo .svg" alt="default" /></a>
+            <Link to={"/"}><img className="nav-logo" src="Logo .svg" alt="default" /></Link>
                 <ul className="nav-list-footer">
                     <h1 className="nav-title-footer">Sitemap</h1>
                     {navItems.sitemap.map(item => {
@@ -96,7 +99,7 @@ export const Layout = () => {
                     <div className="nav-list-footer-socials">
                         {navItems.socials.map(item => {
                             return (
-                                    <Link to={item.link}><img src={item.icon} className="nav-list-footer-social"/></Link>
+                                    <Link to={item.link}><img src={item.icon} className="nav-list-footer-social" alt={item.name}/></Link>
                             )
                         })}
                     </div>
