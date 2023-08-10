@@ -73,6 +73,34 @@ declare global {
         handleAnotherBooking: any
     }
 
+    interface BookingPageFormProps {
+        occasions: {
+            id: number
+            occasion: string
+        }[]
+        guests: {
+            min: number,
+            max: number,
+            placeholder: string
+        }[]
+        availableTimes: {
+            time: string
+            booked: boolean
+        }[]
+        handleComplete: any
+        show: {
+            times: boolean
+            user: boolean
+            submit: boolean
+            confirm: boolean
+        }
+        ACTION: any
+        toggleShowTimes: any
+        toggleShowUser: any
+        toggleShowSubmit: any
+        handleAnotherBooking: any
+    }
+
     interface BookingListProps {
         show: {
             times: boolean

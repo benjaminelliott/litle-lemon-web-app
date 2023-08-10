@@ -22,12 +22,10 @@ export const BookingSlot = ({...props}) => {
                         name="time"
                         type="button"
                         className="booking-slot"
-                        onClick={() => {
-                            console.log(field.value)
+                        onClick={(e) => {
+                            e.preventDefault();
                             props.toggleShowUser();
                             setFieldValue(field.name, props.time);
-                            setFieldValue(field.value, props.time);
-                            console.log(field.value)
                         }}
                     >
                         <span>{props.time}</span>

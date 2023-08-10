@@ -14,7 +14,7 @@ export const DatePickerField = ({ ...props }) => {
           props.toggleShowTimes();
           setFieldValue(field.name, val?.toDateString());
       }}
-      placeholderText={field.name}
+      placeholderText="Date"
       dateFormat="MMMM d, yyyy"
     />
   );

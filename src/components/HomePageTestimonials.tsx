@@ -28,7 +28,7 @@ const testimonials  = [
 export const Testimonials = () => {
     return (
         <section className="testimonials">
-            <h1 className="text-section-title">Testimonials</h1>
+            <h1 className="text-section-title testimonial-title">Testimonials</h1>
             <div className="testimonial-cards">
             {
                 testimonials.map(testimonial => {
