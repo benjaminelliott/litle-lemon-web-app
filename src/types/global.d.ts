@@ -37,8 +37,8 @@ declare global {
 
     interface BookingPageProps {
         occasions: {
-            occasion: string,
-            disabled: boolean
+            id: number
+            occasion: string
         }[]
         guests: {
             min: number,

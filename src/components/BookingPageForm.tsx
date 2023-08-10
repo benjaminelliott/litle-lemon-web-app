@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,8 +7,8 @@ import { BookingSlot } from './BookingSlot';
 
 type Props = {
     occasions: {
-        occasion: string,
-        disabled: boolean
+        id: number
+        occasion: string
     }[]
     guests: {
         min: number,
@@ -61,6 +62,8 @@ interface Values {
     occasions: Yup.string()
   });
 
+
+
 export const BookingPageForm = (props: Props) => {
 
     let blankBooking = {
@@ -86,9 +89,10 @@ export const BookingPageForm = (props: Props) => {
     return (
         <article className='form-booking-page'>
             <Formik
+                
                 initialValues={ blankBooking }
                 validationSchema={SignupSchema}
-                onSubmit={ async (values: Values, actions) => {
+                onSubmit={ async (values, actions) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
                     setTimeout(() => {
                         confirmed = values;
@@ -104,12 +108,12 @@ export const BookingPageForm = (props: Props) => {
                     <>
                         <div className="inputs-top">
                         <h1 className="text-section-title title-booking">Book a table</h1>
-                            <Field name="occasion" as="select" placeholder="Occasion" className={ !touched.occasion ? "field-booking" : "field-booking-confirmed"}>
+                            <Field name="occasion" as="select" placeholder="Occasion" id="occasion" className={ !touched.occasion ? "field-booking" : "field-booking-confirmed"}>
                             <option disabled selected value="">Occasion</option>
                                 {
                                 props.occasions.map(occasion => {
                                     return (
-                                        <option>
+                                        <option key={occasion.id}>
                                             {occasion.occasion}
                                         </option>
                                     )})}

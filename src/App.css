@@ -406,7 +406,6 @@ li:hover {
 }
 
 .selected:hover {
-
   color: var(--h2);
 }
 
@@ -429,15 +428,33 @@ input:focus {
 }
 
 .react-datepicker-wrapper {
+  flex-grow: 2;
   height: 50px;
   margin-top: 2px;
 }
 
 .datepicker {
   border-radius: 16px;
-  flex-grow: 1;
+  height: 50px;
   background-color: var(--h1);
   
+}
+
+.react-datepicker__input-container{
+  flex-grow: 1;
+  height: 50px;
+}
+
+.react-datepicker-ignore-onclickoutside {
+  width: 100%;
+  height: 50px;
+}
+
+#date {
+  width: 100%;
+  height: 50px;
+  flex-grow: 2;
+  height: 50px;
 }
 
 select{
@@ -464,6 +481,7 @@ select:focus{
   color: var(--p1);
   font-weight: bold;
   opacity: 1;
+  height: 50px;
 }
 
 .hstack-booking {

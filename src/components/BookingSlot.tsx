@@ -1,12 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { useField, useFormikContext } from "formik";
 
-interface Props {
-    selected: {
-        style: string
-    }
-}
-
 export const BookingSlot = ({...props}) => {
     const { setFieldValue } = useFormikContext();
     const [field] = useField(props.name);
@@ -24,17 +18,16 @@ export const BookingSlot = ({...props}) => {
             {props.booked
                 ?   ""
                 :   <button
-
                         id="time"
                         name="time"
                         type="button"
                         className="booking-slot"
-                        onClick={(e) => {
+                        onClick={() => {
+                            console.log(field.value)
                             props.toggleShowUser();
                             setFieldValue(field.name, props.time);
                             setFieldValue(field.value, props.time);
-                            console.log(field, props.values)
-                            e.preventDefault();
+                            console.log(field.value)
                         }}
                     >
                         <span>{props.time}</span>
