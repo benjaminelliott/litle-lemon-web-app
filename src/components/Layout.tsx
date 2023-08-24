@@ -65,7 +65,7 @@ const navItems = {
 export const Layout = () => {
     return (
         <>
-            <nav className="nav">
+            <nav className="top-nav">
                 <Link to={"/"}><img className="nav-logo" src="Logo .svg" alt="default" /></Link>
                 <ul className="nav-list-header">
                     {navItems.sitemap.map(item => {
@@ -76,7 +76,7 @@ export const Layout = () => {
                 </ul>
             </nav>
             <Outlet />
-            <footer className="nav">
+            <footer className="bottom-nav">
             <Link to={"/"}><img className="nav-logo" src="Logo .svg" alt="default" /></Link>
                 <ul className="nav-list-footer">
                     <h1 className="nav-title-footer">Sitemap</h1>

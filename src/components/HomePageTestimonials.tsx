@@ -26,7 +26,7 @@ const testimonials  = [
 
 export const Testimonials = () => {
     return (
-        <section className="testimonials">
+        <article className="testimonials">
             <h1 className="text-section-title testimonial-title">Testimonials</h1>
             <div className="testimonial-cards">
             {
@@ -37,6 +37,6 @@ export const Testimonials = () => {
                 })
             }
             </div>
-        </section>
+        </article>
     );
 }

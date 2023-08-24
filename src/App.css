@@ -9,11 +9,22 @@
 }
 
 .App {
-  width: 100%;
-  height: auto;
+  width: 95dvw;
 }
 
-.nav {
+.top-nav {
+  min-height: 5dvh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+section {
+  min-height: 80dvh;
+}
+
+.bottom-nav {
+  min-height: 10dvh;
   padding: 10px 0px;
   display: flex;
   align-items: center;
@@ -118,6 +129,12 @@
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
+}
+
+.about-buttons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
 }
 
 .hero-image {
@@ -374,7 +391,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
   background-color: var(--s2);
 }
@@ -402,8 +419,8 @@
   color: var(--p1);
   width: 100%;
   display: grid;
-  grid-template-columns: 10% 60% 15% 15%;
-  margin-left: 2rem;
+  grid-template-columns: 10% 75% 10% 5%;
+
 }
 
 .menu-section-item::before {
@@ -426,6 +443,10 @@
 
 .menu-section-item-name {
   color: var(--p1);
+}
+
+.menu-section-item-price:before {
+  content: '$';
 }
 
 .menu-basket-button {

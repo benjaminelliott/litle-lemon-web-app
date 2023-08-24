@@ -1,5 +1,6 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import logoWhite from "assets/logo-white.png"
+import { Link } from 'react-router-dom';
 
 export const AboutPage = () => {
     return (
@@ -17,6 +18,10 @@ export const AboutPage = () => {
                 <p className="text">Mario and Adrian met each other by chance, both having spent numerous vacations in Greece. Along with the memories, they both brought back their passion for Mediterranean food.</p>
                 <p className="text">At the forefront of the "Michi-terranean" movement, Little Lemon is bringing a European flair to the Windy City in a big way.</p>
                 <p className="text">Whether you want to stop by or get our cuisine delivered, we look forward to giving you a taste of Little Lemon soon!</p>
+                <div className='about-buttons'>
+                    <button className="buttonh1"><Link to={"/booking"}>Reserve a table</Link></button>
+                    <button className="buttonh1"><Link to={"/menu"}>Check out our menu</Link></button>
+                </div>
             </article>
         </section>
     )

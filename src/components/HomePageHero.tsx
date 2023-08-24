@@ -9,7 +9,7 @@ export const Hero = () => {
                     <h2 className="title title-sub">Chicago</h2>
                 </div>
                 <p className="text text-paragraph">We are a family owned Mediterranean restaurant, focused on traditional recipes & served with a modern twist.</p>
-                <button className="buttonh1"><Link to={"/booking"}>Reserve a table</Link></button>
+                <Link to={"/booking"}><button className="buttonh1">Reserve a table</button></Link>
             </div>
             <img className="hero-image" src="restauranfood.jpg" alt="restaurant 1" />
         </article>

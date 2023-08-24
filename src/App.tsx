@@ -66,167 +66,198 @@ const initialState = {
   confirmedBookings: [
   ]
   ,
-  menu: {
-    appetizers: [
-        {
-            key: 0,
-            name: "Melitzanosalata",
-            price: "$6.50",
-            veggie: false,
-            vegan: true
-        },
-        {
-            key: 1,
-            name: "Arakas",
-            price: "$5.50",
-            veggie: false,
-            vegan: true
-        },
-        {
-            key: 2,
-            name: "Patzaria",
-            price: "$6.50",
-            veggie: false,
-            vegan: true
-        },
-        {
-            key: 3,
-            name: "Fava",
-            price: "$5.50",
-            veggie: false,
-            vegan: true
-        },
-        {
-            key: 4,
-            name: "Taramosalata",
-            price: "$6.50",
-            veggie: false,
-            vegan: false
-        },
-        {
-            key: 5,
-            name: "Gigantes",
-            price: "$5.50",
-            veggie: false,
-            vegan: true
-        },
-        {
-            key: 6,
-            name: "Tirokafteri",
-            price: "$6.50",
-            veggie: false,
-            vegan: false
-        },
-        {
-            key: 7,
-            name: "Hummus",
-            price: "$5.50",
-            veggie: false,
-            vegan: true
-        },
-        {
-            key: 8,
-            name: "Bruschetta",
-            price: "$6",
-            veggie: true,
-            vegan: false
-        }
-    ],
-    entrees: [
-        {
-            key: 0,
-            name: "Vegetarian Mousaka",
-            price: "$17",
-            veggie: true,
-            vegan: false
-        },
-        {
-            key: 1,
-            name: "Imambaildi",
-            price: "$17",
-            veggie: false,
-            vegan: false
-        },
-        {
-            key: 2,
-            name: "Calamari Platter",
-            price: "$16",
-            veggie: false,
-            vegan: false
-        },
-        {
-            key: 3,
-            name: "Grilled Octopus Platter",
-            price: "$16",
-            veggie: false,
-            vegan: false
-        },
-        {
-            key: 4,
-            name: "Free Range Whole Chicken",
-            price: "$16",
-            veggie: false,
-            vegan: false
-        },
-        {
-            key: 5,
-            name: "Lamb Chops",
-            price: "$23",
-            veggie: false,
-            vegan: false
-        },
-        {
-            key: 6,
-            name: "Papoutsakia",
-            price: "$17",
-            veggie: true,
-            vegan: false
-        },
-        {
-            key: 7,
-            name: "Yemista",
-            price: "$17",
-            veggie: true,
-            vegan: false
-        },
-        {
-            key: 8,
-            name: "Greek Salad",
-            price: "$13",
-            veggie: true,
-            vegan: false
-        },
-    ],
-    desserts: [
-        {
-            key: 0,
-            name: "Lemon Cake",
-            price: "$5",
-            veggie: true,
-            vegan: false
-        },
-        {
-            key: 1,
-            name: "Galaktoboureko",
-            price: "$5",
-            veggie: true,
-            vegan: false
-        },
-        {
-            key: 2,
-            name: "Rice Pudding",
-            price: "$5",
-            veggie: true,
-            vegan: true
-        },
-    ]
-  }
+  menu: [
+    {
+        key: 0,
+        name: "Appetizers",
+        items: [
+            {
+                key: 0,
+                name: "Melitzanosalata",
+                price: 6,
+                veggie: false,
+                vegan: true
+            },
+            {
+                key: 1,
+                name: "Arakas",
+                price: 5,
+                veggie: false,
+                vegan: true
+            },
+            {
+                key: 2,
+                name: "Patzaria",
+                price: 6,
+                veggie: false,
+                vegan: true
+            },
+            {
+                key: 3,
+                name: "Fava",
+                price: 5,
+                veggie: false,
+                vegan: true
+            },
+            {
+                key: 4,
+                name: "Taramosalata",
+                price: 6,
+                veggie: false,
+                vegan: false
+            },
+            {
+                key: 5,
+                name: "Gigantes",
+                price: 5,
+                veggie: false,
+                vegan: true
+            },
+            {
+                key: 6,
+                name: "Tirokafteri",
+                price: 6,
+                veggie: false,
+                vegan: false
+            },
+            {
+                key: 7,
+                name: "Hummus",
+                price: 5,
+                veggie: false,
+                vegan: true
+            },
+            {
+                key: 8,
+                name: "Bruschetta",
+                price: 6,
+                veggie: true,
+                vegan: false
+            }
+        ]
+    },
+    {
+        key: 1,
+        name: "Entrees",
+        items: [
+            {
+                key: 0,
+                name: "Vegetarian Mousaka",
+                price: 17,
+                veggie: true,
+                vegan: false
+            },
+            {
+                key: 1,
+                name: "Imambaildi",
+                price: 17,
+                veggie: false,
+                vegan: false
+            },
+            {
+                key: 2,
+                name: "Calamari Platter",
+                price: 16,
+                veggie: false,
+                vegan: false
+            },
+            {
+                key: 3,
+                name: "Grilled Octopus Platter",
+                price: 16,
+                veggie: false,
+                vegan: false
+            },
+            {
+                key: 4,
+                name: "Free Range Whole Chicken",
+                price: 16,
+                veggie: false,
+                vegan: false
+            },
+            {
+                key: 5,
+                name: "Lamb Chops",
+                price: 23,
+                veggie: false,
+                vegan: false
+            },
+            {
+                key: 6,
+                name: "Papoutsakia",
+                price: 17,
+                veggie: true,
+                vegan: false
+            },
+            {
+                key: 7,
+                name: "Yemista",
+                price: 17,
+                veggie: true,
+                vegan: false
+            },
+            {
+                key: 8,
+                name: "Greek Salad",
+                price: 13,
+                veggie: true,
+                vegan: true
+            },
+        ]
+    },
+    {
+        key: 2,
+        name: "Desserts",
+        items: [
+            {
+                key: 0,
+                name: "Lemon Cake",
+                price: 5,
+                veggie: true,
+                vegan: false
+            },
+            {
+                key: 1,
+                name: "Galaktoboureko",
+                price: 5,
+                veggie: true,
+                vegan: false
+            },
+            {
+                key: 2,
+                name: "Rice Pudding",
+                price: 5,
+                veggie: true,
+                vegan: true
+            },
+        ]
+    }]
 };
 
 const ACTION = {
   SHOW_TIMES: "SHOW-TIMES",
   SHOW_USER: "SHOW-USER",
   MAKE_BOOKING: "MAKE-BOOKING"
+}
+
+const basket = {
+    items: [
+    ],
+}
+
+const addToBasket = (item: any) => {
+    
+}
+
+const order = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    items: [
+        {}
+    ],
+
 }
 
 const reducer = (state: any, action: any) => {
