@@ -1,6 +1,6 @@
 import { LazyLoadImage } from "react-lazy-load-image-component"
 
-export const MenuSection = (props: {course: any}) => {
+export const MenuSection = (props: any, setBasket: Function) => {
 
     return (
         <ul className="menu-section">
@@ -8,6 +8,7 @@ export const MenuSection = (props: {course: any}) => {
             {
                 props.course.items.map((item:any) => {
                     console.log(item.veggie, item.vegan)
+
                     return (
                         <li
                             className={ item.veggie && item.vegan
@@ -21,7 +22,14 @@ export const MenuSection = (props: {course: any}) => {
                         >
                             <p className="menu-section-item-name">{item.name}</p>
                             <p className="menu-section-item-price">{item.price}</p>
-                            <button className="menu-basket-button"><LazyLoadImage src="icons/Basket.svg"/></button>
+                            <button
+                                className="menu-basket-button"
+                                onSubmit={() => {
+                                    return (
+                                        setBasket(item)
+                                    )
+                                }}
+                            ><LazyLoadImage src="icons/Basket.svg"/></button>
                         </li>
                     )
                 })

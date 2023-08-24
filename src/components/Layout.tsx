@@ -62,7 +62,7 @@ const navItems = {
         }
     ]
 }
-export const Layout = () => {
+export const Layout = (props: any) => {
     return (
         <>
             <nav className="top-nav">
@@ -73,6 +73,7 @@ export const Layout = () => {
                             <li><Link to={item.link}>{item.name}</Link></li>
                         )
                     })}
+                    <h1>{props.basket.length}</h1>
                 </ul>
             </nav>
             <Outlet />

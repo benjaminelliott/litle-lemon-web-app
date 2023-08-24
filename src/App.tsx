@@ -8,7 +8,7 @@ import { HomePage } from 'components/HomePage';
 import { AboutPage } from 'components/AboutPage';
 import { OrderPage } from 'components/OrderPage';
 import { LoginPage } from 'components/LoginPage';
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 
 const initialState = {
   times: [
@@ -108,9 +108,9 @@ const initialState = {
             },
             {
                 key: 5,
-                name: "Gigantes",
+                name: "Dolmades",
                 price: 5,
-                veggie: false,
+                veggie: true,
                 vegan: true
             },
             {
@@ -240,26 +240,6 @@ const ACTION = {
   MAKE_BOOKING: "MAKE-BOOKING"
 }
 
-const basket = {
-    items: [
-    ],
-}
-
-const addToBasket = (item: any) => {
-    
-}
-
-const order = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    items: [
-        {}
-    ],
-
-}
-
 const reducer = (state: any, action: any) => {
   switch (action.type) {
       case "SHOW-TIMES":
@@ -331,7 +311,25 @@ const reducer = (state: any, action: any) => {
 
 const App = () => {
 
-  const [ state, dispatch ] = useReducer(reducer, initialState);
+    const [ state, dispatch ] = useReducer(reducer, initialState);
+
+    const [ basket, setBasket ] = useState([])
+
+    const addToBasket = (item: any) => {
+        setBasket(item)
+    }
+
+    const [order, setOrder ] = useState(
+        {
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            items: [
+                {}
+            ],
+        }
+    )
 
   const handleComplete = (values: any) => {
       dispatch({
@@ -369,10 +367,10 @@ const App = () => {
   return (
     <ChakraProvider>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout basket={basket}/>}>
           <Route index element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
-          <Route path="menu" element={<MenuPage menu={initialState.menu}/>} />
+          <Route path="menu" element={<MenuPage menu={initialState.menu} setBasket={setBasket}/>} />
           <Route path="order" element={<OrderPage />} />
           <Route path="booking" element={<BookingPage
                 confirmedBookings={state.confirmedBookings}
