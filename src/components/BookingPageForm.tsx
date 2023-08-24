@@ -63,6 +63,9 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
                         confirmedBookings.push(values)
                         props.handleComplete(confirmed);
                         actions.setSubmitting(false);
+                        localStorage.setItem('firstName', values.firstName);
+                        localStorage.setItem('lastName', values.lastName);
+                        localStorage.setItem('email', values.email);
                     }, 1000);
                 }}
             >

@@ -42,7 +42,7 @@
 .nav-list-footer {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   list-style-type: none;
   font-weight: bold;
   color: var(--p1)
@@ -68,11 +68,11 @@
   color: var(--p2)
 }
 
-li {
+.nav li {
   transition: scale 0.5s;
 }
 
-li:hover {
+.nav li:hover {
   scale: 1.1;
 }
 
@@ -90,6 +90,7 @@ li:hover {
   grid-template-columns: repeat(2, 50%);
   justify-content: center;
   align-items: center;
+  background-image: url("assets/RestaurantLowC.jpg");
 }
 
 .hero-text {
@@ -99,6 +100,24 @@ li:hover {
   flex-direction: column;
   justify-content: space-around;
   align-items: stretch;
+  filter: drop-shadow(0px 0px 10px black)
+}
+
+.hero-about-text {
+  height: 100%;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: stretch;
+  border-radius: 16px 0px 0px 16px ;
+  background: var(--h2);
+}
+
+.article-about {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
 
 .hero-image {
@@ -157,7 +176,7 @@ li:hover {
 .title-display {
   color: var(--p2);
   font-weight: 500;
-  font-size: 64pt;
+  font-size: clamp(32pt, 48pt, 64pt);
   padding-bottom: 0;
   line-height: 1;
   font-family: 'Markazi Text', serif;
@@ -165,12 +184,12 @@ li:hover {
 
 .title-sub {
   color: var(--h1);
-  font-size: 56pt;
+  font-size: clamp(28pt, 42pt, 56pt);
   line-height: 1;
 }
 
 .title-regular {
-  font-size: 40pt;
+  font-size: clamp(20pt, 30pt, 40pt);
 }
 
 .text {
@@ -180,31 +199,31 @@ li:hover {
 
 .text-lead {
   font-weight: 500;
-  font-size: 18pt;
+  font-size: clamp(0pt, 13pt, 18pt);
 }
 
 .text-section-title {
   text-transform: uppercase;
   font-weight: 800;
-  font-size: 20pt;
+  font-size: clamp(10pt, 15pt, 20pt);
   padding-top: 25px;
   padding-bottom: 25px;
   font-family: 'Karla', sans-serif;
 }
 
 .text-specials {
-  font-size: 16pt;
+  font-size: clamp(8pt, 12pt, 16pt);
   font-weight: 800;
 }
 
 .text-card-title {
-  font-size: 18pt;
+  font-size: clamp(9pt, 13pt, 18pt);
   font-weight: bold;
 }
 
 .text-paragraph {
   font-weight: 500;
-  font-size: 16pt;
+  font-size: clamp(8pt, 12pt, 16pt);
   line-height: 1.5;
 }
 
@@ -331,6 +350,9 @@ li:hover {
 }
 
 .about {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
   padding: 5% 10%;
   background-color: var(--p1)
 }
@@ -341,6 +363,9 @@ li:hover {
   grid-template-columns: repeat(2, 50%);
   justify-content: center;
   align-items: center;
+  background-image: url("assets/Mario and Adrian A.jpg");
+  border-radius: 15px;
+  background-size: cover;
 }
 
 .menu {
@@ -351,6 +376,61 @@ li:hover {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  background-color: var(--s2);
+}
+
+.menu-sheet {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  row-gap: 2rem;
+}
+
+.menu-section {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 1rem;
+}
+
+.menu-section-item {
+  color: var(--p1);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 10% 60% 15% 15%;
+  margin-left: 2rem;
+}
+
+.menu-section-item::before {
+  content: " "
+}
+
+.veggie-vegan::before {
+  content: "🟢🟡"
+}
+
+.veggie::before {
+  content: "🟡"
+}
+
+.vegan::before {
+  content: "🟢"
+}
+
+
+
+.menu-section-item-name {
+  color: var(--p1);
+}
+
+.menu-basket-button {
+  height: 20px;
+  width: 20px;
 }
 
 .order {

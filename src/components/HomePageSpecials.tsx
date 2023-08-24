@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
     },
     {
         image: "lemon-dessert.a146cfc0ccf8ce82fae4.jpg",
-        title: "Lemon Dessert",
+        title: "Lemon Cake",
         price: "$4.99",
         text:  "This comes straight from grandma's recipe book, every last ingredient has been sourced and is as authentic as can be imagined.",
         delivery: "",
