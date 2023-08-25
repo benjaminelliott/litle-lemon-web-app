@@ -1,6 +1,7 @@
+import React from "react"
 import { MenuSection } from "./MenuSection"
 
-export const MenuPage = (props: any, setBasket: Function) => {
+export const MenuPage = (props: any, addToBasket: Function) => {
 
     return (
         <section className="menu">
@@ -8,12 +9,12 @@ export const MenuPage = (props: any, setBasket: Function) => {
                 <h1 className="text-section-title">🍋Little Lemon </h1>
                 <h2 className="text-lead">Available for Vegan 🟢 Vegetarian 🟡 diets</h2>
                 {
-                    props.menu.map((course: number) => {
+                    props.menu.map((course: any) => {
                         return (
-                            <>
+                            <React.Fragment key={course.key}>
                                 <hr />
-                                <MenuSection course={course} setBasket={setBasket}/>
-                            </>
+                                <MenuSection course={course} addToBasket={addToBasket}/>
+                            </React.Fragment>
                         )
                     })
                 }

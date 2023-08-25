@@ -8,7 +8,7 @@ import { HomePage } from 'components/HomePage';
 import { AboutPage } from 'components/AboutPage';
 import { OrderPage } from 'components/OrderPage';
 import { LoginPage } from 'components/LoginPage';
-import { useReducer, useState } from 'react';
+import { createContext, useReducer, useState } from 'react';
 
 const initialState = {
   times: [
@@ -309,14 +309,17 @@ const reducer = (state: any, action: any) => {
   }
 }
 
+export const BasketContext = createContext<any>(null);
+
 const App = () => {
 
     const [ state, dispatch ] = useReducer(reducer, initialState);
 
-    const [ basket, setBasket ] = useState([])
+    const [ basket, setBasket ] = useState<any>([
+    ])
 
     const addToBasket = (item: any) => {
-        setBasket(item)
+            setBasket([...basket, item])
     }
 
     const [order, setOrder ] = useState(
@@ -365,31 +368,33 @@ const App = () => {
   }
 
   return (
-    <ChakraProvider>
-      <Routes>
-        <Route path="/" element={<Layout basket={basket}/>}>
-          <Route index element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="menu" element={<MenuPage menu={initialState.menu} setBasket={setBasket}/>} />
-          <Route path="order" element={<OrderPage />} />
-          <Route path="booking" element={<BookingPage
-                confirmedBookings={state.confirmedBookings}
-                occasions={state.occasions}
-                guests={state.guests}
-                availableTimes={state.times}
-                show={state.show}
-                toggleShowTimes={toggleShowTimes}
-                toggleShowUser={toggleShowUser}
-                toggleShowSubmit={toggleShowSubmit}
-                handleComplete={handleComplete}
-                handleAnotherBooking={handleAnotherBooking}
-                ACTION={ACTION}
-            />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="*" element={<HomePage />} />
-        </Route>
-      </Routes>
-    </ChakraProvider>
+    <BasketContext.Provider value={{basket, setBasket}}>
+        <ChakraProvider>
+            <Routes>
+                <Route path="/" element={<Layout basket={basket}/>}>
+                    <Route index element={<HomePage />} />
+                    <Route path="about" element={<AboutPage />} />
+                    <Route path="menu" element={<MenuPage menu={initialState.menu} addToBasket={addToBasket}/>} />
+                    <Route path="order" element={<OrderPage />} />
+                    <Route path="booking" element={<BookingPage
+                            confirmedBookings={state.confirmedBookings}
+                            occasions={state.occasions}
+                            guests={state.guests}
+                            availableTimes={state.times}
+                            show={state.show}
+                            toggleShowTimes={toggleShowTimes}
+                            toggleShowUser={toggleShowUser}
+                            toggleShowSubmit={toggleShowSubmit}
+                            handleComplete={handleComplete}
+                            handleAnotherBooking={handleAnotherBooking}
+                            ACTION={ACTION}
+                        />} />
+                    <Route path="login" element={<LoginPage />} />
+                    <Route path="*" element={<HomePage />} />
+                </Route>
+            </Routes>
+        </ChakraProvider>
+    </BasketContext.Provider>
   );
 }
 

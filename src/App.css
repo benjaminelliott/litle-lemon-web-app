@@ -420,7 +420,6 @@ section {
   width: 100%;
   display: grid;
   grid-template-columns: 10% 75% 10% 5%;
-
 }
 
 .menu-section-item::before {
@@ -460,9 +459,77 @@ section {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
+  background-color: var(--h3);
+  gap: 2rem;
 }
+
+.order-items {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--h1);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.order-item {
+  display: grid;
+  list-style-type: none;
+  grid-template-rows: 1fr;
+  grid-template-columns: 5% 1fr 10%;
+  
+}
+
+.order-item::before {
+  content: '🍋'
+}
+
+.order-item-name {
+
+}
+
+.order-item-price {
+
+}
+
+.order-item-price::before {
+  content: '$';
+}
+
+.order-summary {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  background-color: var(--h1);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.total {
+  
+}
+
+.total::before {
+  content: '$ '
+}
+
+.order-options {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: var(--h1);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+
 
 .booking {
   padding: 5% 10%;
