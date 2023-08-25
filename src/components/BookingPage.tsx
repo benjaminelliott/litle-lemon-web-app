@@ -1,11 +1,18 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { BookingPageForm } from "./BookingPageForm"
 import { BookingPageList } from "./BookingPageList"
+import { animated, useSpring } from "@react-spring/web";
 
 export const BookingPage = (props: BookingPageProps) => {
 
+    const fade = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        delay: 100
+      })
+
     return (
-        <section className="booking">
+        <animated.section className="booking" style={{...fade}}>
             <BookingPageForm
                 occasions={props.occasions}
                 guests={props.guests}
@@ -22,6 +29,6 @@ export const BookingPage = (props: BookingPageProps) => {
                 confirmedBookings={props.confirmedBookings}
                 show={props.show}
             />
-        </section>
+        </animated.section>
     )
 };

@@ -1,10 +1,15 @@
 import { useContext } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component"
-import { BasketContext } from "App";
+import { UserContext } from "App";
 
-export const MenuSection = (props: any, addToBasket: Function) => {
+export const MenuSection = (props: any) => {
 
-    const { basket, setBasket } = useContext<any>(BasketContext);
+    const { user, setUser } = useContext<any>(UserContext);
+
+    const changeHandler = (e:any) => {
+        setUser({...user, [e.target.name]: e.item})
+        console.table(user)
+     }
 
     return (
         <ul className="menu-section">
@@ -26,11 +31,11 @@ export const MenuSection = (props: any, addToBasket: Function) => {
                             <p className="menu-section-item-price">{item.price}</p>
                             <button
                                 className="menu-basket-button"
-                                onClick={()=> {
-                                    setBasket([...basket, item])
-                                    console.log(basket)}
-                                }
-                            ><LazyLoadImage src="icons/Basket.svg"/></button>
+                                name="basket"
+                                onClick={changeHandler}
+                            >
+                                <LazyLoadImage src="icons/Basket.svg"/>
+                            </button>
                         </li>
                     )
                 })

@@ -1,21 +1,28 @@
 import { useContext, useState } from "react";
-import { BasketContext } from "App";
+import { UserContext } from "App";
+
+import { useSpring, animated } from '@react-spring/web'
 
 export const OrderPage = () => {
 
-    const { basket, setBasket }  = useContext<any>(BasketContext);
+    const fade = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        delay: 100
+      })
+
+    const { user, setUser }  = useContext<any>(UserContext);
 
     const [ total, setTotal ] = useState(0);
 
     const [ delivery, setDelivery ] = useState<Boolean>()
 
-    console.log(basket)
 
     return (
-        <section className="order">
+        <animated.section className="order" style={{...fade}}>
             <ul className="order-items">
                 {
-                basket.map((item: any) => {
+                user.basket.map((item: any) => {
                     return (
                         <li className="order-item">
                             <p className="order-item-name">{item.name}</p>
@@ -29,7 +36,7 @@ export const OrderPage = () => {
                 <p className="text-specials">Sub-total</p>
                 <h1 className="text-section-title total">
                     {
-                        basket.reduce((acc: any, obj: any) => {
+                        user.basket.reduce((acc: any, obj: any) => {
                             return (
                                 acc + obj.price
                             )
@@ -59,6 +66,6 @@ export const OrderPage = () => {
                 delivery == false &&
                 <p>Pickup</p>
             }
-        </section>
+        </animated.section>
     )
 }
