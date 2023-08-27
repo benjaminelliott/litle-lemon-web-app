@@ -4,12 +4,23 @@ import { UserContext } from "App";
 
 export const MenuSection = (props: any) => {
 
-    const { user, setUser } = useContext<any>(UserContext);
+    const { basket, setBasket } = useContext(UserContext);
 
-    const changeHandler = (e:any) => {
-        setUser({...user, [e.target.name]: e.item})
-        console.table(user)
-     }
+    const addToBasket:Function = (newItem: {[x: string]: any;name: string, price: number, key: number}) => {
+        if (basket.filter((o: any) => { o.hasOwnProperty(newItem.name);}).length > 0) {
+            console.log("exists");
+        } else {
+            setBasket(
+                [
+                    ...basket,
+                    { newItem }
+                ]
+            )
+        }
+        console.table(basket)
+      };
+
+//RENDERING 3X EVERYTHING IN MENU. USECALLBACK NOT WORKING
 
     return (
         <ul className="menu-section">
@@ -32,7 +43,7 @@ export const MenuSection = (props: any) => {
                             <button
                                 className="menu-basket-button"
                                 name="basket"
-                                onClick={changeHandler}
+                                onClick={ () => addToBasket(item) }
                             >
                                 <LazyLoadImage src="icons/Basket.svg"/>
                             </button>

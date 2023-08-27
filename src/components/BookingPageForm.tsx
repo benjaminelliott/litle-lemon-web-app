@@ -78,10 +78,10 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
                     <>
                         <div className="inputs-top">
                             <h1 className="text-section-title title-booking">Book a table</h1>
+                            <label hidden htmlFor="occasion">Occasion</label>
                             <Field name="occasion" as="select" placeholder="Occasion" id="occasion" className={ !values.occasion ? "field-booking" : "field-booking-confirmed"}>
-                                {<p>{values.occasion}</p>}
-                                <label hidden htmlFor="occasion">Occasion</label>
-                                <option disabled selected value="">Occasion</option>
+
+                                <option disabled defaultValue={""} value="">Occasion</option>
                                     {
                                         props.occasions.map(occasion => {
                                             return (
@@ -92,8 +92,8 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
                                         })
                                     }
                             </Field>
+                            <label hidden htmlFor="guests">Guests</label>
                             <Field name="guests" as="select" className={  !values.guests ? "field-booking" : "field-booking-confirmed"}>
-                                <label hidden htmlFor="guests">Guests</label>
                                 {
                                     !touched.guests
                                     ? <option>Guests</option>
@@ -104,7 +104,7 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
                                         return Array.from(
                                             {length: guests.max},
                                             (_, i) => (
-                                                <option value={i+1}>{i+1}</option>
+                                                <option key={i} value={i+1}>{i+1}</option>
                                             )
                                         )
                                     })
@@ -112,12 +112,12 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
                             </Field>
                             <DatePickerField name="date" id="date" placeholder="Date" className={ !values.date ? "field-booking" : "field-booking-confirmed"} toggleShowTimes={props.toggleShowTimes} values={values} />
                         </div>
+                        <label hidden htmlFor="time">Time</label>
                         <Field as="ul" className={props.show.times ? "inputs-middle" : "inputs-middle-hidden"}>
-                            <label hidden htmlFor="time">Time</label>
                             {
                                 props.show.times && values.occasion && values.guests > 0 && values.date && props.availableTimes.map(booking => {
                                     return (
-                                        <BookingSlot id="time" name="time" time={booking.time} booked={booking.booked} toggleShowUser={props.toggleShowUser} />
+                                        <BookingSlot key={booking.id} id="time" name="time" time={booking.time} booked={booking.booked} toggleShowUser={props.toggleShowUser} />
                                     )
                                 })
                             }
@@ -125,12 +125,12 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
                             { props.show.user &&
                                 <CSSTransition in={props.show.user} timeout={500} nodeRef={nodeRef} classNames="drop">
                                     <div ref={nodeRef} className="inputs-bottom">
-                                        <Field name="firstName" type="text" placeholder="First Name" className={ errors.firstName ? "field-booking" : "field-booking-confirmed"}/>
                                         <label hidden htmlFor="firstName">Time</label>
-                                        <Field name="lastName" type="text" placeholder="Last Name" className={ errors.lastName ? "field-booking" : "field-booking-confirmed"}/>
+                                        <Field name="firstName" type="text" placeholder="First Name" className={ errors.firstName ? "field-booking" : "field-booking-confirmed"}/>
                                         <label hidden htmlFor="lastName">Time</label>
-                                        <Field name="email" type="email" placeholder="Email address" className={ errors.email ? "field-booking" : "field-booking-confirmed"}/>
+                                        <Field name="lastName" type="text" placeholder="Last Name" className={ errors.lastName ? "field-booking" : "field-booking-confirmed"}/>
                                         <label hidden htmlFor="email">Time</label>
+                                        <Field name="email" type="email" placeholder="Email address" className={ errors.email ? "field-booking" : "field-booking-confirmed"}/>
                                         {
                                             props.show.times && values.time !== "" && !errors.firstName && !errors.lastName && !errors.email &&
                                                 <animated.button type="submit" className="buttonh1" style={{...drop}}>Confirm booking</animated.button>

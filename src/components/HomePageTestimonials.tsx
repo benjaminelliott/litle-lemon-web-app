@@ -2,6 +2,7 @@ import { TestimonialsCard } from './HomePageTestimonialsCard';
 
 const testimonials  = [
     {
+        key: 0,
         user: "Benjamin E",
         title: "Awesome",
         rating: 5,
@@ -9,6 +10,7 @@ const testimonials  = [
         image: "pexels-pixabay-220453.jpg"
     },
     {
+        key: 1,
         user: "Timothy E",
         title: "Epic",
         rating: 4,
@@ -16,6 +18,7 @@ const testimonials  = [
         image: "k2zaltb9.bmp"
     },
     {
+        key: 2,
         user: "Stacy E",
         title: "Average",
         rating: 3,
@@ -32,7 +35,7 @@ export const Testimonials = () => {
             {
                 testimonials.map(testimonial => {
                     return (
-                        <TestimonialsCard user={testimonial.user} title={testimonial.title} rating={testimonial.rating} text={testimonial.text} />
+                        <TestimonialsCard key={testimonial.key} user={testimonial.user} title={testimonial.title} rating={testimonial.rating} text={testimonial.text} />
                     )
                 })
             }

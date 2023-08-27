@@ -42,11 +42,11 @@ const initialState = {
           occasion: "Birthday",
       },
       {
-          id: 0,
+          id: 1,
           occasion: "Anniversary",
       },
       {
-          id: 0,
+          id: 2,
           occasion: "Other",
       },
   ],
@@ -307,50 +307,22 @@ const reducer = (state: any, action: any) => {
 
 export const UserContext = createContext<any>(null);
 
-type User = {
-    firstName: string
-    lastName: string
-    email: string
-    token: string
-    basket: {}[]
-    booking: {}
-}
-
 const App = () => {
 
     const [ state, dispatch ] = useReducer(reducer, initialState);
 
-    const [ basket, setBasket ] = useState<any>([
-    ])
-
-    const [token, setToken] = useState();
-
-    const [ user, setUser ] = useState<User>(
+    const [ user, setUser ] = useState(
         {
             firstName: '',
             lastName: '',
             email: '',
             token: '',
-            basket: [
-
-            ],
-            booking: {
-
-            }
         }
-    )
+    );
 
-    const [order, setOrder ] = useState(
-        {
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            items: [
-                {}
-            ],
-        }
-    )
+    const [basket, setBasket ] = useState([]);
+
+    const [booking, setBooking ] = useState({});
 
   const handleComplete = (values: any) => {
       dispatch({
@@ -386,7 +358,7 @@ const App = () => {
   }
 
   return (
-    <UserContext.Provider value={{user, setUser}}>
+    <UserContext.Provider value={{user, setUser, basket, setBasket, booking, setBooking}}>
         <ChakraProvider>
             <Routes>
                 <Route path="/" element={<Layout />}>

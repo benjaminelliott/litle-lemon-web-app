@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
  const specials  = [
     {
+        id: 0,
         image: "greek-salad.25fc793faeb3d58ed9fb.jpg",
         title: "Greek Salad",
         price: "$12.99",
@@ -11,6 +12,7 @@ import { Link } from "react-router-dom";
         include: true
     },
     {
+        id: 1,
         image: "bruschetta.d54e450bda5efcf06010.jpg",
         title: "Bruschetta",
         price: "$5.99",
@@ -19,6 +21,7 @@ import { Link } from "react-router-dom";
         include: true
     },
     {
+        id: 2,
         image: "lemon-dessert.a146cfc0ccf8ce82fae4.jpg",
         title: "Lemon Cake",
         price: "$4.99",
@@ -40,7 +43,7 @@ export const Specials = () => {
                     specials.map(special => {
                         return (
                             special.include
-                            ? <SpecialsCard image={special.image} title={special.title} price={special.price} text={special.text}/>
+                            ? <SpecialsCard key={special.id} image={special.image} title={special.title} price={special.price} text={special.text}/>
                             : ""
                         )
                     })

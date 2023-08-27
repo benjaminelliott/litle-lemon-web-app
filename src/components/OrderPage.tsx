@@ -11,7 +11,7 @@ export const OrderPage = () => {
         delay: 100
       })
 
-    const { user, setUser }  = useContext<any>(UserContext);
+    const { basket, setBasket }  = useContext(UserContext);
 
     const [ total, setTotal ] = useState(0);
 
@@ -22,7 +22,7 @@ export const OrderPage = () => {
         <animated.section className="order" style={{...fade}}>
             <ul className="order-items">
                 {
-                user.basket.map((item: any) => {
+                basket.map((item: any) => {
                     return (
                         <li className="order-item">
                             <p className="order-item-name">{item.name}</p>
@@ -36,7 +36,7 @@ export const OrderPage = () => {
                 <p className="text-specials">Sub-total</p>
                 <h1 className="text-section-title total">
                     {
-                        user.basket.reduce((acc: any, obj: any) => {
+                        basket.reduce((acc: any, obj: any) => {
                             return (
                                 acc + obj.price
                             )

@@ -3,7 +3,7 @@ import { MenuSection } from "./MenuSection"
 import { animated, useSpring } from "@react-spring/web"
 
 export const MenuPage = (props: any, addToBasket: Function) => {
-    
+
     const fade = useSpring({
         from: { opacity: 0 },
         to: { opacity: 1 },

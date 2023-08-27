@@ -7,11 +7,13 @@ export const TestimonialsCard = (props: TestimonialsCardProps) => {
             <div>
                 <p className="text-card-title">{props.user}</p>
                 <span className="stars">
-                    {stars.map(() => {
-                        return (
-                            <img src="star-icon.svg" className="star-rating" alt="star" />
-                        )
-                    })}
+                    {
+                        stars.map((e: number) => {
+                            return (
+                                <img key={stars[e]} src="star-icon.svg" className="star-rating" alt="star" />
+                            )
+                        })
+                    }
                 </span>
             </div>
             <div>

@@ -95,7 +95,7 @@ export const Layout = (props: any) => {
                             })
                         }
                         <button onClick={onOpen}>Login</button>
-                        <Link to={"/order"}>{user.basket.length}</Link>
+                        <Link to={"/order"}>{}</Link>
                     </ul>
                 </div>
                 <div className="top-nav-bottom">

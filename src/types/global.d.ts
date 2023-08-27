@@ -46,6 +46,7 @@ declare global {
             placeholder: string
         }[]
         availableTimes: {
+            id: number
             time: string
             booked: boolean
         }[]
@@ -86,6 +87,7 @@ declare global {
         availableTimes: {
             time: string
             booked: boolean
+            id: number
         }[]
         handleComplete: any
         show: {
