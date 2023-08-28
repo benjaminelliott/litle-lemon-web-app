@@ -72,63 +72,72 @@ const initialState = {
                 name: "Melitzanosalata",
                 price: 6,
                 veggie: false,
-                vegan: true
+                vegan: true,
+                amount: 1
             },
             {
                 key: 1,
                 name: "Arakas",
                 price: 5,
                 veggie: false,
-                vegan: true
+                vegan: true,
+                amount: 1
             },
             {
                 key: 2,
                 name: "Patzaria",
                 price: 6,
                 veggie: false,
-                vegan: true
+                vegan: true,
+                amount: 1
             },
             {
                 key: 3,
                 name: "Fava",
                 price: 5,
                 veggie: false,
-                vegan: true
+                vegan: true,
+                amount: 1
             },
             {
                 key: 4,
                 name: "Taramosalata",
                 price: 6,
                 veggie: false,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
                 key: 5,
                 name: "Dolmades",
                 price: 5,
                 veggie: true,
-                vegan: true
+                vegan: true,
+                amount: 1
             },
             {
                 key: 6,
                 name: "Tirokafteri",
                 price: 6,
                 veggie: false,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
                 key: 7,
                 name: "Hummus",
                 price: 5,
                 veggie: false,
-                vegan: true
+                vegan: true,
+                amount: 1
             },
             {
                 key: 8,
                 name: "Bruschetta",
                 price: 6,
                 veggie: true,
-                vegan: false
+                vegan: false,
+                amount: 1
             }
         ]
     },
@@ -137,67 +146,76 @@ const initialState = {
         name: "Entrees",
         items: [
             {
-                key: 0,
+                key: 10,
                 name: "Vegetarian Mousaka",
                 price: 17,
                 veggie: true,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
-                key: 1,
+                key: 11,
                 name: "Imambaildi",
                 price: 17,
                 veggie: false,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
-                key: 2,
+                key: 12,
                 name: "Calamari Platter",
                 price: 16,
                 veggie: false,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
-                key: 3,
+                key: 13,
                 name: "Grilled Octopus Platter",
                 price: 16,
                 veggie: false,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
-                key: 4,
+                key: 14,
                 name: "Free Range Whole Chicken",
                 price: 16,
                 veggie: false,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
-                key: 5,
+                key: 15,
                 name: "Lamb Chops",
                 price: 23,
                 veggie: false,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
-                key: 6,
+                key: 16,
                 name: "Papoutsakia",
                 price: 17,
                 veggie: true,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
-                key: 7,
+                key: 17,
                 name: "Yemista",
                 price: 17,
                 veggie: true,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
-                key: 8,
+                key: 18,
                 name: "Greek Salad",
                 price: 13,
                 veggie: true,
-                vegan: true
+                vegan: true,
+                amount: 1
             },
         ]
     },
@@ -206,25 +224,28 @@ const initialState = {
         name: "Desserts",
         items: [
             {
-                key: 0,
+                key: 20,
                 name: "Lemon Cake",
                 price: 5,
                 veggie: true,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
-                key: 1,
+                key: 21,
                 name: "Galaktoboureko",
                 price: 5,
                 veggie: true,
-                vegan: false
+                vegan: false,
+                amount: 1
             },
             {
-                key: 2,
+                key: 22,
                 name: "Rice Pudding",
                 price: 5,
                 veggie: true,
-                vegan: true
+                vegan: true,
+                amount: 1
             },
         ]
     }]

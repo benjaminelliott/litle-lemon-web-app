@@ -2,7 +2,7 @@ import React from "react"
 import { MenuSection } from "./MenuSection"
 import { animated, useSpring } from "@react-spring/web"
 
-export const MenuPage = (props: any, addToBasket: Function) => {
+export const MenuPage = (props: any) => {
 
     const fade = useSpring({
         from: { opacity: 0 },

@@ -77,7 +77,7 @@ const navItems = {
 
 export const Layout = (props: any) => {
 
-    const { user, setUser }  = useContext<any>(UserContext);
+    const { basket, setBasket, user, setUser }  = useContext<any>(UserContext);
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -95,7 +95,7 @@ export const Layout = (props: any) => {
                             })
                         }
                         <button onClick={onOpen}>Login</button>
-                        <Link to={"/order"}>{}</Link>
+                        <Link to={"/order"}>{basket.length}</Link>
                     </ul>
                 </div>
                 <div className="top-nav-bottom">

@@ -17,30 +17,26 @@ export const OrderPage = () => {
 
     const [ delivery, setDelivery ] = useState<Boolean>()
 
+    console.log(basket)
+
 
     return (
         <animated.section className="order" style={{...fade}}>
             <ul className="order-items">
                 {
-                basket.map((item: any) => {
-                    return (
-                        <li className="order-item">
-                            <p className="order-item-name">{item.name}</p>
-                            <p className="order-item-price">{item.price}</p>
+                    basket.map((item: {key: number, name: string, price: number, vegan:boolean, veggie: boolean}) =>
+                        <li className="order-item" key={item.key}>
+                            <span className="order-item-name">{item.name}</span>
+                            <span className="order-item-price">{item.price}</span>
                         </li>
                     )
-                })
-            }
+                }
             </ul>
             <div className="order-summary">
                 <p className="text-specials">Sub-total</p>
                 <h1 className="text-section-title total">
                     {
-                        basket.reduce((acc: any, obj: any) => {
-                            return (
-                                acc + obj.price
-                            )
-                        }, 0)
+                        basket.reduce((acc: any, obj: any) => Number(acc + obj.price), 0)
                     }
                 </h1>
             </div>
