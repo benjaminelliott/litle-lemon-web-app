@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export const SpecialsCard = (props: SpecialsCardProps) => {
 
     return (
-        <div className='card-specials'>
+        <article className='card-specials'>
                 <div className='card-specials-container' >
                     <img className="card-specials-image" src={props.image} alt={props.text}/>
                     <div className='card-specials-content'>
@@ -20,6 +20,6 @@ export const SpecialsCard = (props: SpecialsCardProps) => {
                         </div>
                     </div>
             </div>
-        </div>
+        </article>
     );
 };

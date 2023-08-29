@@ -6,26 +6,25 @@ export const MenuSection = (props: any) => {
 
     const { basket, setBasket } = useContext(UserContext);
 
-    const addToBasket:Function = (i: {name: string, price: number, key: number, amount: number}) => {
-        if (basket.includes(i)) {
-            setBasket(() =>
-                [
-                    {
-                        ...i,
-                        amount: i.amount++
-                    }
-                ]
-            )
+    const addToBasket:Function = (item: {name: string, price: number, key: number, amount: number}) => {
+        console.log("working")
+
+        if (basket.length) {
+            console.log(0)
         } else {
-            setBasket(() =>
-                [
-                    ...basket,
-                    i
-                ]
-            )
-        }
+            basket.map((b: any, i: any) => {
+                if (i === item) {
+                   console.log(1)
+                   return setBasket([ ...basket, { b: b.amount + 1}])
+               } else {
+                   console.log(2)
+                   return setBasket([ ...basket, b ])
+               }
+        })
         console.log(basket)
       };
+
+    }
 
       //https://react.dev/learn/updating-objects-in-state#updating-a-nested-object
       //https://typeofnan.dev/how-to-update-nested-state-in-react/
@@ -52,7 +51,7 @@ export const MenuSection = (props: any) => {
                             <button
                                 className="menu-basket-button"
                                 name="basket"
-                                onClick={ () => addToBasket(item) }
+                                onClick={() => addToBasket(item)}
                             >
                                 <LazyLoadImage src="icons/Basket.svg"/>
                             </button>

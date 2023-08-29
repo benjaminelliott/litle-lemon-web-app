@@ -4,6 +4,7 @@ import { LoginBar } from "./LoginBar";
 import { useDisclosure, useOutsideClick } from "@chakra-ui/react";
 import { animated } from "@react-spring/web";
 import { UserContext } from "App";
+import { useShoppingCart } from "context/ShoppingCartContext";
 
 const navItems = {
     sitemap: [
@@ -77,7 +78,7 @@ const navItems = {
 
 export const Layout = (props: any) => {
 
-    const { basket, setBasket, user, setUser }  = useContext<any>(UserContext);
+    const { openCart, closeCart, cartQuantity }  = useShoppingCart()
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -95,11 +96,12 @@ export const Layout = (props: any) => {
                             })
                         }
                         <button onClick={onOpen}>Login</button>
-                        <Link to={"/order"}>{basket.length}</Link>
+                        
+                        <Link to={"/order"}><button onClick={openCart}>{cartQuantity}</button></Link>
                     </ul>
                 </div>
                 <div className="top-nav-bottom">
-                    <LoginBar isOpen={isOpen} onOpen={onOpen} onClose={onClose} user={user}/>
+                    <LoginBar isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
                 </div>
             </nav>
             <Outlet />

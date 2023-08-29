@@ -8,6 +8,7 @@ import { HomePage } from 'components/HomePage';
 import { AboutPage } from 'components/AboutPage';
 import { OrderPage } from 'components/OrderPage';
 import { createContext, useReducer, useState } from 'react';
+import { ShoppingCartProvider } from 'context/ShoppingCartContext';
 
 const initialState = {
   times: [
@@ -379,7 +380,7 @@ const App = () => {
   }
 
   return (
-    <UserContext.Provider value={{user, setUser, basket, setBasket, booking, setBooking}}>
+    <ShoppingCartProvider>
         <ChakraProvider>
             <Routes>
                 <Route path="/" element={<Layout />}>
@@ -404,7 +405,7 @@ const App = () => {
                 </Route>
             </Routes>
         </ChakraProvider>
-    </UserContext.Provider>
+    </ShoppingCartProvider>
   );
 }
 
