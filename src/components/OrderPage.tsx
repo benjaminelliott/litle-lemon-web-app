@@ -1,6 +1,7 @@
-import { useContext, useState } from "react";
-import { UserContext } from "App";
+import { useState } from "react";
 import { useSpring, animated } from '@react-spring/web'
+import { useShoppingCart } from "context/ShoppingCartContext";
+import { CartItem } from "./CartItem";
 
 export const OrderPage = () => {
 
@@ -8,27 +9,18 @@ export const OrderPage = () => {
         from: { opacity: 0 },
         to: { opacity: 1 },
         delay: 100
-      })
+    })
 
-    const { basket, setBasket }  = useContext(UserContext);
-
-    const [ total, setTotal ] = useState(0);
+    const {  cartItems }:any = useShoppingCart()
 
     const [ delivery, setDelivery ] = useState<Boolean>()
-
-    console.log(basket)
-
 
     return (
         <animated.section className="order" style={{...fade}}>
             <ul className="order-items">
                 {
-                    basket.map((item: {id: number, name: string, price: number, vegan:boolean, veggie: boolean, amount: number}) =>
-                        <li className="order-item" key={item.id}>
-                            <span className="order-item-name">{item.name}</span>
-                            <span className="order-item-amount">{item.amount}</span>
-                            <span className="order-item-price">{item.price * item.amount}</span>
-                        </li>
+                    cartItems.map((item: {id: number}) =>
+                        <CartItem id={item.id} />
                     )
                 }
             </ul>
@@ -36,7 +28,7 @@ export const OrderPage = () => {
                 <p className="text-specials">Sub-total</p>
                 <h1 className="text-section-title total">
                     {
-                        basket.reduce((acc: any, obj: any) => Number(acc + (obj.price * obj.amount)), 0)
+                        cartItems.reduce((acc: any, obj: any) => Number(acc + (obj.price * obj.amount)), 0)
                     }
                 </h1>
             </div>

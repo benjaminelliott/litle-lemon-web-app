@@ -19,9 +19,10 @@ export const MenuPage = (props: any) => {
                 {
                     menuItems.map((course: any) => {
                         return (
-                            <React.Fragment key={course.key}>
+                            <React.Fragment key={course.id}>
                                 <hr />
-                                <MenuSection course={course} />
+                                <h2 className="text-lead">{course.name}</h2>
+                                <MenuSection courseItems={course.items} />
                             </React.Fragment>
                         )
                     })

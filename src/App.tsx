@@ -7,7 +7,7 @@ import { MenuPage } from './components/MenuPage';
 import { HomePage } from 'components/HomePage';
 import { AboutPage } from 'components/AboutPage';
 import { OrderPage } from 'components/OrderPage';
-import { createContext, useReducer, useState } from 'react';
+import { useReducer, useState } from 'react';
 import { ShoppingCartProvider } from 'context/ShoppingCartContext';
 
 const initialState = {
@@ -139,8 +139,6 @@ const reducer = (state: any, action: any) => {
           throw new Error('Unknown action.');
   }
 }
-
-export const UserContext = createContext<any>(null);
 
 const App = () => {
 

@@ -26,18 +26,21 @@ export const ShoppingCart = ({ isCartOpen }: ShoppingCartProps) => {
 
     const { closeCart, cartItems }:any = useShoppingCart()
 
+    const btnRef = useRef(null)
+
     return (
       <>
         <Drawer
           isOpen={isCartOpen}
           placement="right"
           onClose={closeCart}
+          isFullHeight={true}
+          finalFocusRef={btnRef}
         >
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerHeader>Cart</DrawerHeader>
-
             <DrawerBody>
                 <div className='cart-items'>
                     {

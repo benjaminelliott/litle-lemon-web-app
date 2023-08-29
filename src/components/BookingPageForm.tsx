@@ -6,7 +6,6 @@ import { useSpring, animated } from '@react-spring/web'
 import { CSSTransition } from 'react-transition-group';
 import { DatePickerField } from "./BookingPageFormDatePicker";
 import { BookingSlot } from './BookingSlot';
-import { UserContext } from 'App';
 
 const SignupSchema = Yup.object().shape({
 
@@ -31,8 +30,6 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
       })
 
       const nodeRef = useRef(null);
-
-      const { user, setUser }  = useContext<any>(UserContext);
 
     let blankBooking = {
         email: '',

@@ -1,9 +1,6 @@
-import { useContext, useRef, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { LoginBar } from "./LoginBar";
 import { useDisclosure, useOutsideClick } from "@chakra-ui/react";
-import { animated } from "@react-spring/web";
-import { UserContext } from "App";
 import { useShoppingCart } from "context/ShoppingCartContext";
 
 const navItems = {
@@ -96,7 +93,6 @@ export const Layout = (props: any) => {
                             })
                         }
                         <button onClick={onOpen}>Login</button>
-                        
                         <Link to={"/order"}><button onClick={openCart}>{cartQuantity}</button></Link>
                     </ul>
                 </div>
