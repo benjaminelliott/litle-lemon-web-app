@@ -1,6 +1,7 @@
 import React from "react"
 import { MenuSection } from "./MenuSection"
 import { animated, useSpring } from "@react-spring/web"
+import menuItems from "../data/items.json"
 
 export const MenuPage = (props: any) => {
 
@@ -16,7 +17,7 @@ export const MenuPage = (props: any) => {
                 <h1 className="text-section-title">🍋Little Lemon </h1>
                 <h2 className="text-lead">Available for <strong>Vegan 🟢</strong> & <strong>Vegetarian 🟡</strong> diets</h2>
                 {
-                    props.menu.map((course: any) => {
+                    menuItems.map((course: any) => {
                         return (
                             <React.Fragment key={course.key}>
                                 <hr />

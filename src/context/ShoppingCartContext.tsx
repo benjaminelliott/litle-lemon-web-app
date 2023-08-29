@@ -24,7 +24,7 @@ type ShoppingCartContext = {
 const ShoppingCartContext = createContext({} as ShoppingCartContext)
 
 export const useShoppingCart = () => {
-    useContext(ShoppingCartContext)
+    return useContext(ShoppingCartContext)
 }
 
 export const ShoppingCartProvider = ( {children}: ShoppingCartProviderProps ) => {

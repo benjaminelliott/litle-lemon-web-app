@@ -13,6 +13,7 @@ import {
 import { useShoppingCart } from 'context/ShoppingCartContext';
 import { useRef } from 'react';
 import { CartItem } from './CartItem';
+import menuItems from "../data/items.json"
 
 type ShoppingCartProps = {
     isCartOpen: boolean
@@ -23,7 +24,7 @@ export const ShoppingCart = ({ isCartOpen }: ShoppingCartProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
 
-    const { isCartOpen, openCart, closeCart, cartItems } = useShoppingCart()
+    const { closeCart, cartItems }:any = useShoppingCart()
 
     return (
       <>
@@ -43,10 +44,18 @@ export const ShoppingCart = ({ isCartOpen }: ShoppingCartProps) => {
                         cartItems.map((item: any) => <CartItem key={item.id} {...item} />)
                     }
                 </div>
+                <div className='cart-total'>
+                {
+                    cartItems.reduce((total: number, cartItem: any) => {
+                        const item:any = menuItems.find(i => i.id === cartItem.id)
+                        return total + (item?.price || 0) * cartItem.quantity
+                    }, 0)
+                }
+                </div>
             </DrawerBody>
 
             <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
+              <Button variant="outline" mr={3} onClick={closeCart}>
                 Cancel
               </Button>
               <Button colorScheme="blue">Checkout</Button>
