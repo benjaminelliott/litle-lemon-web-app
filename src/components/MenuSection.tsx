@@ -9,19 +9,16 @@ export const MenuSection = (props: any) => {
     const addToBasket:Function = (item: {[x: string]: any;name: string, price: number, key: number, amount: number}) => {
         if (basket.includes(item)) {
             console.log(0, item, basket)
-            setBasket((prevState: any) =>
+            setBasket(() =>
                 [
                     ...basket,
-                    {
-                        ...item,
-                        amount: prevState.amount + 1
-                    }
+                    item.amount++
                 ]
             )
             console.log(item)
         } else {
             console.log(1, item, basket)
-            setBasket(
+            setBasket(() =>
                 [
                     ...basket,
                     item
@@ -30,6 +27,8 @@ export const MenuSection = (props: any) => {
         }
         return basket;
       };
+
+      //https://react.dev/learn/updating-objects-in-state#updating-a-nested-object
 
     return (
         <ul className="menu-section">
@@ -48,7 +47,7 @@ export const MenuSection = (props: any) => {
                             key={item.key}
                         >
                             <p className="menu-section-item-name">{item.name}</p>
-                            <p className="menu-section-item-price">{item.price * item.amount}</p>
+                            <p className="menu-section-item-price">{item.price}</p>
                             <button
                                 className="menu-basket-button"
                                 name="basket"

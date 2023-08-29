@@ -24,10 +24,10 @@ export const OrderPage = () => {
         <animated.section className="order" style={{...fade}}>
             <ul className="order-items">
                 {
-                    basket.map((item: {key: number, name: string, price: number, vegan:boolean, veggie: boolean}) =>
+                    basket.map((item: {key: number, name: string, price: number, vegan:boolean, veggie: boolean, amount: number}) =>
                         <li className="order-item" key={item.key}>
                             <span className="order-item-name">{item.name}</span>
-                            <span className="order-item-price">{item.price}</span>
+                            <span className="order-item-price">{item.price * item.amount}</span>
                         </li>
                     )
                 }
