@@ -485,7 +485,7 @@ section {
   display: grid;
   list-style-type: none;
   grid-template-rows: 1fr;
-  grid-template-columns: 5% 1fr 10%;
+  grid-template-columns: 5% 1fr 10% 10%;
 }
 
 .order-item::before {
@@ -494,6 +494,10 @@ section {
 
 .order-item-name {
 
+}
+
+.order-item-amount::before {
+  content: "x "
 }
 
 .order-item-price {

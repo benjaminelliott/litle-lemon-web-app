@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { UserContext } from "App";
-
 import { useSpring, animated } from '@react-spring/web'
 
 export const OrderPage = () => {
@@ -27,6 +26,7 @@ export const OrderPage = () => {
                     basket.map((item: {key: number, name: string, price: number, vegan:boolean, veggie: boolean, amount: number}) =>
                         <li className="order-item" key={item.key}>
                             <span className="order-item-name">{item.name}</span>
+                            <span className="order-item-amount">{item.amount}</span>
                             <span className="order-item-price">{item.price * item.amount}</span>
                         </li>
                     )
@@ -36,7 +36,7 @@ export const OrderPage = () => {
                 <p className="text-specials">Sub-total</p>
                 <h1 className="text-section-title total">
                     {
-                        basket.reduce((acc: any, obj: any) => Number(acc + obj.price), 0)
+                        basket.reduce((acc: any, obj: any) => Number(acc + (obj.price * obj.amount)), 0)
                     }
                 </h1>
             </div>

@@ -6,29 +6,30 @@ export const MenuSection = (props: any) => {
 
     const { basket, setBasket } = useContext(UserContext);
 
-    const addToBasket:Function = (item: {[x: string]: any;name: string, price: number, key: number, amount: number}) => {
-        if (basket.includes(item)) {
-            console.log(0, item, basket)
+    const addToBasket:Function = (i: {name: string, price: number, key: number, amount: number}) => {
+        if (basket.includes(i)) {
             setBasket(() =>
                 [
-                    ...basket,
-                    item.amount++
+                    {
+                        ...i,
+                        amount: i.amount++
+                    }
                 ]
             )
-            console.log(item)
         } else {
-            console.log(1, item, basket)
             setBasket(() =>
                 [
                     ...basket,
-                    item
+                    i
                 ]
             )
         }
-        return basket;
+        console.log(basket)
       };
 
       //https://react.dev/learn/updating-objects-in-state#updating-a-nested-object
+      //https://typeofnan.dev/how-to-update-nested-state-in-react/
+      //https://react.dev/learn/updating-arrays-in-state
 
     return (
         <ul className="menu-section">
