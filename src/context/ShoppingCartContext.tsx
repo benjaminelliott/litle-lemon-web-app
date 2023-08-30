@@ -94,7 +94,6 @@ export const ShoppingCartProvider = ( {children}: ShoppingCartProviderProps ) =>
             }
     >
         {children}
-        <ShoppingCart />
     </ShoppingCartContext.Provider>
     )
 }

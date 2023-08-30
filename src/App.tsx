@@ -191,32 +191,34 @@ const App = () => {
   }
 
   return (
-    <ShoppingCartProvider>
-        <ChakraProvider>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<HomePage />} />
-                    <Route path="about" element={<AboutPage />} />
-                    <Route path="menu" element={<MenuPage />} />
-                    <Route path="booking" element={<BookingPage
-                            confirmedBookings={state.confirmedBookings}
-                            occasions={state.occasions}
-                            guests={state.guests}
-                            availableTimes={state.times}
-                            show={state.show}
-                            toggleShowTimes={toggleShowTimes}
-                            toggleShowUser={toggleShowUser}
-                            toggleShowSubmit={toggleShowSubmit}
-                            handleComplete={handleComplete}
-                            handleAnotherBooking={handleAnotherBooking}
-                            ACTION={ACTION}
-                        />} />
-                    <Route path="cart" element={<ShoppingCart />} />
-                    <Route path="*" element={<HomePage />} />
-                </Route>
-            </Routes>
-        </ChakraProvider>
-    </ShoppingCartProvider>
+    <ChakraProvider>
+      <ShoppingCartProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="menu" element={<MenuPage />} />
+            <Route path="booking" element={<BookingPage
+                confirmedBookings={state.confirmedBookings}
+                occasions={state.occasions}
+                guests={state.guests}
+                availableTimes={state.times}
+                show={state.show}
+                toggleShowTimes={toggleShowTimes}
+                toggleShowUser={toggleShowUser}
+                toggleShowSubmit={toggleShowSubmit}
+                handleComplete={handleComplete}
+                handleAnotherBooking={handleAnotherBooking}
+                ACTION={ACTION}
+                />
+              }
+            />
+            <Route path="cart" element={<ShoppingCart />} />
+            <Route path="*" element={<HomePage />} />
+          </Route>
+        </Routes>
+      </ShoppingCartProvider>
+    </ChakraProvider>
   );
 }
 

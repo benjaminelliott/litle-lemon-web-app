@@ -28,9 +28,9 @@ export const CartItem = ({ id }: CartItemProps) => {
 
     //needs to iterate through menuitems.items !!!!
     //have to map over menuItems, everything else OK
-    //cart rendering below other pages
     //add images for each dish
     //add input for any requirements (veggie, vegan)
+    //add prompt to order courses if no dishes present
 
         return (
             <li

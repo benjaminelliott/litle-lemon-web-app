@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import { LoginBar } from "./LoginBar";
-import { useDisclosure, useOutsideClick } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { useShoppingCart } from "context/ShoppingCartContext";
 
 const navItems = {
@@ -75,7 +75,7 @@ const navItems = {
 
 export const Layout = (props: any) => {
 
-    const { openCart, closeCart, cartQuantity }  = useShoppingCart()
+    const { cartQuantity }  = useShoppingCart()
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -92,8 +92,8 @@ export const Layout = (props: any) => {
                                 )
                             })
                         }
+                        <Link to={"/cart"}><button>{cartQuantity}</button></Link>
                         <button onClick={onOpen}>Login</button>
-                        <Link to={"/cart"}><button onClick={openCart}>{cartQuantity}</button></Link>
                     </ul>
                 </div>
                 <div className="top-nav-bottom">
