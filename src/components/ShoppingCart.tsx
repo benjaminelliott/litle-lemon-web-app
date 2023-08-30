@@ -1,4 +1,5 @@
 import { useShoppingCart } from 'context/ShoppingCartContext';
+import menuItems from "../data/items.json"
 import { CartSection } from './CartSection';
 import { animated, useSpring } from '@react-spring/web';
 import React, { useId, useState } from 'react';
@@ -24,9 +25,20 @@ export const ShoppingCart = () => {
             <div className='cart-header'>
                 <h1 className="text-section-title">🍋Shopping Cart </h1>
                 <div className='cart-total'>
-                    <h1 className="text-section-title">{cartQuantity} items</h1>
+                    <h1 className="text-section-title"><strong className='cart-total-items'>{cartQuantity}</strong> items</h1>
                     <h1 className="text-section-title">
-                        Total
+                        <strong className='cart-total-total'>
+                            {
+                                cartItems.reduce((total:number, cartItem:any) => {
+                                const [ app, ent, des ]:any = menuItems;
+                                console.log(app)
+                                const appItem:any = app.items.find((i:any) => i.id === cartItem.id)
+                                const entItem:any = ent.items.find((i:any) => i.id === cartItem.id)
+                                const desItem:any = des.items.find((i:any) => i.id === cartItem.id)
+                                return total + (appItem?.price * cartItem.quantity || 0 ) + (entItem?.price * cartItem.quantity || 0 ) + (desItem?.price  * cartItem.quantity|| 0)
+                                }, 0)
+                            }
+                        </strong> Total
                     </h1>
                 </div>
             </div>
