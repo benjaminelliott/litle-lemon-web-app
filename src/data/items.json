@@ -1,6 +1,6 @@
 [
     {
-        "id": 0,
+        "id": 40,
         "name": "Appetizers",
         "items": [
             {
@@ -8,77 +8,68 @@
                 "name": "Melitzanosalata",
                 "price": 6,
                 "veggie": false,
-                "vegan": true,
-                "amount": 1
+                "vegan": true
             },
             {
                 "id": 1,
                 "name": "Arakas",
                 "price": 5,
                 "veggie": false,
-                "vegan": true,
-                "amount": 1
+                "vegan": true
             },
             {
                 "id": 2,
                 "name": "Patzaria",
                 "price": 6,
                 "veggie": false,
-                "vegan": true,
-                "amount": 1
+                "vegan": true
             },
             {
                 "id": 3,
                 "name": "Fava",
                 "price": 5,
                 "veggie": false,
-                "vegan": true,
-                "amount": 1
+                "vegan": true
             },
             {
                 "id": 4,
                 "name": "Taramosalata",
                 "price": 6,
                 "veggie": false,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 5,
                 "name": "Dolmades",
                 "price": 5,
                 "veggie": true,
-                "vegan": true,
-                "amount": 1
+                "vegan": true
             },
             {
                 "id": 6,
                 "name": "Tirokafteri",
                 "price": 6,
                 "veggie": false,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 7,
                 "name": "Hummus",
                 "price": 5,
                 "veggie": false,
-                "vegan": true,
-                "amount": 1
+                "vegan": true
             },
             {
                 "id": 8,
                 "name": "Bruschetta",
                 "price": 6,
                 "veggie": true,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             }
         ]
     },
     {
-        "id": 1,
+        "id": 41,
         "name": "Entrees",
         "items": [
             {
@@ -86,77 +77,68 @@
                 "name": "Vegetarian Mousaka",
                 "price": 17,
                 "veggie": true,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 11,
                 "name": "Imambaildi",
                 "price": 17,
                 "veggie": false,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 12,
                 "name": "Calamari Platter",
                 "price": 16,
                 "veggie": false,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 13,
                 "name": "Grilled Octopus Platter",
                 "price": 16,
                 "veggie": false,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 14,
                 "name": "Free Range Whole Chicken",
                 "price": 16,
                 "veggie": false,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 15,
                 "name": "Lamb Chops",
                 "price": 23,
                 "veggie": false,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 16,
                 "name": "Papoutsakia",
                 "price": 17,
                 "veggie": true,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 17,
                 "name": "Yemista",
                 "price": 17,
                 "veggie": true,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 18,
                 "name": "Greek Salad",
                 "price": 13,
                 "veggie": true,
-                "vegan": true,
-                "amount": 1
+                "vegan": true
             }
         ]
     },
     {
-        "id": 2,
+        "id": 42,
         "name": "Desserts",
         "items": [
             {
@@ -164,24 +146,21 @@
                 "name": "Lemon Cake",
                 "price": 5,
                 "veggie": true,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 21,
                 "name": "Galaktoboureko",
                 "price": 5,
                 "veggie": true,
-                "vegan": false,
-                "amount": 1
+                "vegan": false
             },
             {
                 "id": 22,
                 "name": "Rice Pudding",
                 "price": 5,
                 "veggie": true,
-                "vegan": true,
-                "amount": 1
+                "vegan": true
             }
         ]
     }

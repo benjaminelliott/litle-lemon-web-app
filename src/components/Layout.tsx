@@ -22,13 +22,13 @@ const navItems = {
         },
         {
             key: 3,
-            name: "Order",
-            link: "/order"
+            name: "Booking",
+            link: "/booking"
         },
         {
             key: 4,
-            name: "Booking",
-            link: "/booking"
+            name: "Cart",
+            link: "/cart"
         }
     ],
     contact: [
@@ -93,7 +93,7 @@ export const Layout = (props: any) => {
                             })
                         }
                         <button onClick={onOpen}>Login</button>
-                        <Link to={"/order"}><button onClick={openCart}>{cartQuantity}</button></Link>
+                        <Link to={"/cart"}><button onClick={openCart}>{cartQuantity}</button></Link>
                     </ul>
                 </div>
                 <div className="top-nav-bottom">

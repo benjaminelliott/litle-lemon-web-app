@@ -2,9 +2,11 @@ import { useShoppingCart } from "context/ShoppingCartContext"
 import menuItems from "../data/items.json"
 import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import { ShoppingCart } from "./ShoppingCart"
 
 type CartItemProps = {
     id: number
+    quantity: number
 }
 
 type ShoppingCartContext = {
@@ -14,52 +16,55 @@ type ShoppingCartContext = {
     removeFromCart: (id: number) => void
 }
 
-export const CartItem = ({id}: CartItemProps) => {
-    const { decreaseCartQuantity, increaseCartQuantity, removeFromCart } = useShoppingCart()
-    const item:any = menuItems.find(i => i.id === id)
+export const CartItem = ({ id }: CartItemProps) => {
+
+    const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart }:ShoppingCartContext = useShoppingCart()
+
+
+
+    const item:any = menuItems[0].items.find((i: any) => i.id === id)
+
+    if (item == null) return null
 
     //needs to iterate through menuitems.items !!!!
-    if(item == null) {
-        console.log(0)
-        return null;
-    } else {
-        console.log(1)
+    //have to map over menuItems, everything else OK
+    //cart rendering below other pages
+    //add images for each dish
+    //add input for any requirements (veggie, vegan)
+
         return (
             <li
                 className="cart-item"
                 key={item.id}
             >
-                <p className="menu-section-item-name">{item.name}</p>
-                <p className="menu-section-item-price">{item.price}</p>
-                <button
-                    className="menu-basket-button"
-                    name="basket"
-                    onClick={() => decreaseCartQuantity(item.id)}
-                >
-                    <MinusIcon  />
-                </button>
-                <button
-                    className="menu-basket-button"
-                    name="basket"
-                    onClick={() => increaseCartQuantity(item.id)}
-                >
-                    <LazyLoadImage src="icons/Basket.svg" />
-                </button>
-                <button
-                    className="menu-basket-button"
-                    name="decrease"
-                    onClick={() => increaseCartQuantity(item.id)}
-                >
-                    <AddIcon  />
-                </button>
-                <button
-                    className="menu-basket-button"
-                    name="delete"
-                    onClick={() => removeFromCart(item.id)}
-                >
-                    <DeleteIcon  />
-                </button>
+                <div className="item-text">
+                    <p className="menu-section-item-name">{item.name}</p>
+                    <p className="menu-section-item-price">{item.price}</p>
+                </div>
+                <div className="item-buttons">
+                    <button
+                        className="menu-basket-button"
+                        name="basket"
+                        onClick={() => decreaseCartQuantity(item.id)}
+                    >
+                        <MinusIcon  />
+                    </button>
+                    <p>{getItemQuantity(item.id)}</p>
+                    <button
+                        className="menu-basket-button"
+                        name="decrease"
+                        onClick={() => increaseCartQuantity(item.id)}
+                    >
+                        <AddIcon  />
+                    </button>
+                    <button
+                        className="menu-basket-button"
+                        name="delete"
+                        onClick={() => removeFromCart(item.id)}
+                    >
+                        <DeleteIcon  />
+                    </button>
+                </div>
             </li>
         )
-    }
 }

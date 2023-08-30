@@ -6,9 +6,9 @@ import { BookingPage } from './components/BookingPage';
 import { MenuPage } from './components/MenuPage';
 import { HomePage } from 'components/HomePage';
 import { AboutPage } from 'components/AboutPage';
-import { OrderPage } from 'components/OrderPage';
 import { useReducer, useState } from 'react';
 import { ShoppingCartProvider } from 'context/ShoppingCartContext';
+import { ShoppingCart } from 'components/ShoppingCart';
 
 const initialState = {
   times: [
@@ -198,7 +198,6 @@ const App = () => {
                     <Route index element={<HomePage />} />
                     <Route path="about" element={<AboutPage />} />
                     <Route path="menu" element={<MenuPage />} />
-                    <Route path="order" element={<OrderPage />} />
                     <Route path="booking" element={<BookingPage
                             confirmedBookings={state.confirmedBookings}
                             occasions={state.occasions}
@@ -212,6 +211,7 @@ const App = () => {
                             handleAnotherBooking={handleAnotherBooking}
                             ACTION={ACTION}
                         />} />
+                    <Route path="cart" element={<ShoppingCart />} />
                     <Route path="*" element={<HomePage />} />
                 </Route>
             </Routes>

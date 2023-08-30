@@ -1,10 +1,11 @@
 import { useShoppingCart } from "context/ShoppingCartContext";
 import menuItems from "../data/items.json"
 import { LazyLoadImage } from "react-lazy-load-image-component"
+import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
 
 export const MenuSection = (props: any) => {
 
-    const { cartItems, increaseCartQuantity }:any = useShoppingCart()
+    const { cartItems, increaseCartQuantity, decreaseCartQuantity, getItemQuantity, removeFromCart }:any = useShoppingCart()
 
     return (
         <ul className="menu-section">
@@ -23,13 +24,30 @@ export const MenuSection = (props: any) => {
                         >
                             <p className="menu-section-item-name">{item.name}</p>
                             <p className="menu-section-item-price">{item.price}</p>
-                            <button
-                                className="menu-basket-button"
-                                name="basket"
-                                onClick={() => increaseCartQuantity(item)}
-                            >
-                                <LazyLoadImage src="icons/Basket.svg"/>
-                            </button>
+                            <div className="item-buttons">
+                                <button
+                                    className="menu-basket-button"
+                                    name="basket"
+                                    onClick={() => decreaseCartQuantity(item.id)}
+                                >
+                                    <MinusIcon  />
+                                </button>
+                                <p>{getItemQuantity(item.id)}</p>
+                                <button
+                                    className="menu-basket-button"
+                                    name="decrease"
+                                    onClick={() => increaseCartQuantity(item.id)}
+                                >
+                                    <AddIcon  />
+                                </button>
+                                <button
+                                    className="menu-basket-button"
+                                    name="delete"
+                                    onClick={() => removeFromCart(item.id)}
+                                >
+                                    <DeleteIcon  />
+                                </button>
+                            </div>
                         </li>
                     )
                 })

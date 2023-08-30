@@ -425,7 +425,7 @@ section {
   color: var(--p1);
   width: 100%;
   display: grid;
-  grid-template-columns: 10% 75% 10% 5%;
+  grid-template-columns: 10% 65% 10% 15%;
 }
 
 .menu-section-item::before {
@@ -823,12 +823,55 @@ select:focus{
   opacity: 1;
 }
 
-.cart-item {
-  list-style-type: none;
+.shopping-cart {
+  padding: 5% 10%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: var(--s1);
+  gap: 1rem;
 }
 
-.cart-item::before {
-  content: '🍋'
+.cart-items {
+  display: flex;
+  flex-grow: 2;
+  flex-shrink: 0;
+  flex-direction: column;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  row-gap: 2rem;
+}
+
+.cart-total {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  row-gap: 2rem;
+}
+
+.cart-item {
+  color: var(--p1);
+  list-style-type: none;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 75% 25%;
+}
+
+.item-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0.5rem;
 }

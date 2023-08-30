@@ -1,70 +1,54 @@
-
-import {
-    Drawer,
-    DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,
-    Button,
-    useDisclosure,
-  } from '@chakra-ui/react'
 import { useShoppingCart } from 'context/ShoppingCartContext';
-import { useRef } from 'react';
 import { CartItem } from './CartItem';
 import menuItems from "../data/items.json"
+import { animated, useSpring } from '@react-spring/web';
+import React from 'react';
 
 type ShoppingCartProps = {
-    isCartOpen: boolean
+    id: number
+    name: string
+    items: {}[]
 }
 
-export const ShoppingCart = ({ isCartOpen }: ShoppingCartProps) => {
+export const ShoppingCart = () => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const fade = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        delay: 100
+      })
 
-
-    const { closeCart, cartItems }:any = useShoppingCart()
-
-    const btnRef = useRef(null)
+    const { cartItems, cartQuantity }:any = useShoppingCart()
 
     return (
-      <>
-        <Drawer
-          isOpen={isCartOpen}
-          placement="right"
-          onClose={closeCart}
-          isFullHeight={true}
-          finalFocusRef={btnRef}
-        >
-          <DrawerOverlay />
-          <DrawerContent>
-            <DrawerCloseButton />
-            <DrawerHeader>Cart</DrawerHeader>
-            <DrawerBody>
-                <div className='cart-items'>
-                    {
-                        cartItems.map((item: any) => <CartItem key={item.id} {...item} />)
-                    }
-                </div>
-                <div className='cart-total'>
-                {
-                    cartItems.reduce((total: number, cartItem: any) => {
-                        const item:any = menuItems.find(i => i.id === cartItem.id)
-                        return total + (item?.price || 0) * cartItem.quantity
-                    }, 0)
-                }
-                </div>
-            </DrawerBody>
+      <animated.section className="shopping-cart">
+        <div className='cart-items'>
+            <h1 className="text-section-title">🍋Little Lemon </h1>
+            {
+                    cartItems.map((item: any) => {
+                        return (
+                            <React.Fragment key={item.id}>
+                                <hr />
+                                <h2 className="text-lead course">{item.name}</h2>
 
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={closeCart}>
-                Cancel
-              </Button>
-              <Button colorScheme="blue">Checkout</Button>
-            </DrawerFooter>
-          </DrawerContent>
-        </Drawer>
-      </>
+                                <CartItem key={item.id} {...item} />
+                            </React.Fragment>
+                        )
+                    })
+                }
+        </div>
+        <div className='cart-total'>
+            <h1>Total</h1>
+        {
+            cartItems.reduce((total: number, cartItem: any) => {
+                const item:any = menuItems.find(i => i.id === cartItem.id)
+                return total + (item?.price || 0) * cartItem.quantity
+            }, 0)
+        }
+        {
+            cartQuantity
+        }
+        </div>
+      </animated.section>
     );
 }
