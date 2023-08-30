@@ -16,7 +16,7 @@ type CartItemProps = {
 
 export const CartItem = ({id, course}: CartItemProps) => {
 
-    const { cartQuantity, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart }:ShoppingCartContext = useShoppingCart()
+    const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart }:ShoppingCartContext = useShoppingCart()
 
     const item:any = course.items.find((i: any) => i.id === id)
 

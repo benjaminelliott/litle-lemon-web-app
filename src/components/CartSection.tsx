@@ -1,6 +1,4 @@
-import { useShoppingCart } from "context/ShoppingCartContext"
 import menuItems from "../data/items.json"
-import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons"
 import { CartItem } from "./CartItem"
 import { useId } from "react"
 

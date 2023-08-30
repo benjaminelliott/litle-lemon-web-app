@@ -1,6 +1,5 @@
 import { useShoppingCart } from 'context/ShoppingCartContext';
 import { CartSection } from './CartSection';
-import menuItems from "../data/items.json"
 import { animated, useSpring } from '@react-spring/web';
 import React, { useId, useState } from 'react';
 
@@ -34,14 +33,14 @@ export const ShoppingCart = () => {
             <div className='cart-options'>
                 <div className='cart-options-buttons'>
                     <button
-                        onClick={() => { return setDeliver(true), setCollect(false)}}
-                        className={ deliver ? 'cart-options-button-selected' :'cart-options-button'}
+                        onClick={() => { return (setDeliver(true), setCollect(false))}}
+                        className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
                     >
                         Deliver
                     </button>
                     <button
                         onClick={() => { return setDeliver(false), setCollect(true)}}
-                        className={ collect ? 'cart-options-button-selected' :'cart-options-button'}
+                        className={ collect ? 'cart-options-button-selected' : 'cart-options-button'}
                     >
                         Collect
                     </button>

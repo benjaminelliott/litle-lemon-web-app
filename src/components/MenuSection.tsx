@@ -1,11 +1,9 @@
 import { useShoppingCart } from "context/ShoppingCartContext";
-import menuItems from "../data/items.json"
-import { LazyLoadImage } from "react-lazy-load-image-component"
 import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
 
 export const MenuSection = (props: any) => {
 
-    const { cartItems, increaseCartQuantity, decreaseCartQuantity, getItemQuantity, removeFromCart }:any = useShoppingCart()
+    const { increaseCartQuantity, decreaseCartQuantity, getItemQuantity, removeFromCart }:any = useShoppingCart()
 
     return (
         <ul className="menu-section">

@@ -1,4 +1,3 @@
-import { ShoppingCart } from "components/ShoppingCart"
 import { ReactNode, createContext, useContext, useState } from "react"
 
 type ShoppingCartProviderProps = {

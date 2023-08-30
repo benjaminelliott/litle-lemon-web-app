@@ -144,19 +144,6 @@ const App = () => {
 
     const [ state, dispatch ] = useReducer(reducer, initialState);
 
-    const [ user, setUser ] = useState(
-        {
-            firstName: '',
-            lastName: '',
-            email: '',
-            token: '',
-        }
-    );
-
-    const [basket, setBasket ] = useState([]);
-
-    const [booking, setBooking ] = useState({});
-
   const handleComplete = (values: any) => {
       dispatch({
           type: "MAKE-BOOKING",
