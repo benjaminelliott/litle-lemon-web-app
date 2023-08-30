@@ -14,7 +14,7 @@ export const MenuPage = (props: any) => {
     return (
         <animated.section className="menu" style={{...fade}}>
             <div className="menu-sheet">
-                <h1 className="text-section-title">🍋Little Lemon </h1>
+                <h1 className="text-section-title menu-title">Little Lemon </h1>
                 <h2 className="text-lead">Available for <strong>Vegan 🟢</strong> & <strong>Vegetarian 🟡</strong> diets</h2>
                 {
                     menuItems.map((course: any) => {

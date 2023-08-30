@@ -21,7 +21,7 @@ export const ShoppingCart = () => {
     const { cartItems, cartQuantity }:any = useShoppingCart()
 
     return (
-      <animated.section className="shopping-cart">
+      <animated.section style={{...fade}}className="shopping-cart">
         <div className='cart-items'>
             <h1 className="text-section-title">🍋Little Lemon </h1>
             {

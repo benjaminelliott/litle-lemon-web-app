@@ -92,7 +92,9 @@ export const Layout = (props: any) => {
                                 )
                             })
                         }
-                        <Link to={"/cart"}><button>{cartQuantity}</button></Link>
+                        {
+                            <span className="nav-cart-quantity" style={cartQuantity ? {opacity: 1} : {opacity: 0}}><Link to={"/cart"}><button>{cartQuantity}</button></Link></span>
+                        }
                         <button onClick={onOpen}>Login</button>
                     </ul>
                 </div>
