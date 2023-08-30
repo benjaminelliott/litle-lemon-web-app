@@ -18,7 +18,22 @@ type ShoppingCartContext = {
     cartItems: CartItem[]
 }
 
-const ShoppingCartContext = createContext({} as ShoppingCartContext)
+const ShoppingCartContext = createContext<ShoppingCartContext>({
+    getItemQuantity: function (id: number): number {
+        throw new Error("Function not implemented.")
+    },
+    increaseCartQuantity: function (id: number): void {
+        throw new Error("Function not implemented.")
+    },
+    decreaseCartQuantity: function (id: number): void {
+        throw new Error("Function not implemented.")
+    },
+    removeFromCart: function (id: number): void {
+        throw new Error("Function not implemented.")
+    },
+    cartQuantity: 0,
+    cartItems: []
+})
 
 export const useShoppingCart = () => {
     return useContext(ShoppingCartContext)

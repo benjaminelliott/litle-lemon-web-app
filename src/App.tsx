@@ -6,7 +6,7 @@ import { BookingPage } from './components/BookingPage';
 import { MenuPage } from './components/MenuPage';
 import { HomePage } from 'components/HomePage';
 import { AboutPage } from 'components/AboutPage';
-import { useReducer, useState } from 'react';
+import { useReducer } from 'react';
 import { ShoppingCartProvider } from 'context/ShoppingCartContext';
 import { ShoppingCart } from 'components/ShoppingCart';
 

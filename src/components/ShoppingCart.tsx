@@ -39,7 +39,7 @@ export const ShoppingCart = () => {
                         Deliver
                     </button>
                     <button
-                        onClick={() => { return setDeliver(false), setCollect(true)}}
+                        onClick={() => { return (setDeliver(false), setCollect(true))}}
                         className={ collect ? 'cart-options-button-selected' : 'cart-options-button'}
                     >
                         Collect
