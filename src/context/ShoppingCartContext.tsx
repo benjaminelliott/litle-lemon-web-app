@@ -9,7 +9,7 @@ type CartItem = {
     quantity: number
 }
 
-type ShoppingCartContext = {
+interface ShoppingCartContextProps {
     getItemQuantity: (id: number) => number
     increaseCartQuantity: (id: number) => void
     decreaseCartQuantity: (id: number) => void
@@ -18,7 +18,7 @@ type ShoppingCartContext = {
     cartItems: CartItem[]
 }
 
-const ShoppingCartContext = createContext<ShoppingCartContext>({} as ShoppingCartContext || undefined)
+const ShoppingCartContext = createContext({} as ShoppingCartContextProps)
 
 export const useShoppingCart = () => {
     return useContext(ShoppingCartContext)
