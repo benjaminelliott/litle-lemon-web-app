@@ -891,13 +891,16 @@ select:focus{
   row-gap: 2rem;
 }
 
+.cart-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .cart-total {
   display: flex;
   flex-direction: column;
-  background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  row-gap: 2rem;
+  align-items: flex-end;
 }
 
 .cart-item {
@@ -905,7 +908,7 @@ select:focus{
   list-style-type: none;
   width: 100%;
   display: grid;
-  grid-template-columns: 75% 25%;
+  grid-template-columns: 60% 20% 20%;
 }
 
 .item-text {
@@ -913,12 +916,59 @@ select:focus{
   flex-direction: column;
 }
 
+.item-quantity {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
 .item-buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
+}
+
+.cart-options {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+}
+
+.cart-options-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.cart-options-button {
+  padding: 1rem;
+  border-radius: 16px;
+  background-color: var(--p1);
+  color: var(--p2);
+  transition: all 0.5s;
+}
+
+.cart-options-button:hover {
+  padding: 1rem;
+  border-radius: 16px;
+  background-color: var(--h3);
+  color: var(--h1)
+}
+
+.cart-options-button-selected {
+  scale: 1.2;
+  padding: 1rem;
+  border-radius: 16px;
+  background-color: var(--h3);
+  color: var(--h1);
+  transition: all 0,5s;
+}
+
+.item-total::before {
+  content: "$"
 }
 
 @media screen and (min-width: 700px) {

@@ -1,45 +1,37 @@
+import { MinusIcon, AddIcon, DeleteIcon } from "@chakra-ui/icons"
 import { useShoppingCart } from "context/ShoppingCartContext"
-import menuItems from "../data/items.json"
-import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons"
-import { LazyLoadImage } from "react-lazy-load-image-component"
-import { ShoppingCart } from "./ShoppingCart"
-
-type CartItemProps = {
-    id: number
-    quantity: number
-}
 
 type ShoppingCartContext = {
     getItemQuantity: (id: number) => number
     increaseCartQuantity: (id: number) => void
     decreaseCartQuantity: (id: number) => void
     removeFromCart: (id: number) => void
+    cartQuantity: number
 }
 
-export const CartItem = ({ id }: CartItemProps) => {
+type CartItemProps = {
+    id: number
+    course: any
+}
 
-    const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart }:ShoppingCartContext = useShoppingCart()
+export const CartItem = ({id, course}: CartItemProps) => {
 
+    const { cartQuantity, getItemQuantity, increaseCartQuantity, decreaseCartQuantity, removeFromCart }:ShoppingCartContext = useShoppingCart()
 
-
-    const item:any = menuItems[0].items.find((i: any) => i.id === id)
+    const item:any = course.items.find((i: any) => i.id === id)
 
     if (item == null) return null
 
-    //needs to iterate through menuitems.items !!!!
-    //have to map over menuItems, everything else OK
-    //add images for each dish
-    //add input for any requirements (veggie, vegan)
-    //add prompt to order courses if no dishes present
-
-        return (
-            <li
+    return (
+        <li
                 className="cart-item"
                 key={item.id}
             >
                 <div className="item-text">
                     <p className="menu-section-item-name">{item.name}</p>
-                    <p className="menu-section-item-price">{item.price}</p>
+                </div>
+                <div className="item-quantity">
+                <p className="menu-section-item-price">{item.price} x {getItemQuantity(item.id)} = <strong className="item-total">{item.price * getItemQuantity(item.id)}</strong></p>
                 </div>
                 <div className="item-buttons">
                     <button
@@ -49,7 +41,6 @@ export const CartItem = ({ id }: CartItemProps) => {
                     >
                         <MinusIcon  />
                     </button>
-                    <p>{getItemQuantity(item.id)}</p>
                     <button
                         className="menu-basket-button"
                         name="decrease"
@@ -66,5 +57,5 @@ export const CartItem = ({ id }: CartItemProps) => {
                     </button>
                 </div>
             </li>
-        )
+    )
 }

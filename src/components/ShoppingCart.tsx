@@ -1,14 +1,8 @@
 import { useShoppingCart } from 'context/ShoppingCartContext';
-import { CartItem } from './CartItem';
+import { CartSection } from './CartSection';
 import menuItems from "../data/items.json"
 import { animated, useSpring } from '@react-spring/web';
-import React from 'react';
-
-type ShoppingCartProps = {
-    id: number
-    name: string
-    items: {}[]
-}
+import React, { useId, useState } from 'react';
 
 export const ShoppingCart = () => {
 
@@ -20,34 +14,59 @@ export const ShoppingCart = () => {
 
     const { cartItems, cartQuantity }:any = useShoppingCart()
 
+    const id = useId()
+
+    const [ deliver, setDeliver ] = useState<Boolean>(false)
+    const [ collect, setCollect ] = useState<Boolean>(false)
+
     return (
       <animated.section style={{...fade}}className="shopping-cart">
         <div className='cart-items'>
-            <h1 className="text-section-title">🍋Little Lemon </h1>
-            {
-                    cartItems.map((item: any) => {
-                        return (
-                            <React.Fragment key={item.id}>
-                                <hr />
-                                <h2 className="text-lead course">{item.name}</h2>
-
-                                <CartItem key={item.id} {...item} />
-                            </React.Fragment>
-                        )
-                    })
+            <div className='cart-header'>
+                <h1 className="text-section-title">🍋Shopping Cart </h1>
+                <div className='cart-total'>
+                    <h1 className="text-section-title">{cartQuantity} items</h1>
+                    <h1 className="text-section-title">
+                        Total
+                    </h1>
+                </div>
+            </div>
+            <div className='cart-options'>
+                <div className='cart-options-buttons'>
+                    <button
+                        onClick={() => { return setDeliver(true), setCollect(false)}}
+                        className={ deliver ? 'cart-options-button-selected' :'cart-options-button'}
+                    >
+                        Deliver
+                    </button>
+                    <button
+                        onClick={() => { return setDeliver(false), setCollect(true)}}
+                        className={ collect ? 'cart-options-button-selected' :'cart-options-button'}
+                    >
+                        Collect
+                    </button>
+                </div>
+                { deliver &&
+                    <div className='delivery-options'>
+                        <h1>hello</h1>
+                    </div>
                 }
-        </div>
-        <div className='cart-total'>
-            <h1>Total</h1>
-        {
-            cartItems.reduce((total: number, cartItem: any) => {
-                const item:any = menuItems.find(i => i.id === cartItem.id)
-                return total + (item?.price || 0) * cartItem.quantity
-            }, 0)
-        }
-        {
-            cartQuantity
-        }
+                { collect &&
+                    <div className='collection-options'>
+                        <h1>goodbye</h1>
+                    </div>
+                }
+            </div>
+            {
+                cartItems.map((item: any) => {
+                    return (
+                        <React.Fragment key={item.id}>
+                            <hr />
+                            <CartSection key={id} course={item.id} {...item} />
+                        </React.Fragment>
+                    )
+                })
+            }
         </div>
       </animated.section>
     );
