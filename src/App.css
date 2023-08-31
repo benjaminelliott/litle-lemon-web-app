@@ -843,12 +843,12 @@ select:focus{
 }
 
 .login {
-  padding: 0rem  2rem;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 30% 30% 20% 20%;
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
+  overflow: visible;
 }
 
 .input-login {
@@ -863,6 +863,36 @@ select:focus{
 
 .input-login:focus {
   scale: 1.1;
+}
+
+.input-login-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.create {
+  display: grid;
+  grid-template-columns: repeat(3, 33.3%);
+  justify-content: center;
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+
+.create-login {
+  width: 80%;
+  background-color: var(--h3);
+  color: var(--h1);
+  border-radius: 16px;
+  padding: 10px;
+  transition: all 0.5s;
+}
+
+.error {
+  position: relative;
+  display: inline;
+  bottom: -40px;
+  left: -300px;
 }
 
 ::placeholder {
