@@ -42,7 +42,7 @@ export const CreateBar = (props: any) => {
                             onBlur={props.handleBlur}
                             value={props.values.firstName}
                             placeholder="First name"
-                            className="create-login"
+                            className={props.errors.firstName ? "create-login" : "create-login-confirmed"}
                             id="firstName"
                         />
                         <input
@@ -52,7 +52,7 @@ export const CreateBar = (props: any) => {
                             onBlur={props.handleBlur}
                             value={props.values.lastName}
                             placeholder="Last name"
-                            className="create-login"
+                            className={props.errors.lastName ? "create-login" : "create-login-confirmed"}
                             id="lastName"
                         />
                         <input
@@ -62,7 +62,7 @@ export const CreateBar = (props: any) => {
                             onBlur={props.handleBlur}
                             value={props.values.phone}
                             placeholder="Enter phone"
-                            className="create-login"
+                            className={props.errors.phone ? "create-login" : "create-login-confirmed"}
                             id="phone"
                         />
                         <input
@@ -72,8 +72,28 @@ export const CreateBar = (props: any) => {
                             onBlur={props.handleBlur}
                             value={props.values.email}
                             placeholder="Enter email"
-                            className="create-login"
+                            className={props.errors.email ? "create-login" : "create-login-confirmed"}
                             id="email"
+                        />
+                         <input
+                            type="text"
+                            name="address"
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                            value={props.values.address}
+                            placeholder="Enter house number and street"
+                            className={props.errors.address ? "create-login" : "create-login-confirmed"}
+                            id="address"
+                        />
+                        <input
+                            type="text"
+                            name="zip"
+                            onChange={props.handleChange}
+                            onBlur={props.handleBlur}
+                            value={props.values.zip}
+                            placeholder="Enter zip"
+                            className={props.errors.zip ? "create-login" : "create-login-confirmed"}
+                            id="zip"
                         />
                         <input
                             type="password"
@@ -82,7 +102,7 @@ export const CreateBar = (props: any) => {
                             onBlur={props.handleBlur}
                             value={props.values.password}
                             placeholder="Create password"
-                            className="create-login"
+                            className={props.errors.password ? "create-login" : "create-login-confirmed"}
                             id="password"
                         />
                         <input
@@ -90,16 +110,16 @@ export const CreateBar = (props: any) => {
                             name="confirmPassword"
                             onChange={props.handleChange}
                             onBlur={props.handleBlur}
-                            value={props.values.confirmPasswordpassword}
+                            value={props.values.confirmPassword}
                             placeholder="Confirm password"
-                            className="create-login"
+                            className={props.errors.confirmPassword ? "create-login" : "create-login-confirmed"}
                             id="confirmPassword"
                         />
-                        <button className="buttonh1" type="submit" onSubmit={props.handleSubmit}>Create account</button>
+                       
+                        <button className="buttonh1" type="submit">Create account</button>
                     </form>
                 </DrawerBody>
                 <DrawerFooter>
-                    
                 </DrawerFooter>
                 </DrawerContent>
             </Drawer>

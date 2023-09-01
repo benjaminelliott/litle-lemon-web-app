@@ -888,6 +888,14 @@ select:focus{
   transition: all 0.5s;
 }
 
+.create-login-confirmed {
+  width: 75%;
+  background-color: var(--p1);
+  color: var(--h1);
+  border-radius: 16px;
+  padding: 10px;
+}
+
 .error {
   position: relative;
   display: inline;
