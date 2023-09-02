@@ -2,7 +2,7 @@ import { Outlet, Link } from "react-router-dom";
 import { LoginBar } from "./LoginBar";
 import { useDisclosure } from "@chakra-ui/react";
 import { useShoppingCart } from "context/ShoppingCartContext";
-import { Formik, FormikHelpers, FormikValues } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import { CreateBar } from "./CreateBar";
 import { useState } from "react";

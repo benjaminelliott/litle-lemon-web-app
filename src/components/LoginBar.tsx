@@ -7,7 +7,6 @@ import {
     DrawerContent,
     DrawerCloseButton,
   } from '@chakra-ui/react'
-import { useLocalStorage } from 'hooks/useLocalStorage'
 import { useRef } from 'react'
 
 export const LoginBar = (props: any) => {
