@@ -71,6 +71,49 @@ const ACTION = {
   MAKE_BOOKING: "MAKE-BOOKING"
 }
 
+const contacts = [
+    {
+        key: 0,
+        name: "Address",
+        data: "220 N Green St, Chicago, IL 60607",
+        link: "https://goo.gl/maps/7342AWtiy6izLun77"
+    },
+    {
+        key: 1,
+        name: "Phone",
+        data: "(312) 555-5555",
+        link: "tel:312-983-7100"
+    },
+    {
+        key: 3,
+        name: "Email",
+        data: "contact@littlelemon.biz",
+        link: "mailto:contact@littlelemon.biz"
+    }
+]
+
+const socials = [
+    {
+        key: 0,
+        name: "facebook",
+        icon: "icons/facebook.svg",
+        link: "www.facebook.com"
+    },
+    {
+        key: 1,
+        name: "instagram",
+        icon: "icons/instagram.svg",
+        link: "www.instagram.com"
+    },
+    {
+        key: 2,
+        name: "twitter",
+        icon: "icons/twitter.svg",
+        link: "www.twitter.com"
+    }
+]
+
+
 const reducer = (state: any, action: any) => {
   switch (action.type) {
       case "SHOW-TIMES":
@@ -181,7 +224,7 @@ const App = () => {
     <ChakraProvider>
       <ShoppingCartProvider>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout contacts={contacts} socials={socials} />}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="menu" element={<MenuPage />} />

@@ -19,6 +19,8 @@ export const ShoppingCart = () => {
     const [ deliver, setDeliver ] = useState<Boolean>(false)
     const [ collect, setCollect ] = useState<Boolean>(false)
 
+    const zips = [60607, 60608, 60616, 60605, 60604, 60603, 60602, 60601, 60611, 60661, 60654, 60610, 60642, 60622, 60612]
+
     return (
       <animated.section style={{...fade}}className="shopping-cart">
         <div className='cart-items'>
@@ -58,12 +60,32 @@ export const ShoppingCart = () => {
                     </button>
                 </div>
                 { deliver &&
-                    <div className='delivery-options'>
-                        <h1>hello</h1>
+                    <div className='delivery'>
+                        {
+                            zips.includes(Number(localStorage.getItem("zip")))
+                            ?   <div className='delivery-options'>
+                                    <h1 className='header-success'>Congrats! Little Lemon can deliver to your address.</h1>
+                                    <p>Please expect a phone call with an updated delivery time shortly.</p>
+                                </div>
+                            :   <div className='delvery-options'>
+                                    <h1 className='header-failure'>Unfortunately, Little Lemon cannot offer delivery to your address.</h1>
+                                    <p>We offer a free delivery service to the following zipcodes:</p>
+                                    <ul className='zips'>
+                                        {
+                                            zips.map((zip: number) => {
+                                                return (
+                                                    <li className='zip'>{zip}</li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                    <p>If you'd like to continue with your order, please select "Collect" above.</p>
+                                </div>
+                        }
                     </div>
-                }
+                                    }
                 { collect &&
-                    <div className='collection-options'>
+                    <div className='collection'>
                         <h1>goodbye</h1>
                     </div>
                 }

@@ -25,6 +25,7 @@ export const AboutPage = () => {
                 <h1 className='title title-display'>Mediterranean on Lake Michigan</h1>
                 <p className="text">Mario and Adrian met each other by chance, both having spent numerous vacations in Greece. Along with the memories, they both brought back their passion for Mediterranean food.</p>
                 <p className="text">At the forefront of the "Michi-terranean" movement, Little Lemon is bringing a European flair to the Windy City in a big way.</p>
+                <p className="text">Fulton Market has become a hotbed for modern American takes on traditional world cuisines, and Little Lemon is proud to be part of this vibrant community</p>
                 <p className="text">Whether you want to stop by or get our cuisine delivered, we look forward to giving you a taste of Little Lemon soon!</p>
                 <div className='about-buttons'>
                     <button className="buttonh1"><Link to={"/booking"}>Reserve a table</Link></button>

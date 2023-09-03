@@ -922,7 +922,6 @@ select:focus{
 .shopping-cart {
   padding: 5% 10%;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -932,9 +931,8 @@ select:focus{
 }
 
 .cart-items {
+  width: 100%;
   display: flex;
-  flex-grow: 2;
-  flex-shrink: 0;
   flex-direction: column;
   background: white;
   border-radius: 16px;
@@ -1032,6 +1030,33 @@ select:focus{
 
 .item-total::before {
   content: "$"
+}
+
+.delivery-options {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-success {
+  font-size: clamp(15pt, 18pt, 21pt);
+  color: var(--p1);
+  padding: 15px 0px;
+}
+
+.header-failure {
+  font-size: clamp(15pt, 18pt, 21pt);
+  color: var(--s1);
+  padding: 2rem 0rem;
+}
+
+.zips {
+  padding: 2rem 0rem;
+  max-width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 @media screen and (min-width: 700px) {

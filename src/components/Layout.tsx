@@ -7,77 +7,49 @@ import * as Yup from "yup";
 import { CreateBar } from "./CreateBar";
 import { useState } from "react";
 
-const navItems = {
-    sitemap: [
-        {
-            key: 0,
-            name: "Home",
-            link: ""
-        },
-        {
-            key: 1,
-            name: "About",
-            link: "/about"
-        },
-        {
-            key: 2,
-            name: "Menu",
-            link: "/menu"
-        },
-        {
-            key: 3,
-            name: "Booking",
-            link: "/booking"
-        },
-        {
-            key: 4,
-            name: "Cart",
-            link: "/cart"
-        }
-    ],
-    contact: [
-        {
-            key: 0,
-            name: "Address",
-            data: "732 Evergreen Terrace, Chicago, IL 60607",
-            link: "https://goo.gl/maps/fLRcB2tszFgDGgPd7"
-        },
-        {
-            key: 1,
-            name: "Phone",
-            data: "(312) 555-5555",
-            link: "tel:312-983-7100"
-        },
-        {
-            key: 3,
-            name: "Email",
-            data: "contact@littlelemon.biz",
-            link: "mailto:contact@littlelemon.biz"
-        }
-    ],
-    socials: [
-        {
-            key: 0,
-            name: "facebook",
-            icon: "icons/facebook.svg",
-            link: "www.facebook.com"
-        },
-        {
-            key: 1,
-            name: "instagram",
-            icon: "icons/instagram.svg",
-            link: "www.instagram.com"
-        },
-        {
-            key: 2,
-            name: "twitter",
-            icon: "icons/twitter.svg",
-            link: "www.twitter.com"
-        }
-    ]
+const siteMap = [
+      {
+          key: 0,
+          name: "Home",
+          link: ""
+      },
+      {
+          key: 1,
+          name: "About",
+          link: "/about"
+      },
+      {
+          key: 2,
+          name: "Menu",
+          link: "/menu"
+      },
+      {
+          key: 3,
+          name: "Booking",
+          link: "/booking"
+      },
+      {
+          key: 4,
+          name: "Cart",
+          link: "/cart"
+      }
+  ]
+type LayoutProps = {
+  contacts: {
+    key: number
+    name: string
+    data: string
+    link: string
+  }[],
+  socials: {
+    key: number
+    name: string
+    icon: string
+    link: string
+  }[]
 }
 
-export const Layout = (props: any) => {
+export const Layout = (props: LayoutProps) => {
 
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     const addressRegExp = /^\s*\S+(?:\s+\S+){2}/
@@ -160,7 +132,7 @@ export const Layout = (props: any) => {
                     <img className="nav-logo" src="Logo .svg" alt="default" />
                   </Link>
                   <ul className="nav-list-header">
-                    {navItems.sitemap.map((item) => {
+                    {siteMap.map((item) => {
                       return (
                         <li key={item.key}>
                           <Link to={item.link}>{item.name}</Link>
@@ -223,7 +195,7 @@ export const Layout = (props: any) => {
           </Link>
           <ul className="nav-list-footer">
             <h1 className="nav-title-footer">Sitemap</h1>
-            {navItems.sitemap.map((item) => {
+            {siteMap.map((item) => {
               return (
                 <li key={item.key}>
                   <Link to={item.link}>{item.name}</Link>
@@ -233,11 +205,11 @@ export const Layout = (props: any) => {
           </ul>
           <ul className="nav-list-footer">
             <h1 className="nav-title-footer">Contact</h1>
-            {navItems.contact.map((item) => {
+            {props.contacts.map((contact) => {
               return (
-                <li key={item.key}>
-                  <Link to={item.link}>
-                    {item.name}: {item.data}
+                <li key={contact.key}>
+                  <Link to={contact.link}>
+                    {contact.name}: {contact.data}
                   </Link>
                 </li>
               );
@@ -246,13 +218,13 @@ export const Layout = (props: any) => {
           <ul className="nav-list-footer">
             <h1 className="nav-title-footer">Socials</h1>
             <div className="nav-list-footer-socials">
-              {navItems.socials.map((item) => {
+              {props.socials.map((social) => {
                 return (
-                  <Link to={item.link} key={item.key}>
+                  <Link to={social.link} key={social.key}>
                     <img
-                      src={item.icon}
+                      src={social.icon}
                       className="nav-list-footer-social"
-                      alt={item.name}
+                      alt={social.name}
                     />
                   </Link>
                 );
