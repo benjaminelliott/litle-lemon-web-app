@@ -243,7 +243,7 @@ const App = () => {
                 />
               }
             />
-            <Route path="cart" element={<ShoppingCart />} />
+            <Route path="cart" element={<ShoppingCart contacts={contacts} />} />
             <Route path="*" element={<HomePage />} />
           </Route>
         </Routes>

@@ -3,8 +3,18 @@ import menuItems from "../data/items.json"
 import { CartSection } from './CartSection';
 import { animated, useSpring } from '@react-spring/web';
 import React, { useId, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export const ShoppingCart = () => {
+type ShoppingCartProps = {
+    contacts: {
+        key: number
+        name: string
+        data: string
+        link: string
+      }[],
+}
+
+export const ShoppingCart = (props: ShoppingCartProps) => {
 
     const fade = useSpring({
         from: { opacity: 0 },
@@ -86,7 +96,21 @@ export const ShoppingCart = () => {
                                     }
                 { collect &&
                     <div className='collection'>
-                        <h1>goodbye</h1>
+                        <h1 className='header-success'>We're looking forward to seeing you!</h1>
+                        <p>Please proceed to our location and head to the front desk, where our staff will assist you.</p>
+                        <div className='collection-contacts'>
+                            {
+                                props.contacts.map((contact) => {
+                                    return (
+                                        <li key={contact.key} className='collection-contact'>
+                                            <Link to={contact.link}>
+                                                <strong>{contact.name}:</strong> {contact.data}
+                                            </Link>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                 }
             </div>

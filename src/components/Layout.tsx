@@ -108,13 +108,13 @@ export const Layout = (props: LayoutProps) => {
           }}
           onSubmit={(values, actions) => {
             setTimeout(() => {
-                Object.entries(values).map((key:any) => {
-                    const myKey = key.toString().split(",")
-                    return localStorage.setItem(myKey[0], myKey[1])
-                })
-                setUser(true);
-                actions.setSubmitting(false);
-              }, 1000);
+              Object.entries(values).map((key: any) => {
+                const myKey = key.toString().split(",");
+                return localStorage.setItem(myKey[0], myKey[1]);
+              });
+              setUser(true);
+              actions.setSubmitting(false);
+            }, 1000);
           }}
         >
           {({
@@ -149,14 +149,15 @@ export const Layout = (props: LayoutProps) => {
                         </Link>
                       </span>
                     }
-                    <button
-                        onClick={onOpen}
-                    >
-                        {
-                            user
-                            ? <p>Welcome back, {values.firstName} { values.lastName.charAt(0)}</p>
-                            : <p>Create account</p>
-                        }
+                    <button onClick={onOpen}>
+                      {user ? (
+                        <p>
+                          Welcome back, {values.firstName}{" "}
+                          {values.lastName.charAt(0)}
+                        </p>
+                      ) : (
+                        <p>Create account</p>
+                      )}
                     </button>
                   </ul>
                 </div>
@@ -209,7 +210,7 @@ export const Layout = (props: LayoutProps) => {
               return (
                 <li key={contact.key}>
                   <Link to={contact.link}>
-                    {contact.name}: {contact.data}
+                    <strong>{contact.name}:</strong> {contact.data}
                   </Link>
                 </li>
               );

@@ -1025,7 +1025,7 @@ select:focus{
   border-radius: 16px;
   background-color: var(--h3);
   color: var(--h1);
-  transition: all 0,5s;
+  transition: all 0.5s;
 }
 
 .item-total::before {
@@ -1057,6 +1057,18 @@ select:focus{
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+.collection-contacts {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style-type: none;
+}
+
+.collection-contact:before {
+  content: '🍋 '
 }
 
 @media screen and (min-width: 700px) {
