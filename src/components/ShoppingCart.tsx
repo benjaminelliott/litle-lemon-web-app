@@ -26,6 +26,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
 
     const id = useId()
 
+    const [ checkOut, setCheckOut ] = useState<Boolean>(false)
     const [ deliver, setDeliver ] = useState<Boolean>(false)
     const [ collect, setCollect ] = useState<Boolean>(false)
 
@@ -56,20 +57,41 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
             </div>
             <div className='cart-options'>
                 <div className='cart-options-buttons'>
-                    <button
-                        onClick={() => { return (setDeliver(true), setCollect(false))}}
-                        className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
-                    >
-                        Deliver
-                    </button>
-                    <button
-                        onClick={() => { return (setDeliver(false), setCollect(true))}}
-                        className={ collect ? 'cart-options-button-selected' : 'cart-options-button'}
-                    >
-                        Collect
-                    </button>
+                    {
+                        !checkOut
+                        ?   <>
+                                <button
+                                    onClick={() => { return setCheckOut(true)}}
+                                    className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
+                                >
+                                    Next
+                                </button>
+                            </>
+                        :   <>
+                                <button
+                                    onClick={() => { return setCheckOut(false)}}
+                                    className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
+                                >
+                                    Back
+                                </button>
+                                <button
+                                    onClick={() => { return (setDeliver(true), setCollect(false))}}
+                                    className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
+                                >
+                                    Delivery
+                                </button>
+                                <button
+                                    onClick={() => { return (setDeliver(false), setCollect(true))}}
+                                    className={ collect ? 'cart-options-button-selected' : 'cart-options-button'}
+                                >
+                                    Collection
+                                </button>
+                                <>
+                            </>
+                            </>
+                    }
                 </div>
-                { deliver &&
+                { deliver && checkOut &&
                     <div className='delivery'>
                         {
                             zips.includes(Number(localStorage.getItem("zip")))
@@ -94,7 +116,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                         }
                     </div>
                                     }
-                { collect &&
+                { collect && checkOut &&
                     <div className='collection'>
                         <h1 className='header-success'>We're looking forward to seeing you!</h1>
                         <p>Please proceed to our location and head to the front desk, where our staff will assist you.</p>
@@ -115,15 +137,21 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                 }
             </div>
             {
-                cartItems.map((item: any) => {
-                    return (
-                        <React.Fragment key={item.id}>
-                            <hr />
-                            <CartSection key={id} course={item.id} {...item} />
-                        </React.Fragment>
-                    )
-                })
+                !checkOut &&
+                    <div className='cart-items'>
+                        {
+                            cartItems.map((item: any) => {
+                                return (
+                                    <React.Fragment key={item.id}>
+                                        <hr />
+                                        <CartSection key={id} course={item.id} {...item} />
+                                    </React.Fragment>
+                                )
+                            })
+                        }
+                    </div>
             }
+            
         </div>
       </animated.section>
     );
