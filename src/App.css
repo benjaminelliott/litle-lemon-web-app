@@ -988,7 +988,7 @@ select:focus{
 }
 
 .cart-total-total::before {
-  content: '$ '
+  content: ' $'
 }
 
 .cart-options {

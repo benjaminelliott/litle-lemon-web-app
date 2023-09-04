@@ -40,6 +40,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                 <div className='cart-total'>
                     <h1 className="text-section-title"><strong className='cart-total-items'>{cartQuantity}</strong> items</h1>
                     <h1 className="text-section-title">
+                        Sub-total
                         <strong className='cart-total-total'>
                             {
                                 cartItems.reduce((total:number, cartItem:any) => {
@@ -51,7 +52,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                                 return total + (appItem?.price * cartItem.quantity || 0 ) + (entItem?.price * cartItem.quantity || 0 ) + (desItem?.price  * cartItem.quantity|| 0)
                                 }, 0)
                             }
-                        </strong> Total
+                        </strong>
                     </h1>
                 </div>
             </div>
