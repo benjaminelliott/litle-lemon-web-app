@@ -114,7 +114,6 @@ export const CreateBar = (props: any) => {
                             className={props.errors.confirmPassword ? "create-login" : "create-login-confirmed"}
                             id="confirmPassword"
                         />
-                       
                         <button className="buttonh1" type="submit">Create account</button>
                     </form>
                 </DrawerBody>

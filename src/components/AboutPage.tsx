@@ -1,6 +1,5 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import logoWhite from "assets/logo-white.png"
-import { Link } from 'react-router-dom';
 import { animated, useSpring } from '@react-spring/web';
 
 export const AboutPage = () => {

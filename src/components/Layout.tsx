@@ -46,7 +46,8 @@ type LayoutProps = {
     name: string
     icon: string
     link: string
-  }[]
+  }[],
+  zips: number []
 }
 
 export const Layout = (props: LayoutProps) => {
@@ -87,10 +88,9 @@ export const Layout = (props: LayoutProps) => {
       });
 
     const { cartQuantity }  = useShoppingCart()
-
     const { isOpen, onOpen, onClose } = useDisclosure()
-
     const [ user, setUser ] = useState(false)
+    const [ loggedIn, setLoggedIn ] = useState(false)
 
     return (
       <>
@@ -108,11 +108,15 @@ export const Layout = (props: LayoutProps) => {
           }}
           onSubmit={(values, actions) => {
             setTimeout(() => {
-              Object.entries(values).map((key: any) => {
-                const myKey = key.toString().split(",");
-                return localStorage.setItem(myKey[0], myKey[1]);
-              });
+              if(!localStorage.getItem("email")) {
+                Object.entries(values).map((key: any) => {
+                  const myKey = key.toString().split(",");
+                  return localStorage.setItem(myKey[0], myKey[1]);
+                });
+              }
               setUser(true);
+              setLoggedIn(true);
+              console.log(user, loggedIn);
               actions.setSubmitting(false);
             }, 1000);
           }}
@@ -150,39 +154,51 @@ export const Layout = (props: LayoutProps) => {
                       </span>
                     }
                     <button onClick={onOpen}>
-                      {user ? (
-                        <p className="nav-user">
-                          {values.firstName.charAt(0) + values.lastName.charAt(0)}
-                        </p>
-                      ) : (
+                      {
+                        localStorage.getItem("email") && localStorage.getItem("password") && loggedIn &&
+                        <p className="nav-user">{values.firstName.charAt(0) + values.lastName.charAt(0)}</p>
+                      }
+                      {
+                        localStorage.getItem("email") && localStorage.getItem("password") && !loggedIn &&
+                        <p>Login</p>
+                      }
+                      {
+                        !localStorage.getItem("email") && !localStorage.getItem("password") &&
                         <p>Create account</p>
-                      )}
+                      }
                     </button>
                   </ul>
                 </div>
                 <div className="top-nav-bottom">
-                  <LoginBar
-                    isOpen={isOpen}
-                    onOpen={onOpen}
-                    onClose={onClose}
-                    values={values}
-                    errors={errors}
-                    touched={touched}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    handleSubmit={handleSubmit}
-                  />
-                  <CreateBar
-                    isOpen={isOpen}
-                    onOpen={onOpen}
-                    onClose={onClose}
-                    values={values}
-                    errors={errors}
-                    touched={touched}
-                    handleBlur={handleBlur}
-                    handleChange={handleChange}
-                    handleSubmit={handleSubmit}
-                  />
+                  {
+                    localStorage.email && localStorage.password
+                    ? <LoginBar
+                        isOpen={isOpen}
+                        onOpen={onOpen}
+                        onClose={onClose}
+                        values={values}
+                        errors={errors}
+                        touched={touched}
+                        handleBlur={handleBlur}
+                        handleChange={handleChange}
+                        handleSubmit={handleSubmit}
+                        user={user}
+                        loggedIn={loggedIn}
+                        zips={props.zips}
+                      />
+                    : <CreateBar
+                        isOpen={isOpen}
+                        onOpen={onOpen}
+                        onClose={onClose}
+                        values={values}
+                        errors={errors}
+                        touched={touched}
+                        handleBlur={handleBlur}
+                        handleChange={handleChange}
+                        handleSubmit={handleSubmit}
+                        user={user}
+                      />
+                  }
                 </div>
               </nav>
             </>

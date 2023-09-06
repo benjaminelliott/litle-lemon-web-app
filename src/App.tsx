@@ -113,6 +113,8 @@ const socials = [
     }
 ]
 
+const zips = [60607, 60608, 60616, 60605, 60604, 60603, 60602, 60601, 60611, 60661, 60654, 60610, 60642, 60622, 60612]
+
 
 const reducer = (state: any, action: any) => {
   switch (action.type) {
@@ -224,7 +226,7 @@ const App = () => {
     <ChakraProvider>
       <ShoppingCartProvider>
         <Routes>
-          <Route path="/" element={<Layout contacts={contacts} socials={socials} />}>
+          <Route path="/" element={<Layout contacts={contacts} socials={socials} zips={zips}/>}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="menu" element={<MenuPage />} />
@@ -243,7 +245,7 @@ const App = () => {
                 />
               }
             />
-            <Route path="cart" element={<ShoppingCart contacts={contacts} />} />
+            <Route path="cart" element={<ShoppingCart contacts={contacts} zips={zips}/>} />
             <Route path="*" element={<HomePage />} />
           </Route>
         </Routes>

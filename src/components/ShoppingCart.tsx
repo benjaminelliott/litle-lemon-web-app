@@ -12,6 +12,7 @@ type ShoppingCartProps = {
         data: string
         link: string
       }[],
+      zips: number[]
 }
 
 export const ShoppingCart = (props: ShoppingCartProps) => {
@@ -29,8 +30,6 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
     const [ checkOut, setCheckOut ] = useState<Boolean>(false)
     const [ deliver, setDeliver ] = useState<Boolean>(false)
     const [ collect, setCollect ] = useState<Boolean>(false)
-
-    const zips = [60607, 60608, 60616, 60605, 60604, 60603, 60602, 60601, 60611, 60661, 60654, 60610, 60642, 60622, 60612]
 
     return (
       <animated.section style={{...fade}}className="shopping-cart">
@@ -95,7 +94,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                 { deliver && checkOut &&
                     <div className='delivery'>
                         {
-                            zips.includes(Number(localStorage.getItem("zip")))
+                            props.zips.includes(Number(localStorage.getItem("zip")))
                             ?   <div className='delivery-options'>
                                     <h1 className='header-success'>Congrats! Little Lemon can deliver to your address.</h1>
                                     <p>Please expect a phone call with an updated delivery time shortly.</p>
@@ -105,7 +104,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                                     <p>We offer a free delivery service to the following zipcodes:</p>
                                     <ul className='zips'>
                                         {
-                                            zips.map((zip: number) => {
+                                            props.zips.map((zip) => {
                                                 return (
                                                     <li className='zip'>{zip}</li>
                                                 )
