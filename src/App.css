@@ -460,6 +460,14 @@ section {
   background-color: var(--h3)
 }
 
+.about-title {
+  color: var(--h4)
+}
+
+.about-text {
+  color: var(--h1)
+}
+
 .menu {
   padding: 5% 10%;
   width: 100%;
