@@ -332,7 +332,7 @@ section {
 }
 
 .text-highlight {
-  font-size: 16pt;
+  font-size: clamp(10pt, 15pt, 20pt);
   font-weight: bold;
   color:#F4CE14;
 }
@@ -425,11 +425,8 @@ section {
   min-height: 100px;
   padding: 20px 20px;
   margin: 10px 0px;
-  display: grid;
-  grid-template-columns: 25% 75%;
-  grid-gap: 10px;
-  align-items: center;
-  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
   border-radius: 16px;
 }
 
@@ -448,8 +445,8 @@ section {
 }
 
 .star-rating {
-  height: 20px;
-  width: 20px;
+  height: clamp(10px, 15px, 20px);
+  width: clamp(10px, 15px, 20px);
 }
 
 .about {
@@ -1158,7 +1155,13 @@ select:focus{
   .css-1o3pyl4 {
     padding: 0 15vw;
   }
-  
+  .card-testimonials {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
   .menu-sheet {
     width: 100%;
     display: flex;
