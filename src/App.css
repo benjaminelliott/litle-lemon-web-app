@@ -471,7 +471,7 @@ section {
 }
 
 .menu-sheet {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   background: white;
@@ -506,7 +506,7 @@ section {
   color: var(--p1);
   width: 100%;
   display: grid;
-  grid-template-columns: 10% 65% 10% 15%;
+  grid-template-columns: 10% 40% 25% 25%;
 }
 
 .menu-section-item::before {
@@ -515,23 +515,24 @@ section {
 
 .veggie-vegan::before {
   content: "🟢🟡";
-  font-size: larger;
+  font-size: x-small;
 }
 
 .veggie::before {
   content: "🟡";
-  font-size: larger;
+  font-size: x-small;
 }
 
 .vegan::before {
   content: "🟢";
-  font-size: larger;
+  font-size: x-small;
 }
 
 
 
 .menu-section-item-name {
   color: var(--p1);
+  font-size: small;
 }
 
 .menu-section-item-price:before {
@@ -1110,6 +1111,35 @@ select:focus{
   .nav-cart-quantity {
     left: -0.5rem;
   }
+  .menu-sheet {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    row-gap: 2rem;
+  }
+  .menu-section-item {
+    color: var(--p1);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 40% 25% 25%;
+  }
+  .menu-section-item-name {
+    font-size: medium;
+  }
+  .veggie-vegan::before, .veggie::before, .vegan::before {
+    font-size: small;
+  }
+  
+  .veggie::before {
+    font-size: small;
+  }
+  
+  .vegan::before {
+    font-size: small;
+  }
 }
 @media screen and (min-width: 1100px) {
   section {
@@ -1124,7 +1154,15 @@ select:focus{
   .nav-cart-quantity {
     left: -1rem;
   }
-
+  .menu-sheet {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    row-gap: 2rem;
+  }
 }
 @media screen and (min-width: 1500px) {
   section {
