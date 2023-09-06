@@ -107,7 +107,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                                         {
                                             props.zips.map((zip) => {
                                                 return (
-                                                    <li className='zip'>{zip}</li>
+                                                    <li key={zip} className='zip'>{zip}</li>
                                                 )
                                             })
                                         }

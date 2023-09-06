@@ -1073,7 +1073,8 @@ select:focus{
 .cart-options-buttons {
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  justify-content: space-between;
+
 }
 
 .cart-options-button {
