@@ -39,8 +39,11 @@ export const LoginBar = (props: any) => {
                                         <p>{props.values.lastName}</p>
                                     </div>
                                     <div className='user-detail'>
-                                        <p><strong>Contact:</strong></p>
+                                        <p><strong>Email:</strong></p>
                                         <p>{props.values.email}</p>
+                                    </div>
+                                    <div className='user-detail'>
+                                        <p><strong>Phone:</strong></p>
                                         <p>{props.values.phone}</p>
                                     </div>
                                     <div className='user-detail'>
@@ -64,6 +67,7 @@ export const LoginBar = (props: any) => {
                             </DrawerBody>
                             <DrawerFooter>
                                 <div className='user-buttons'>
+                                    <button className="buttonh1">Update</button>
                                     <button className="buttonh1" onClick={() => props.setLoggedIn(false)}>Logout</button>
                                 </div>
                             </DrawerFooter>
@@ -105,9 +109,7 @@ export const LoginBar = (props: any) => {
                                         value={props.values.password}
                                         placeholder="Enter password"
                                         className="input-login" />
-                                    <p className="error">
-                                        {props.errors.password && props.touched.password && props.errors.password}
-                                    </p>
+                                    <p className="error">{props.errors.password && props.touched.password && props.errors.password}</p>
                                 </div>
                                 <button className="buttonh1" type="submit">Login</button>
                             </form>
