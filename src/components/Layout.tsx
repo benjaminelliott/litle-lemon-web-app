@@ -190,24 +190,19 @@ export const Layout = (props: LayoutProps) => {
         </Formik>
         <Outlet />
         <footer className="bottom-nav">
-          <Link to={"/"}>
-            <img className="nav-logo" src="Logo .svg" alt="default" />
-          </Link>
           <ul className="nav-list-footer">
-            <h1 className="nav-title-footer">Sitemap</h1>
             {siteMap.map((item) => {
               return (
-                <li key={item.key}>
+                <li key={item.key} className="nav-link-footer">
                   <Link to={item.link}>{item.name}</Link>
                 </li>
               );
             })}
           </ul>
           <ul className="nav-list-footer">
-            <h1 className="nav-title-footer">Contact</h1>
             {props.contacts.map((contact) => {
               return (
-                <li key={contact.key}>
+                <li key={contact.key} className="nav-link-footer">
                   <Link to={contact.link}>
                     <strong>{contact.name}:</strong> {contact.data}
                   </Link>
@@ -216,7 +211,6 @@ export const Layout = (props: LayoutProps) => {
             })}
           </ul>
           <ul className="nav-list-footer">
-            <h1 className="nav-title-footer">Socials</h1>
             <div className="nav-list-footer-socials">
               {props.socials.map((social) => {
                 return (
