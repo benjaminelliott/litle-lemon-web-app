@@ -25,8 +25,8 @@ const siteMap = [
       },
       {
           key: 3,
-          name: "Booking",
-          link: "/booking"
+          name: "Reservations",
+          link: "/reservations"
       },
       {
           key: 4,

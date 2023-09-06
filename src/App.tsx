@@ -228,7 +228,7 @@ const App = () => {
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="menu" element={<MenuPage />} />
-            <Route path="booking" element={<BookingPage
+            <Route path="reservations" element={<BookingPage
                 confirmedBookings={state.confirmedBookings}
                 occasions={state.occasions}
                 guests={state.guests}

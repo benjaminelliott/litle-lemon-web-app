@@ -75,7 +75,7 @@ section {
   position: relative;
   display: flex;
   justify-content: center;
-  left: -1.5rem;
+  left: -1rem;
   background-color: var(--p2);
   width: 1.5rem;
   height: 1.5rem;
@@ -1094,5 +1094,9 @@ select:focus{
   }
   .hero-buttons {
     flex-direction: row;
+  }
+
+  .nav-cart-quantity {
+    left: -2rem;
   }
 }
