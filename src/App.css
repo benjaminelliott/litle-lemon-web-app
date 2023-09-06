@@ -29,10 +29,12 @@ body {
 }
 
 .top-nav-top {
+  padding: 1% 2%;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 3rem;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 section {
@@ -63,12 +65,16 @@ section {
 }
 
 .nav-list-header {
-  width: 50%;
   display: flex;
+  gap: 1rem;
   justify-content: space-evenly;
   list-style-type: none;
   font-weight: bold;
   color: var(--p1)
+}
+
+.nav-list-link {
+  font-size: x-small;
 }
 
 .nav-cart-quantity {
@@ -77,12 +83,17 @@ section {
   justify-content: center;
   left: -1rem;
   background-color: var(--p2);
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1rem;
+  height: 1rem;
   border-radius: 16px;
   color: var(--h2);
   font-weight: bold;
   transition: opacity 1s;
+  font-size: x-small
+}
+
+.nav-user {
+  font-size: x-small;
 }
 
 .nav-list-footer {
@@ -167,7 +178,7 @@ section {
 
 .hero-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 1rem;
   flex-wrap: wrap;
 }
@@ -202,7 +213,7 @@ section {
 }
 
 .buttonh1 {
-  width: clamp(100px, 150px, 200px);
+  width: clamp(100px, 125px, 150px);
   height: clamp(40px, 50px, 60px);
   border-radius: 16px;
   background-color: var(--p1);
@@ -1080,11 +1091,31 @@ select:focus{
   section {
     max-width: 80%;
   }
-  
+  .top-nav-top {
+    padding: 1% 10%;
+  }
+  .nav-logo {
+    height: 50px;
+  }
+  .nav-list-link, .nav-cart-quantity, .nav-user {
+    font-size: small;
+  }
+  .nav-cart-quantity {
+    left: -0.5rem;
+  }
 }
 @media screen and (min-width: 1100px) {
   section {
     max-width: 70%;
+  }
+  .top-nav-top {
+    padding: 1% 15%;
+  }
+  .nav-list-link, .nav-cart-quantity, .nav-user {
+    font-size: medium;
+  }
+  .nav-cart-quantity {
+    left: -1rem;
   }
 
 }
@@ -1092,11 +1123,16 @@ select:focus{
   section {
     max-width: 60%;
   }
+  .top-nav-top {
+    padding: 1% 20%;
+  }
+  .nav-list-link, .nav-cart-quantity, .nav-user {
+    font-size: large;
+  }
   .hero-buttons {
     flex-direction: row;
   }
-
   .nav-cart-quantity {
-    left: -2rem;
+    left: -1rem;
   }
 }

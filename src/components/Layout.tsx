@@ -134,7 +134,7 @@ export const Layout = (props: LayoutProps) => {
                   <ul className="nav-list-header">
                     {siteMap.map((item) => {
                       return (
-                        <li key={item.key}>
+                        <li key={item.key} className="nav-list-link">
                           <Link to={item.link}>{item.name}</Link>
                         </li>
                       );
@@ -151,9 +151,8 @@ export const Layout = (props: LayoutProps) => {
                     }
                     <button onClick={onOpen}>
                       {user ? (
-                        <p>
-                          Welcome back, {values.firstName}{" "}
-                          {values.lastName.charAt(0)}
+                        <p className="nav-user">
+                          {values.firstName.charAt(0) + values.lastName.charAt(0)}
                         </p>
                       ) : (
                         <p>Create account</p>
