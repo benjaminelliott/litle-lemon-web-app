@@ -64,7 +64,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                                     onClick={() => { return setCheckOut(true)}}
                                     className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
                                 >
-                                    Next
+                                    Checkout
                                 </button>
                             </>
                         :   <>
@@ -72,20 +72,23 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                                     onClick={() => { return setCheckOut(false)}}
                                     className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
                                 >
-                                    Back
+                                    Return to cart
                                 </button>
-                                <button
-                                    onClick={() => { return (setDeliver(true), setCollect(false))}}
-                                    className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
-                                >
-                                    Delivery
-                                </button>
-                                <button
-                                    onClick={() => { return (setDeliver(false), setCollect(true))}}
-                                    className={ collect ? 'cart-options-button-selected' : 'cart-options-button'}
-                                >
-                                    Collection
-                                </button>
+                                <div className='order-type'>
+                                    <button
+                                        onClick={() => { return (setDeliver(true), setCollect(false))}}
+                                        className={ deliver ? 'order-type-button-selected' : 'order-type-button'}
+                                    >
+                                        Delivery
+                                    </button>
+                                    <button
+                                        onClick={() => { return (setDeliver(false), setCollect(true))}}
+                                        className={ collect ? 'order-type-button-selected' : 'order-type-button'}
+                                    >
+                                        Collection
+                                    </button>
+                                </div>
+                                
                                 <>
                             </>
                             </>

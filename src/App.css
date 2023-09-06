@@ -1068,8 +1068,8 @@ select:focus{
 .cart-options-button {
   padding: 1rem;
   border-radius: 16px;
-  background-color: var(--p1);
-  color: var(--p2);
+  background-color: var(--h1);
+  color: var(--p1);
   transition: all 0.5s;
 }
 
@@ -1077,7 +1077,7 @@ select:focus{
   padding: 1rem;
   border-radius: 16px;
   background-color: var(--h3);
-  color: var(--h1)
+  color: var(--p2)
 }
 
 .cart-options-button-selected {
@@ -1087,6 +1087,36 @@ select:focus{
   background-color: var(--h3);
   color: var(--h1);
   transition: all 0.5s;
+}
+
+.order-type {
+  border-radius: 16px;
+  background-color: var(--h1);
+  transition: all 0.5s;
+}
+
+.order-type:hover {
+  background-color: var(--h3);
+}
+
+.order-type-button {
+  padding: 1rem;
+  border-radius: 16px;
+  background-color: var(--h1);
+  color: var(--p1);
+  transition: all 0.5s;
+}
+
+.order-type-button:hover {
+  background-color: var(--h3);
+  color: var(--p2)
+}
+
+.order-type-button-selected {
+  padding: 1rem;
+  border-radius: 16px;
+  background-color: var(--p1);
+  color: var(--p2);
 }
 
 .item-total::before {
