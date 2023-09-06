@@ -264,7 +264,7 @@ section {
 .title-display {
   color: var(--p2);
   font-weight: 500;
-  font-size: clamp(32pt, 48pt, 64pt);
+  font-size: clamp(26pt, 32pt, 38pt);
   padding-bottom: 0;
   line-height: 1;
   font-family: 'Markazi Text', serif;
@@ -272,7 +272,7 @@ section {
 
 .title-sub {
   color: var(--h1);
-  font-size: clamp(28pt, 42pt, 56pt);
+  font-size: clamp(24pt, 30pt, 36pt);
   line-height: 1;
 }
 
@@ -283,11 +283,12 @@ section {
 .text {
   color: var(--h1);
   font-family: 'Karla', sans-serif;
+  font-size: clamp(8pt, 12pt, 16pt);;
 }
 
 .text-lead {
   font-weight: 500;
-  font-size: clamp(0pt, 13pt, 18pt);
+  font-size: clamp(10pt, 13pt, 18pt);
 }
 
 .text-section-title {
