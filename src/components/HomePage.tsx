@@ -1,6 +1,5 @@
 import { animated, useSpring } from '@react-spring/web';
 import { Hero } from './HomePageHero';
-import { Testimonials } from './HomePageTestimonials'
 
 export const HomePage = () => {
 
@@ -13,7 +12,6 @@ export const HomePage = () => {
     return (
         <animated.section className="section home" style={{...fade}}>
             <Hero />
-            <Testimonials />
         </animated.section>
     )
 };

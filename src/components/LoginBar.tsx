@@ -7,11 +7,21 @@ import {
     DrawerContent,
     DrawerCloseButton,
   } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 export const LoginBar = (props: any) => {
 
     const btnRef = useRef(null)
+
+    const passwordCheck = () => {
+        if(props.values.loginPassword === props.values.password) {
+            return props.setLoggedIn(true);
+        } else {
+            return setIncorrectLogin(true)
+        }
+    }
+
+    const [ incorrectLogin, setIncorrectLogin ] = useState(false);
 
     return (
         <>
@@ -77,47 +87,56 @@ export const LoginBar = (props: any) => {
                 {
                     localStorage.getItem("email") && localStorage.getItem("password") && !props.loggedIn &&
                     <>
-                    <DrawerContent>
-                        <DrawerCloseButton />
-                        <DrawerHeader>
-                                <h1 className='text-section-title'>Welcome back, {localStorage.getItem("firstName")} {localStorage.getItem("lastName")?.charAt(0)}!</h1>
-                                <p className='text-lead'>Please login to access your account.</p>
-                        </DrawerHeader>
-                        <DrawerBody>
-                            <form
-                                className='login'
-                                onSubmit={props.handleSubmit}
-                            >
-                                <div>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        onChange={props.handleChange}
-                                        onBlur={props.handleBlur}
-                                        value={props.values.email}
-                                        placeholder="Enter email"
-                                        className="input-login"
-                                        id="email" />
-                                    <p className="error">{props.errors.email && props.touched.email && props.errors.email}</p>
-                                </div>
-                                <div>
-                                    <input
-                                        type="password"
-                                        name="password"
-                                        onChange={props.handleChange}
-                                        onBlur={props.handleBlur}
-                                        value={props.values.password}
-                                        placeholder="Enter password"
-                                        className="input-login" />
-                                    <p className="error">{props.errors.password && props.touched.password && props.errors.password}</p>
-                                </div>
-                                <button className="buttonh1" type="submit">Login</button>
-                            </form>
-                        </DrawerBody>
-                        <DrawerFooter>
-                        </DrawerFooter>
-                    </DrawerContent>
-                </>
+                        <DrawerContent>
+                            <DrawerCloseButton />
+                            <DrawerHeader>
+                                    <h1 className='text-section-title'>Welcome back, {localStorage.getItem("firstName")} {localStorage.getItem("lastName")?.charAt(0)}!</h1>
+                                    <p className='text-lead'>Please login to access your account.</p>
+                            </DrawerHeader>
+                            <DrawerBody>
+                                <form
+                                    className='login'
+                                    onSubmit={props.handleSubmit}
+                                >
+                                    <div>
+                                        <input
+                                            id="email"
+                                            type="email"
+                                            name="email"
+                                            autoComplete="email"
+                                            onChange={props.handleChange}
+                                            onBlur={props.handleBlur}
+                                            value={props.values.email}
+                                            placeholder="Enter email"
+                                            className="input-login" />
+                                        <p className="error">{props.touched.email && props.errors.email}</p>
+                                    </div>
+                                    <div>
+                                        <input
+                                            id="loginPassword"
+                                            type="password"
+                                            name="loginPassword"
+                                            onChange={props.handleChange}
+                                            onBlur={props.handleBlur}
+                                            value={props.values.loginPassword}
+                                            placeholder="Enter password"
+                                            className="input-login" />
+                                        <p className="error">{props.touched.password && props.errors.password}</p>
+                                    </div>
+                                    <button className="buttonh1" onClick={passwordCheck}>Login</button>
+                                </form>
+                            </DrawerBody>
+                            <DrawerFooter>
+                                {
+                                    <div className='text-lead login-error'>
+                                        {
+                                            incorrectLogin && <p>Incorrect login details</p>
+                                        }
+                                    </div>
+                                }
+                            </DrawerFooter>
+                        </DrawerContent>
+                    </>
                 }
             </Drawer>
         </>

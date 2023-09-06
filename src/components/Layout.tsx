@@ -73,6 +73,10 @@ export const Layout = (props: LayoutProps) => {
             .required("Please confirm your password")
             .min(8, "Password must be at least 8 characters")
             .oneOf([Yup.ref("password")], "Passwords do not match"),
+        loginPassword: Yup.string()
+            .required("Please enter your password")
+            .min(8, "Password must be at least 8 characters")
+            .oneOf([Yup.ref("password")], "Login details incorrect"),
         phone: Yup.string()
             .required("Phone number required")
             .matches(phoneRegExp, 'Phone number is not valid'),
@@ -103,12 +107,13 @@ export const Layout = (props: LayoutProps) => {
             phone: localStorage.getItem("phone") || "",
             password: localStorage.getItem("password") || "",
             confirmPassword: "",
+            loginPassword: "",
             address: localStorage.getItem("address") || "",
             zip: localStorage.getItem("zip") || "",
           }}
           onSubmit={(values, actions) => {
-            setTimeout(() => {
-              if(!localStorage.getItem("email")) {
+            setTimeout((e: any) => {
+              if(localStorage.getItem("email") === "") {
                 Object.entries(values).map((key: any) => {
                   const myKey = key.toString().split(",");
                   return localStorage.setItem(myKey[0], myKey[1]);
@@ -116,7 +121,6 @@ export const Layout = (props: LayoutProps) => {
               }
               setUser(true);
               setLoggedIn(true);
-              console.log(user, loggedIn);
               actions.setSubmitting(false);
             }, 1000);
           }}
