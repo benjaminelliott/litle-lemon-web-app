@@ -17,8 +17,8 @@ export const TestimonialsCard = (props: TestimonialsCardProps) => {
                 </span>
             </div>
             <div>
-            <p className="text-highlight">{props.title}</p>
-            <p className="text-testimonials">{props.text}</p>
+                <p className="text-highlight">{props.title}</p>
+                <p className="text-testimonials">{props.text}</p>
             </div>
         </article>
     );

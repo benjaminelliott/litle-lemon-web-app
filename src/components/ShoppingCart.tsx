@@ -76,13 +76,13 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                                 </button>
                                 <div className='order-type'>
                                     <button
-                                        onClick={() => { return (setDeliver(true), setCollect(false))}}
+                                        onClick={() => { return (setDeliver(!deliver), setCollect(false))}}
                                         className={ deliver ? 'order-type-button-selected' : 'order-type-button'}
                                     >
                                         Delivery
                                     </button>
                                     <button
-                                        onClick={() => { return (setDeliver(false), setCollect(true))}}
+                                        onClick={() => { return (setDeliver(false), setCollect(!collect))}}
                                         className={ collect ? 'order-type-button-selected' : 'order-type-button'}
                                     >
                                         Collection
