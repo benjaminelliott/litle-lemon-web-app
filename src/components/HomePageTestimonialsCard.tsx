@@ -18,7 +18,7 @@ export const TestimonialsCard = (props: TestimonialsCardProps) => {
             </div>
             <div>
             <p className="text-highlight">{props.title}</p>
-            <p className="text-testimoials">{props.text}</p>
+            <p className="text-testimonials">{props.text}</p>
             </div>
         </article>
     );
