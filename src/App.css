@@ -6,6 +6,7 @@
   --h1: #EDEFEE;
   --h2: #333333;
   --h3: #97AFA7;
+  --h4: #FDF3C4;
   height: 100dvh;
 }
 
@@ -39,7 +40,7 @@ body {
 section {
   background: #fff;
   min-height: 80dvh;
-  overflow: scroll;
+  overflow: auto;
   margin: auto;
   max-width: 100%;
 }
@@ -154,30 +155,32 @@ section {
 }
 
 .hero-content {
-  height: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   gap: 2rem;
-}
-
-.hero-text {
-  padding: 1rem;
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: stretch;
-  background: var(--h2);
+  background: var(--h4);
   box-shadow: 0px 0px 20px var(--h2);
   border-radius: 16px;
 }
 
+.hero-text {
+  height: 100%;
+  padding: 1rem 2rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
 .hero-image {
   height: clamp(300px, 400px, 500px);
-
-  border-radius: 16px;
+  width: 100%;
+  border-radius: 0px 0px 16px 16px;
+  object-fit: cover;
 }
 
 .hero-about {
@@ -277,7 +280,7 @@ section {
 }
 
 .title-display {
-  color: var(--p2);
+  color: var(--p1);
   font-weight: 500;
   font-size: clamp(26pt, 32pt, 38pt);
   padding-bottom: 0;
@@ -286,8 +289,8 @@ section {
 }
 
 .title-sub {
-  color: var(--h1);
-  font-size: clamp(24pt, 30pt, 36pt);
+  color: var(--h3);
+  font-size: clamp(20pt, 25pt, 30pt);
   line-height: 1;
 }
 
@@ -296,7 +299,7 @@ section {
 }
 
 .text {
-  color: var(--h1);
+  color: var(--h2);
   font-family: 'Karla', sans-serif;
   font-size: clamp(8pt, 12pt, 16pt);;
 }
@@ -1224,6 +1227,10 @@ select:focus{
   .hero-content {
     flex-direction: row;
   }
+  .hero-image {
+    border-radius: 0px 16px 16px 0px;
+  }
+  
 }
 @media screen and (min-width: 1100px) {
   section {

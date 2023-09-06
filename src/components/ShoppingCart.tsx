@@ -43,11 +43,10 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                         <strong className='cart-total-total'>
                             {
                                 cartItems.reduce((total:number, cartItem:any) => {
-                                const [ app, ent, des ]:any = menuItems;
-                                console.log(app)
-                                const appItem:any = app.items.find((i:any) => i.id === cartItem.id)
-                                const entItem:any = ent.items.find((i:any) => i.id === cartItem.id)
-                                const desItem:any = des.items.find((i:any) => i.id === cartItem.id)
+                                    const [ app, ent, des ]:any = menuItems;
+                                    const appItem:any = app.items.find((i:any) => i.id === cartItem.id)
+                                    const entItem:any = ent.items.find((i:any) => i.id === cartItem.id)
+                                    const desItem:any = des.items.find((i:any) => i.id === cartItem.id)
                                 return total + (appItem?.price * cartItem.quantity || 0 ) + (entItem?.price * cartItem.quantity || 0 ) + (desItem?.price  * cartItem.quantity|| 0)
                                 }, 0)
                             }
@@ -88,7 +87,6 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                                         Collection
                                     </button>
                                 </div>
-                                
                                 <>
                             </>
                             </>

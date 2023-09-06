@@ -6,7 +6,7 @@ export const Hero = () => {
             <div className="hero-content">
                 <div className="hero-text">
                     <h1 className='title title-display'>Little Lemon</h1>
-                    <h2 className="title title-sub">Chicago</h2>
+                    <h2 className="title title-sub">Fulton Market, Chicago</h2>
                     <p className="text text-paragraph">We are a family owned Mediterranean restaurant, focused on traditional recipes & served with a modern twist.</p>
                     <div className="hero-buttons">
                         <Link to={"/about"}><button className="buttonh1">About</button></Link>
