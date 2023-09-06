@@ -969,6 +969,12 @@ select:focus{
   color: var(--s1)
 }
 
+.user-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
 .shopping-cart {
   padding: 5% 10%;
   width: 100%;

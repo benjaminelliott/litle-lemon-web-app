@@ -184,6 +184,7 @@ export const Layout = (props: LayoutProps) => {
                         handleSubmit={handleSubmit}
                         user={user}
                         loggedIn={loggedIn}
+                        setLoggedIn={setLoggedIn}
                         zips={props.zips}
                       />
                     : <CreateBar

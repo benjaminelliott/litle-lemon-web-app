@@ -28,11 +28,11 @@ export const LoginBar = (props: any) => {
                         <DrawerContent>
                             <DrawerCloseButton />
                             <DrawerHeader>
-                                <h1>Hey, {props.values.firstName}!</h1>
+                                <h1 className='text-section-title'>Hey, {props.values.firstName} {props.values.lastName.charAt(0)}!</h1>
+                                <p className='text-lead'>User Details</p>
                             </DrawerHeader>
                             <DrawerBody>
                                 <div className='user-details'>
-                                    <h1><strong>User Details</strong></h1>
                                     <div className='user-detail'>
                                         <p><strong>Name:</strong></p>
                                         <p>{props.values.firstName}</p>
@@ -62,6 +62,11 @@ export const LoginBar = (props: any) => {
                                     </div>
                                 </div>
                             </DrawerBody>
+                            <DrawerFooter>
+                                <div className='user-buttons'>
+                                    <button className="buttonh1" onClick={() => props.setLoggedIn(false)}>Logout</button>
+                                </div>
+                            </DrawerFooter>
                         </DrawerContent>
                     </>
                 }
