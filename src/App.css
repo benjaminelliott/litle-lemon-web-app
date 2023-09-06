@@ -205,15 +205,20 @@ section {
   width: clamp(100px, 150px, 200px);
   height: clamp(40px, 50px, 60px);
   border-radius: 16px;
-  background-color: var(--p2);
+  background-color: var(--p1);
   font-weight: bold;
-  color: var(--p1);
+  color: var(--p2);
   transition: all 0.5s;
 }
 
-.buttonh1:hover {
-  scale: 1.1;
+.buttonh1:focus  {
+  outline: 1px solid var(--h3);
 }
+
+.buttonh1:hover  {
+  outline: 1px solid var(--h3);
+}
+
 
 .specials {
   padding: 5% 10%;
