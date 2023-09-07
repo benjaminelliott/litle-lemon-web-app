@@ -78,14 +78,16 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                         !checkOut
                         ?   <>
                                 {
-                                    loggedIn
+                                    loggedIn && cartQuantity > 0
                                     ?   <button
                                             onClick={() => { return setCheckOut(true)}}
                                             className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
                                         >
                                             Checkout
                                         </button>
-                                    : <h1 className='prompt-h1'>Please login to checkout</h1>
+                                    :   cartQuantity > 0
+                                        ?   <h1 className='prompt-h1'>Please login to checkout</h1>
+                                        :   <h1 className='prompt-h1'>Please add items to checkout</h1>
                                 }
                             </>
                         :   <>
@@ -148,8 +150,6 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                             <button className='buttonh1 payment-button'><Link to="https://buy.stripe.com/dR616hdwLe2y2sg3cc">Proceed to payment</Link></button>
                             <img src="stripe.png" className='stripe' alt="stripe"/>
                         </div>
-                        <h1 className='header-success'>We're looking forward to seeing you!</h1>
-                        <p>Please proceed to our location and head to the front desk, where our staff will assist you.</p>
                         <div className='collection-contacts'>
                             {
                                 props.contacts.map((contact) => {
