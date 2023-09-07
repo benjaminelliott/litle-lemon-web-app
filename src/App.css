@@ -1019,8 +1019,12 @@ select:focus{
 
 .cart-header {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+}
+
+.cart-title {
+  flex-wrap:nowrap
 }
 
 .cart-total {
