@@ -246,7 +246,6 @@ const App = () => {
               }
             />
             <Route path="cart" element={<ShoppingCart contacts={contacts} zips={zips}/>} />
-            <Route path="/" element={<Navigate to="../public/index.html" />} />
           </Route>
         </Routes>
       </ShoppingCartProvider>
