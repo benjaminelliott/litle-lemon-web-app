@@ -3,7 +3,7 @@ export const TestimonialsCard = (props: TestimonialsCardProps) => {
     const stars = [...Array(props.rating)];
 
     return (
-        <article className="card-testimonials">
+        <article className="testimonials-card">
             <div>
                 <p className="text-card-title">{props.user}</p>
                 <span className="stars">

@@ -269,6 +269,9 @@ section {
 }
 
 .testimonial-cards {
+  background: var(--h1);
+  border-radius: 16px;
+  gap: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -337,7 +340,7 @@ section {
 .text-highlight {
   font-size: clamp(10pt, 15pt, 20pt);
   font-weight: bold;
-  color:#F4CE14;
+  color:var(--p1);
 }
 
 .specials-top {
@@ -422,12 +425,12 @@ section {
   color: var(--p2)
 }
 
-.card-testimonials {
-  background-color: var(--h1);
+.testimonials-card {
+  background-color: white;
   width: 100%;
   min-height: 100px;
   padding: 20px 20px;
-  margin: 10px 0px;
+
   display: flex;
   flex-direction: column;
   border-radius: 16px;
@@ -1074,7 +1077,6 @@ select:focus{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
 }
 
 .cart-options-button {
