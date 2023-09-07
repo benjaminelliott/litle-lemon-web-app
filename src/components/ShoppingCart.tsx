@@ -2,7 +2,7 @@ import { useShoppingCart } from 'context/ShoppingCartContext';
 import menuItems from "../data/items.json"
 import { CartSection } from './CartSection';
 import { animated, useSpring } from '@react-spring/web';
-import React, { useId, useState } from 'react';
+import React, { useId, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 type ShoppingCartProps = {
@@ -31,6 +31,14 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
     const [ deliver, setDeliver ] = useState<Boolean>(false)
     const [ collect, setCollect ] = useState<Boolean>(false)
 
+    const updatedCart = useMemo(() => cartItems.reduce((total:number, cartItem:any) => {
+        const [ app, ent, des ]:any = menuItems;
+        const appItem:any = app.items.find((i:any) => i.id === cartItem.id)
+        const entItem:any = ent.items.find((i:any) => i.id === cartItem.id)
+        const desItem:any = des.items.find((i:any) => i.id === cartItem.id)
+    return total + (appItem?.price * cartItem.quantity || 0 ) + (entItem?.price * cartItem.quantity || 0 ) + (desItem?.price  * cartItem.quantity|| 0)
+    }, 0), [cartItems])
+
     return (
       <animated.section style={{...fade}}className="shopping-cart">
         <div className='cart-items'>
@@ -38,20 +46,26 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                 <h1 className="text-section-title">🍋Shopping Cart </h1>
                 <div className='cart-total'>
                     <h1 className="text-section-title"><strong className='cart-total-items'>{cartQuantity}</strong> items</h1>
-                    <h1 className="text-section-title">
+                    <h1 className={ checkOut ? 'text-section-title cart-total-sub' : "text-section-title"}>
                         Sub-total
-                        <strong className='cart-total-total'>
+                        <strong className={ checkOut ? 'cart-total-sub' : "cart-total-total"}>
                             {
-                                cartItems.reduce((total:number, cartItem:any) => {
-                                    const [ app, ent, des ]:any = menuItems;
-                                    const appItem:any = app.items.find((i:any) => i.id === cartItem.id)
-                                    const entItem:any = ent.items.find((i:any) => i.id === cartItem.id)
-                                    const desItem:any = des.items.find((i:any) => i.id === cartItem.id)
-                                return total + (appItem?.price * cartItem.quantity || 0 ) + (entItem?.price * cartItem.quantity || 0 ) + (desItem?.price  * cartItem.quantity|| 0)
-                                }, 0)
+                                updatedCart
                             }
                         </strong>
                     </h1>
+                    {
+                        checkOut &&
+                            <div className='cart-total-div'>
+                                <h1 className="text-section-title">
+                                Total
+                                <strong className='cart-total-total'>
+                                { Number(updatedCart * 1.1175).toFixed(2) + "*"}
+                                </strong>
+                            </h1>
+                            <p className='cart-total-disclaimer'>*Little Lemon charges the standard 11.75% taxes, mandated by the Chicago Restaurant Board</p>
+                        </div>
+                    }
                 </div>
             </div>
             <div className='cart-options'>

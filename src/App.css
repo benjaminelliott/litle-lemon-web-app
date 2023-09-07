@@ -1060,12 +1060,30 @@ select:focus{
   font-size: xx-large;
 }
 
+.cart-total-sub {
+  opacity: 0.5;
+}
+
+.cart-total-sub:before {
+  content: ' $'
+}
+
 .cart-total-total {
   font-size: xx-large;
 }
 
 .cart-total-total::before {
   content: ' $'
+}
+
+.cart-total-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.cart-total-disclaimer {
+  font-size: x-small;
 }
 
 .cart-options {
