@@ -677,14 +677,14 @@ section {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  gap: 10px;
+  row-gap: 0.25rem;
 }
 
 .inputs-middle {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 0.25rem;
   transition: all 0.5s;
 }
 
@@ -692,16 +692,16 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 0.25rem;
   opacity: 0;
   transform: translate(0px, -70px);
 }
 
 .inputs-bottom {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  gap: 0.25rem;
 }
 
 .drop-enter {
@@ -818,6 +818,11 @@ select:focus{
   opacity: 0.75;
   height: 50px;
   transition: all 0.5s;
+  flex-grow: 1;
+}
+
+#firstName, #lastName {
+  width: 100%;
 }
 
 .field-booking-confirmed {
@@ -841,6 +846,16 @@ select:focus{
   align-items: flex-start;
 }
 
+.booking-button {
+  height: 50px;
+  width: 150px;
+  padding: 0 1rem;
+}
+
+.booking-button:hover, .booking-button:focus {
+  background-color: var(--p2);
+  color: var(--h2)
+}
 
 .button {
   border-radius: 16%;
@@ -1260,6 +1275,22 @@ select:focus{
   .vegan::before {
     font-size: small;
   }
+  .inputs-bottom {
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 0;
+  }
+  #firstName, #lastName {
+    width: 50%;
+  }
+
+  #firstName {
+    border-radius: 16px 0px 0px 16px;
+  }
+
+  #lastName {
+    border-radius: 0px 16px 16px 0px;
+  }
   .cart-options-buttons {
     flex-direction: row;
   }
@@ -1271,7 +1302,6 @@ select:focus{
   .hero-image {
     border-radius: 0px 16px 16px 0px;
   }
-  
 }
 @media screen and (min-width: 1100px) {
   section {

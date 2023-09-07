@@ -123,14 +123,14 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
                                 <CSSTransition in={props.show.user} timeout={500} nodeRef={nodeRef} classNames="drop">
                                     <div ref={nodeRef} className="inputs-bottom">
                                         <label hidden htmlFor="firstName">Time</label>
-                                        <Field name="firstName" type="text" placeholder="First Name" className={ errors.firstName ? "field-booking" : "field-booking-confirmed"}/>
+                                        <Field id ="firstName" name="firstName" type="text" placeholder="First Name" className={ errors.firstName ? "field-booking" : "field-booking-confirmed"}/>
                                         <label hidden htmlFor="lastName">Time</label>
-                                        <Field name="lastName" type="text" placeholder="Last Name" className={ errors.lastName ? "field-booking" : "field-booking-confirmed"}/>
+                                        <Field id="lastName" name="lastName" type="text" placeholder="Last Name" className={ errors.lastName ? "field-booking" : "field-booking-confirmed"}/>
                                         <label hidden htmlFor="email">Time</label>
-                                        <Field name="email" type="email" placeholder="Email address" className={ errors.email ? "field-booking" : "field-booking-confirmed"}/>
+                                        <Field id="email" name="email" type="email" placeholder="Email address" className={ errors.email ? "field-booking" : "field-booking-confirmed"}/>
                                         {
                                             props.show.times && values.time !== "" && !errors.firstName && !errors.lastName && !errors.email &&
-                                                <animated.button type="submit" className="buttonh1" style={{...drop}}>Confirm booking</animated.button>
+                                                <animated.button type="submit" className="buttonh1 booking-button" style={{...drop}}>Confirm booking</animated.button>
                                         }
                                     </div>
                                 </CSSTransition>
