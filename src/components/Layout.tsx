@@ -164,11 +164,11 @@ export const Layout = (props: LayoutProps) => {
                       }
                       {
                         localStorage.getItem("email") && localStorage.getItem("password") && !loggedIn &&
-                        <p>Login</p>
+                        <p className="nav-user">Login</p>
                       }
                       {
                         !localStorage.getItem("email") && !localStorage.getItem("password") &&
-                        <p>Create account</p>
+                        <p className="nav-user">Create account</p>
                       }
                     </button>
                   </ul>

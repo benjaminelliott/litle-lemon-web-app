@@ -95,6 +95,7 @@ section {
 
 .nav-user {
   font-size: x-small;
+  font-weight: bold;
 }
 
 .nav-list-footer {
@@ -161,7 +162,7 @@ section {
   justify-content: space-evenly;
   align-items: center;
   gap: 2rem;
-  background: var(--h4);
+  background: white;
   box-shadow: 0px 0px 20px var(--h2);
   border-radius: 16px;
 }
@@ -240,18 +241,19 @@ section {
   height: clamp(30px, 40px, 50px);
   font-size: x-small;
   border-radius: 16px;
-  background-color: var(--p1);
-  font-weight: bold;
-  color: var(--p2);
+  background-color: var(--h3);
+  color: white;
   transition: all 0.5s;
 }
 
 .buttonh1:focus  {
-  outline: 1px solid var(--h3);
+  color: var(--p2);
+  background-color: var(--p1);
 }
 
 .buttonh1:hover  {
-  outline: 1px solid var(--h3);
+  color: var(--p2);
+  background-color: var(--p1);
 }
 
 
