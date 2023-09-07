@@ -226,7 +226,7 @@ const App = () => {
     <ChakraProvider>
       <ShoppingCartProvider>
         <Routes>
-          <Route path="/" element={<Layout contacts={contacts} socials={socials} zips={zips}/>}>
+          <Route path="*" element={<Layout contacts={contacts} socials={socials} zips={zips}/>}>
             <Route index element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="menu" element={<MenuPage />} />
