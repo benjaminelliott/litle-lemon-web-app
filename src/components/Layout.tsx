@@ -5,7 +5,7 @@ import { useShoppingCart } from "context/ShoppingCartContext";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { CreateBar } from "./CreateBar";
-import { useState } from "react";
+import { createContext, useState } from "react";
 
 const siteMap = [
       {
@@ -49,6 +49,8 @@ type LayoutProps = {
   }[],
   zips: number []
 }
+
+export const LoginContext = createContext<Boolean>(false)
 
 export const Layout = (props: LayoutProps) => {
 
@@ -211,7 +213,9 @@ export const Layout = (props: LayoutProps) => {
             </>
           )}
         </Formik>
-        <Outlet />
+        <LoginContext.Provider value={loggedIn}>
+          <Outlet />
+        </LoginContext.Provider>
         <footer className="bottom-nav">
           <ul className="nav-list-footer">
             {siteMap.map((item) => {
