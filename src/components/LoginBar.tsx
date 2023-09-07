@@ -1,3 +1,4 @@
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import {
     Drawer,
     DrawerBody,
@@ -22,6 +23,7 @@ export const LoginBar = (props: any) => {
     }
 
     const [ incorrectLogin, setIncorrectLogin ] = useState(false);
+    const [ showPassword, setShowPassword ] = useState(false);
 
     return (
         <>
@@ -58,7 +60,15 @@ export const LoginBar = (props: any) => {
                                     </div>
                                     <div className='user-detail'>
                                         <p><strong>Password:</strong></p>
-                                        <p className='password'>{props.values.password}</p>
+                                        <button type="button" onClick={() => setShowPassword(!showPassword)}>
+                                        {
+                                            showPassword
+                                            ? <ViewIcon />
+                                            : <ViewOffIcon />
+                                        }
+                                        </button>
+                                        
+                                        <p className={ showPassword ? "show-password" : "hide-password"}>{props.values.password}</p>
                                     </div>
                                     <div className='user-detail'>
                                         <p><strong>Address:</strong></p>

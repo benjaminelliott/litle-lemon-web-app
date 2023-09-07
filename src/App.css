@@ -965,12 +965,12 @@ select:focus{
   gap: 1rem;
 }
 
-.password {
+.hide-password {
   filter: blur(5px);
   transition: filter 0.5s ease;
 }
 
-.password:hover {
+.show-password {
   filter: blur(0px);
 }
 
