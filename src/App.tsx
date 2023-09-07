@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import './App.css';
 import { Layout } from './components/Layout';
 import { BookingPage } from './components/BookingPage';
@@ -246,7 +246,7 @@ const App = () => {
               }
             />
             <Route path="cart" element={<ShoppingCart contacts={contacts} zips={zips}/>} />
-            <Route path="*" element={<HomePage />} />
+            <Route path="*" element={<Navigate to="../public/index.html" />} />
           </Route>
         </Routes>
       </ShoppingCartProvider>
