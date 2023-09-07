@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import "react-datepicker/dist/react-datepicker.css";
@@ -32,24 +32,14 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
       const nodeRef = useRef(null);
 
     let blankBooking = {
-        email: '',
-        firstName: '',
-        lastName: '',
+        email: localStorage.getItem("email") || "",
+        firstName: localStorage.getItem("firstName") || "",
+        lastName: localStorage.getItem("lastName") || "",
         time:'',
         occasion: '',
         guests: 0,
         date: ''
     };
-    let confirmed = {
-        email: '',
-        firstName: '',
-        lastName: '',
-        time:'',
-        occasion: '',
-        guests: 0,
-        date: ''
-    }
-    let confirmedBookings = [];
 
     return (
         <article className='form-booking-page'>
@@ -59,13 +49,12 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
                 onSubmit={ async (values, actions) => {
                     await new Promise((resolve) => setTimeout(resolve, 500));
                     setTimeout(() => {
-                        confirmed = values;
-                        confirmedBookings.push(values)
-                        props.handleComplete(confirmed);
+                        localStorage.setItem("bookingTime", values.time);
+                        localStorage.setItem("bookingDate", values.date);
+                        localStorage.setItem("bookingGuests", values.guests.toString());
+                        localStorage.setItem("bookingOccasion", values.occasion);
+                        props.handleComplete(values);
                         actions.setSubmitting(false);
-                        localStorage.setItem('firstName', values.firstName);
-                        localStorage.setItem('lastName', values.lastName);
-                        localStorage.setItem('email', values.email);
                     }, 1000);
                 }}
             >
@@ -139,8 +128,8 @@ export const BookingPageForm = (props: BookingPageFormProps) => {
                     :
                     <article className="confirmation-booking">
                         <h1 className="text-section-title">Booking confirmed</h1>
-                        <h3>Thanks for booking with us, <strong>{values.firstName} {values.lastName.charAt(0)}!</strong></h3>
-                        <p>We at Little Lemon are looking forward to seeing your party of <strong>{values.guests}</strong> on <strong>{values.date}</strong> at <strong>{values.time}</strong>.</p>
+                        <h3>Thanks for booking with us, <strong>{localStorage.getItem("firstName")} {localStorage.getItem("lastName")?.charAt(0)}!</strong></h3>
+                        <p>We at Little Lemon are looking forward to seeing your party of <strong>{localStorage.getItem("bookingGuests")}</strong> on <strong>{localStorage.getItem("bookingDate")}</strong> at <strong>{localStorage.getItem("bookingTime")}</strong>.</p>
                         <p>A confirmation email has been sent to <strong>{values.email}</strong>.</p>
                         <h3>See you soon!</h3>
                     </article>

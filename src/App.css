@@ -853,8 +853,6 @@ select:focus{
 }
 
 .booking-button:hover, .booking-button:focus {
-  
-  
   background-color: var(--p2);
   color: var(--h2)
 }

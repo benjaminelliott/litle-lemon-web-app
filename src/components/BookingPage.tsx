@@ -1,6 +1,5 @@
 import "react-datepicker/dist/react-datepicker.css";
 import { BookingPageForm } from "./BookingPageForm"
-import { BookingPageList } from "./BookingPageList"
 import { animated, useSpring } from "@react-spring/web";
 import { useContext } from "react";
 import { LoginContext } from "./Layout";
@@ -19,8 +18,7 @@ export const BookingPage = (props: BookingPageProps) => {
         <animated.section className="booking" style={{...fade}}>
             {
                 loggedIn
-                ? <>
-                    <BookingPageForm
+                ?   <BookingPageForm
                         occasions={props.occasions}
                         guests={props.guests}
                         availableTimes={props.availableTimes}
@@ -31,9 +29,6 @@ export const BookingPage = (props: BookingPageProps) => {
                         toggleShowSubmit={props.toggleShowSubmit}
                         handleAnotherBooking={props.handleAnotherBooking}
                         ACTION={props.ACTION} />
-                    <BookingPageList
-                        confirmedBookings={props.confirmedBookings}
-                        show={props.show} /></>
                 : <div className="booking-login-prompt">
                     <h1 className="prompt-h1">Please login to create a reservation</h1>
                     <div className="prompt-img"></div>

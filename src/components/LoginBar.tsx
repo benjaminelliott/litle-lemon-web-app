@@ -97,11 +97,18 @@ export const LoginBar = (props: any) => {
                                             :   <p className='delivery-failure'>Unfortunately, Little Lemon cannot offer delivery to your address.</p>
                                         }
                                     </div>
+                                    <div className='user-detail'>
+                                        <p><strong>Reservations:</strong></p>
+                                        {
+                                            localStorage.getItem("bookingTime")
+                                            ?   <><p>{localStorage.getItem("bookingTime")} on {localStorage.getItem("bookingDate")}, party of {localStorage.getItem("bookingGuests")}</p></>
+                                            :   <p>You currently have no reservations.</p>
+                                        }
+                                    </div>
                                 </div>
                             </DrawerBody>
                             <DrawerFooter>
                                 <div className='user-buttons'>
-                                    <button className="buttonh1">Update</button>
                                     <button className="buttonh1" onClick={() => props.setLoggedIn(false)}>Logout</button>
                                 </div>
                             </DrawerFooter>
