@@ -85,7 +85,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                                     onClick={() => { return setCheckOut(false)}}
                                     className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
                                 >
-                                    Return to cart
+                                    Back to cart
                                 </button>
                                 <div className='order-type'>
                                     <button
