@@ -875,11 +875,31 @@ select:focus{
   width: 100%;
   height: 50dvh;
   background-image: url("assets/restaurant chef B.jpg");
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   color: #fff;
   border-radius: 16px;
-  filter: grayscale(50)
+  filter: grayscale(50);
+}
+
+.payment {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.payment-button {
+  width: 100%;
+}
+
+.payment-button:hover, .payment-button:focus {
+  background-color: #5433ff;
+  color: white;
+}
+
+.stripe {
+  height: 3rem;
+  width: auto;
 }
 
 .button {

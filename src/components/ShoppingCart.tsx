@@ -2,8 +2,10 @@ import { useShoppingCart } from 'context/ShoppingCartContext';
 import menuItems from "../data/items.json"
 import { CartSection } from './CartSection';
 import { animated, useSpring } from '@react-spring/web';
-import React, { useId, useMemo, useState } from 'react';
+import { useContext, useId, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { LoginContext } from "./Layout";
+import React from 'react';
 
 type ShoppingCartProps = {
     contacts: {
@@ -22,6 +24,8 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
         to: { opacity: 1 },
         delay: 100
       })
+
+      const loggedIn = useContext(LoginContext)
 
     const { cartItems, cartQuantity }:any = useShoppingCart()
 
@@ -73,12 +77,16 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                     {
                         !checkOut
                         ?   <>
-                                <button
-                                    onClick={() => { return setCheckOut(true)}}
-                                    className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
-                                >
-                                    Checkout
-                                </button>
+                                {
+                                    loggedIn
+                                    ?   <button
+                                            onClick={() => { return setCheckOut(true)}}
+                                            className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
+                                        >
+                                            Checkout
+                                        </button>
+                                    : <h1 className='prompt-h1'>Please login to checkout</h1>
+                                }
                             </>
                         :   <>
                                 <button
@@ -112,7 +120,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                             props.zips.includes(Number(localStorage.getItem("zip")))
                             ?   <div className='delivery-options'>
                                     <h1 className='header-success'>Congrats! Little Lemon can deliver to your address.</h1>
-                                    <p>Please expect a phone call with an updated delivery time shortly.</p>
+                                    <button className='payment-button'><Link to="https://buy.stripe.com/dR616hdwLe2y2sg3cc">Proceed to payment</Link></button>
                                 </div>
                             :   <div className='delvery-options'>
                                     <h1 className='header-failure'>Unfortunately, Little Lemon cannot offer delivery to your address.</h1>
@@ -133,6 +141,10 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                                     }
                 { collect && checkOut &&
                     <div className='collection'>
+                        <div className='payment'>
+                            <button className='buttonh1 payment-button'><Link to="https://buy.stripe.com/dR616hdwLe2y2sg3cc">Proceed to payment</Link></button>
+                            <img src="stripe.png" className='stripe'/>
+                        </div>
                         <h1 className='header-success'>We're looking forward to seeing you!</h1>
                         <p>Please proceed to our location and head to the front desk, where our staff will assist you.</p>
                         <div className='collection-contacts'>

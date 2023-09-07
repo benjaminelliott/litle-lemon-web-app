@@ -1,13 +1,5 @@
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-import {
-    Drawer,
-    DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,
-  } from '@chakra-ui/react'
+import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
 
 export const LoginBar = (props: any) => {
