@@ -294,7 +294,7 @@ section {
 }
 
 .title-sub {
-  color: var(--h3);
+  color: var(--p2);
   font-size: clamp(20pt, 25pt, 30pt);
   line-height: 1;
 }
@@ -466,7 +466,7 @@ section {
 }
 
 .about-title {
-  color: var(--h4)
+  color: var(--p2)
 }
 
 .about-text {
