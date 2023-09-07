@@ -120,7 +120,10 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                             props.zips.includes(Number(localStorage.getItem("zip")))
                             ?   <div className='delivery-options'>
                                     <h1 className='header-success'>Congrats! Little Lemon can deliver to your address.</h1>
-                                    <button className='payment-button'><Link to="https://buy.stripe.com/dR616hdwLe2y2sg3cc">Proceed to payment</Link></button>
+                                    <div className='payment'>
+                                        <button className='buttonh1 payment-button'><Link to="https://buy.stripe.com/dR616hdwLe2y2sg3cc">Proceed to payment</Link></button>
+                                        <img src="stripe.png" className='stripe' alt="stripe"/>
+                                    </div>
                                 </div>
                             :   <div className='delvery-options'>
                                     <h1 className='header-failure'>Unfortunately, Little Lemon cannot offer delivery to your address.</h1>
@@ -143,7 +146,7 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                     <div className='collection'>
                         <div className='payment'>
                             <button className='buttonh1 payment-button'><Link to="https://buy.stripe.com/dR616hdwLe2y2sg3cc">Proceed to payment</Link></button>
-                            <img src="stripe.png" className='stripe'/>
+                            <img src="stripe.png" className='stripe' alt="stripe"/>
                         </div>
                         <h1 className='header-success'>We're looking forward to seeing you!</h1>
                         <p>Please proceed to our location and head to the front desk, where our staff will assist you.</p>
