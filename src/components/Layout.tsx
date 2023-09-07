@@ -79,7 +79,9 @@ export const Layout = (props: LayoutProps) => {
             .oneOf([Yup.ref("password")], "Login details incorrect"),
         phone: Yup.string()
             .required("Phone number required")
-            .matches(phoneRegExp, 'Phone number is not valid'),
+            .matches(phoneRegExp, 'Phone number is not valid')
+            .min(10, "Phone number must have 10 digits")
+            .max(10, "Phone number must have 10 digits"),
         address: Yup.string()
             .required("Address is required")
             .matches(addressRegExp, "Invalid address")

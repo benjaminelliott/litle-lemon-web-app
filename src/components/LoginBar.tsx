@@ -56,7 +56,22 @@ export const LoginBar = (props: any) => {
                                     </div>
                                     <div className='user-detail'>
                                         <p><strong>Phone:</strong></p>
-                                        <p>{props.values.phone}</p>
+                                        <p>{
+                                                "(" +
+                                                props.values.phone.charAt(0) +
+                                                props.values.phone.charAt(1) +
+                                                props.values.phone.charAt(2) +
+                                                ") " +
+                                                props.values.phone.charAt(3) +
+                                                props.values.phone.charAt(4) +
+                                                props.values.phone.charAt(5) +
+                                                "-" +
+                                                props.values.phone.charAt(6) +
+                                                props.values.phone.charAt(7) +
+                                                props.values.phone.charAt(8) +
+                                                props.values.phone.charAt(9)
+                                            }
+                                        </p>
                                     </div>
                                     <div className='user-detail'>
                                         <p><strong>Password:</strong></p>
@@ -67,7 +82,6 @@ export const LoginBar = (props: any) => {
                                             : <ViewOffIcon />
                                         }
                                         </button>
-                                        
                                         <p className={ showPassword ? "show-password" : "hide-password"}>{props.values.password}</p>
                                     </div>
                                     <div className='user-detail'>
