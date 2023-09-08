@@ -228,9 +228,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Layout contacts={contacts} socials={socials} zips={zips}/>}>
             <Route index element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/menu" element={<MenuPage />} />
-            <Route path="/reservations" element={<BookingPage
+            <Route path="about" element={<AboutPage />} />
+            <Route path="menu" element={<MenuPage />} />
+            <Route path="reservations" element={<BookingPage
                 confirmedBookings={state.confirmedBookings}
                 occasions={state.occasions}
                 guests={state.guests}
@@ -245,7 +245,7 @@ const App = () => {
                 />
               }
             />
-            <Route path="/cart" element={<ShoppingCart contacts={contacts} zips={zips}/>} />
+            <Route path="cart" element={<ShoppingCart contacts={contacts} zips={zips}/>} />
           </Route>
         </Routes>
       </ShoppingCartProvider>
