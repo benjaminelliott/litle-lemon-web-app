@@ -11,7 +11,7 @@ const siteMap = [
       {
           key: 0,
           name: "Home",
-          link: ""
+          link: "/"
       },
       {
           key: 1,
