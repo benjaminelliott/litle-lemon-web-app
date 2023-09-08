@@ -21,7 +21,7 @@ const styles = {
       bg: mode('#fff', '#525252')(props),
       color: mode('#525252', "#fff")(props),
       boxShadow: mode("0px 0px 10px #fff", "0px 0px 10px #525252")(props),
-      border: mode("2px solid #495e57", "2px solid #97AFA7")(props)
+      border: mode("2px solid #97AFA7", "2px solid #495e57")(props)
     },
     p: {
       color: mode('#333333', "#EDEFEE")(props)
