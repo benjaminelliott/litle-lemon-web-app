@@ -1,5 +1,5 @@
-import { MoonIcon, SunIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-import { Drawer, DrawerBody, Text, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useColorMode, Icon, color, Button } from '@chakra-ui/react'
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
+import { Drawer, DrawerBody, Text, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, Button } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
 import { RiLoginCircleLine, RiLogoutCircleLine } from "react-icons/ri";
 

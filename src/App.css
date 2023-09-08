@@ -53,15 +53,11 @@ main {
   text-transform: uppercase;
   font-weight: 800;
   font-size: clamp(10pt, 15pt, 20pt);
-}
-
-.page-title::before {
-  content: '🍋';
-  font-size: larger;
+  transition: all 0.5 ease;
 }
 
 .page-title:hover, .page-title:focus {
-  color: var(--p2);
+  scale: 1.1;
 }
 
 .nav-list-header {

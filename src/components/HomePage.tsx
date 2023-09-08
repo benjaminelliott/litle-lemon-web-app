@@ -3,7 +3,6 @@ import { Hero } from './HomePageHero';
 import { BookingPageForm } from './BookingPageForm';
 import { useContext } from "react";
 import { LoginContext } from "./Layout";
-import { Heading } from '@chakra-ui/react';
 
 export const HomePage = (props: any) => {
 

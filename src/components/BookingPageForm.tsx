@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { Formik, Field, Form } from "formik";
 import * as Yup from 'yup';
 import "react-datepicker/dist/react-datepicker.css";
-import { useSpring, animated } from '@react-spring/web'
 import { DatePickerField } from "./BookingPageFormDatePicker";
 import { BookingSlot } from './BookingSlot';
 import { Button, Text } from '@chakra-ui/react'
@@ -18,17 +17,6 @@ occasions: Yup.string()
 });
 
 export const BookingPageForm = (props: BookingPageFormProps) => {
-
-    const drop = useSpring({
-        from: {
-            y: -70,
-            opacity: 0
-        },
-        to: {
-            y: 0,
-            opacity: 1
-         },
-      })
 
       const nodeRef = useRef(null);
 

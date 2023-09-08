@@ -1,5 +1,5 @@
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
-import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools';
+import { mode } from '@chakra-ui/theme-tools';
 
 const styles = {
   global: (props: Record<string, any>) => ({

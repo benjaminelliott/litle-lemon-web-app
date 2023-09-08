@@ -6,7 +6,7 @@ import { useContext, useId, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LoginContext } from "./Layout";
 import React from 'react';
-import { Button, background } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { BsCartFill } from "react-icons/bs"
 import { MdShoppingCartCheckout, MdDeliveryDining } from "react-icons/md";
 import { GiCardPickup } from "react-icons/gi";

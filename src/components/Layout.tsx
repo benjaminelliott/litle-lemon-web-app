@@ -1,6 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import { LoginBar } from "./LoginBar";
-import { Button, Icon, useColorMode, useDisclosure } from "@chakra-ui/react";
+import { Icon, useColorMode, useDisclosure } from "@chakra-ui/react";
 import { useShoppingCart } from "context/ShoppingCartContext";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -138,7 +138,7 @@ export const Layout = (props: LayoutProps) => {
               <nav className="top-nav">
                 <div className="top-nav-top">
                   <Link to={"/"}>
-                    <h1 className="page-title"></h1>
+                    <h1 className="page-title">🍋</h1>
                   </Link>
                   <ul className="nav-list-header">
                     {siteMap.map((item) => {
