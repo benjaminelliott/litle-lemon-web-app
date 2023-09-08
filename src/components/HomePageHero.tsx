@@ -1,21 +1,31 @@
 import { Link } from "react-router-dom";
+import { Button, Text } from '@chakra-ui/react'
+import { AiFillInfoCircle } from "react-icons/ai";
+import { BiSolidFoodMenu } from "react-icons/bi";
 
-export const Hero = () => {
+export const Hero = (props: any) => {
     return (
-        <article className="hero">
-            <div className="hero-content">
+        <section className="hero">
+            <article className="hero-content">
                 <div className="hero-text">
-                    <h1 className='title title-display'>Little Lemon</h1>
+                    <h1 className="text-section-title menu-title">Little Lemon </h1>
                     <h2 className="title title-sub">Fulton Market, Chicago</h2>
-                    <p className="text text-paragraph">We are a family owned Mediterranean restaurant, focused on traditional recipes & served with a modern twist.</p>
+                    <Text >We are a family owned Mediterranean restaurant, focused on traditional recipes & served with a modern twist.</Text>
                     <div className="hero-buttons">
-                        <Link to={"/about"}><button className="buttonh1">About</button></Link>
-                        <Link to={"/menu"}><button className="buttonh1">Menu</button></Link>
-                        <Link to={"/reservations"}><button className="buttonh1">Reservations</button></Link>
+                        <Button
+                        rightIcon={<AiFillInfoCircle />}
+                        >
+                            <Link to={"/about"}>About</Link>
+                        </Button>
+                        <Button
+                        rightIcon={<BiSolidFoodMenu />}
+                        >
+                            <Link to={"/menu"}>Menu</Link>
+                        </Button>
                     </div>
                 </div>
                 <img className="hero-image" src="restauranfood.jpg" alt="restaurant 1" />
-            </div>
-        </article>
+            </article>
+        </section>
     );
 }

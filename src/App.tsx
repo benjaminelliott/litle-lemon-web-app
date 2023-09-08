@@ -2,13 +2,14 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { Routes, Route } from "react-router-dom";
 import './App.css';
 import { Layout } from './components/Layout';
-import { BookingPage } from './components/BookingPage';
 import { MenuPage } from './components/MenuPage';
 import { HomePage } from 'components/HomePage';
 import { AboutPage } from 'components/AboutPage';
 import { useReducer } from 'react';
 import { ShoppingCartProvider } from 'context/ShoppingCartContext';
 import { ShoppingCart } from 'components/ShoppingCart';
+import Theme from 'data/Theme';
+import { BsFacebook, BsInstagram, BsTwitter } from 'react-icons/bs';
 
 const initialState = {
   times: [
@@ -96,20 +97,20 @@ const socials = [
     {
         key: 0,
         name: "facebook",
-        icon: "icons/facebook.svg",
-        link: "www.facebook.com"
+        icon: BsFacebook,
+        link: "https://www.facebook.com"
     },
     {
         key: 1,
         name: "instagram",
-        icon: "icons/instagram.svg",
-        link: "www.instagram.com"
+        icon: BsInstagram,
+        link: "https://www.instagram.com"
     },
     {
         key: 2,
         name: "twitter",
-        icon: "icons/twitter.svg",
-        link: "www.twitter.com"
+        icon: BsTwitter,
+        link: "https://www.twitter.com"
     }
 ]
 
@@ -219,18 +220,15 @@ const App = () => {
 
   const handleAnotherBooking = () => {
       dispatch({ type: "ANOTHER-BOOKING"})
-
   }
 
+
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={Theme}>
       <ShoppingCartProvider>
         <Routes>
-          <Route path="/" element={<Layout contacts={contacts} socials={socials} zips={zips}/>}>
-            <Route index element={<HomePage />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="menu" element={<MenuPage />} />
-            <Route path="reservations" element={<BookingPage
+          <Route path="/" element={<Layout contacts={contacts} socials={socials} zips={zips} />}>
+            <Route index element={<HomePage
                 confirmedBookings={state.confirmedBookings}
                 occasions={state.occasions}
                 guests={state.guests}
@@ -241,10 +239,9 @@ const App = () => {
                 toggleShowSubmit={toggleShowSubmit}
                 handleComplete={handleComplete}
                 handleAnotherBooking={handleAnotherBooking}
-                ACTION={ACTION}
-                />
-              }
-            />
+                ACTION={ACTION} />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="menu" element={<MenuPage />} />
             <Route path="cart" element={<ShoppingCart contacts={contacts} zips={zips}/>} />
           </Route>
         </Routes>

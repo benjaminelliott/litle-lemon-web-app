@@ -29,8 +29,7 @@ const testimonials  = [
 
 export const Testimonials = () => {
     return (
-        <article className="testimonials">
-            <h1 className="text-section-title testimonial-title">Testimonials</h1>
+        <section className="testimonials">
             <div className="testimonial-cards">
             {
                 testimonials.map(testimonial => {
@@ -40,6 +39,6 @@ export const Testimonials = () => {
                 })
             }
             </div>
-        </article>
+        </section>
     );
 }

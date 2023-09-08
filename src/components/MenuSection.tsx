@@ -1,12 +1,13 @@
 import { useShoppingCart } from "context/ShoppingCartContext";
 import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
+import { Button } from "@chakra-ui/react";
 
 export const MenuSection = (props: any) => {
 
     const { increaseCartQuantity, decreaseCartQuantity, getItemQuantity, removeFromCart }:any = useShoppingCart()
 
     return (
-        <ul className="menu-section">
+        <article className="menu-section">
             {
                 props.courseItems.map((item:any) => {
                     return (
@@ -23,33 +24,33 @@ export const MenuSection = (props: any) => {
                             <p className="menu-section-item-name">{item.name}</p>
                             <p className="menu-section-item-price">{item.price}</p>
                             <div className="item-buttons">
-                                <button
+                                <Button
                                     className="menu-basket-button"
                                     name="basket"
                                     onClick={() => decreaseCartQuantity(item.id)}
                                 >
                                     <MinusIcon  />
-                                </button>
+                                </Button>
                                 <p>{getItemQuantity(item.id)}</p>
-                                <button
+                                <Button
                                     className="menu-basket-button"
                                     name="decrease"
                                     onClick={() => increaseCartQuantity(item.id)}
                                 >
                                     <AddIcon  />
-                                </button>
-                                <button
+                                </Button>
+                                <Button
                                     className="menu-basket-button"
                                     name="delete"
                                     onClick={() => removeFromCart(item.id)}
                                 >
                                     <DeleteIcon  />
-                                </button>
+                                </Button>
                             </div>
                         </li>
                     )
                 })
             }
-        </ul>
+        </article>
     )
 }

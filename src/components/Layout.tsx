@@ -1,11 +1,12 @@
 import { Outlet, Link } from "react-router-dom";
 import { LoginBar } from "./LoginBar";
-import { useDisclosure } from "@chakra-ui/react";
+import { Button, Icon, useColorMode, useDisclosure } from "@chakra-ui/react";
 import { useShoppingCart } from "context/ShoppingCartContext";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { CreateBar } from "./CreateBar";
 import { createContext, useState } from "react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const siteMap = [
       {
@@ -25,11 +26,6 @@ const siteMap = [
       },
       {
           key: 3,
-          name: "Reservations",
-          link: "/reservations"
-      },
-      {
-          key: 4,
           name: "Cart",
           link: "/cart"
       }
@@ -44,7 +40,7 @@ type LayoutProps = {
   socials: {
     key: number
     name: string
-    icon: string
+    icon: any
     link: string
   }[],
   zips: number []
@@ -99,6 +95,7 @@ export const Layout = (props: LayoutProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [ user, setUser ] = useState(false)
     const [ loggedIn, setLoggedIn ] = useState(false)
+    const { colorMode, toggleColorMode } = useColorMode();
 
     return (
       <>
@@ -141,7 +138,7 @@ export const Layout = (props: LayoutProps) => {
               <nav className="top-nav">
                 <div className="top-nav-top">
                   <Link to={"/"}>
-                    <img className="nav-logo" src="Logo .svg" alt="default" />
+                    <h1 className="page-title"></h1>
                   </Link>
                   <ul className="nav-list-header">
                     {siteMap.map((item) => {
@@ -157,11 +154,11 @@ export const Layout = (props: LayoutProps) => {
                         style={cartQuantity ? { opacity: 1 } : { opacity: 0 }}
                       >
                         <Link to={"/cart"}>
-                          <button>{cartQuantity}</button>
+                          <button className="cart-quantity-button">{cartQuantity}</button>
                         </Link>
                       </span>
                     }
-                    <button onClick={onOpen}>
+                    <button className="nav-user" onClick={onOpen}>
                       {
                         localStorage.getItem("email") && localStorage.getItem("password") && loggedIn &&
                         <p className="nav-user">{values.firstName.charAt(0) + values.lastName.charAt(0)}</p>
@@ -175,6 +172,17 @@ export const Layout = (props: LayoutProps) => {
                         <p className="nav-user">Create account</p>
                       }
                     </button>
+                    <button
+                      type="button"
+                      onClick={toggleColorMode}
+                      className="toggle-color-button"
+                  >
+                      {
+                          colorMode === "light"
+                          ? <Icon as={SunIcon} />
+                          : <Icon as={MoonIcon} />
+                      }
+                  </button>
                   </ul>
                 </div>
                 <div className="top-nav-bottom">
@@ -241,13 +249,14 @@ export const Layout = (props: LayoutProps) => {
             <div className="nav-list-footer-socials">
               {props.socials.map((social) => {
                 return (
-                  <Link to={social.link} key={social.key}>
-                    <img
-                      src={social.icon}
-                      className="nav-list-footer-social"
-                      alt={social.name}
-                    />
-                  </Link>
+
+                    <Link to={social.link} key={social.key}>
+                      <Icon
+                        as={social.icon}
+                        className="nav-list-footer-social"
+                        alt={social.name}
+                      />
+                    </Link>
                 );
               })}
             </div>

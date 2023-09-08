@@ -6,6 +6,10 @@ import { useContext, useId, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { LoginContext } from "./Layout";
 import React from 'react';
+import { Button, background } from '@chakra-ui/react';
+import { BsCartFill } from "react-icons/bs"
+import { MdShoppingCartCheckout, MdDeliveryDining } from "react-icons/md";
+import { GiCardPickup } from "react-icons/gi";
 
 type ShoppingCartProps = {
     contacts: {
@@ -44,9 +48,9 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
     }, 0), [cartItems])
 
     return (
-      <animated.section style={{...fade}}className="shopping-cart">
-        <div className='cart-items'>
-            <div className='cart-header'>
+      <animated.main style={{...fade}}className="shopping-cart">
+        <section className='cart-items'>
+            <article className='cart-header'>
                 <h1 className="text-section-title">🍋Shopping Cart </h1>
                 <div className='cart-total'>
                     <h1 className="text-section-title"><strong className='cart-total-items'>{cartQuantity}</strong> items</h1>
@@ -71,48 +75,50 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                         </div>
                     }
                 </div>
-            </div>
-            <div className='cart-options'>
+            </article>
+            <article className='cart-options'>
                 <div className='cart-options-buttons'>
                     {
                         !checkOut
                         ?   <>
                                 {
                                     loggedIn && cartQuantity > 0
-                                    ?   <button
+                                    ?   <Button
                                             onClick={() => { return setCheckOut(true)}}
                                             className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
+                                            rightIcon={<MdShoppingCartCheckout />}
                                         >
                                             Checkout
-                                        </button>
+                                        </Button>
                                     :   cartQuantity > 0
                                         ?   <h1 className='prompt-h1'>Please login to checkout</h1>
                                         :   <h1 className='prompt-h1'>Please add items to checkout</h1>
                                 }
                             </>
                         :   <>
-                                <button
+                                <Button
                                     onClick={() => { return setCheckOut(false)}}
-                                    className={ deliver ? 'cart-options-button-selected' : 'cart-options-button'}
+                                    className="cart-options-button"
+                                    leftIcon={<BsCartFill />}
                                 >
                                     Back to cart
-                                </button>
+                                </Button>
                                 <div className='order-type'>
-                                    <button
-                                        onClick={() => { return (setDeliver(!deliver), setCollect(false))}}
-                                        className={ deliver ? 'order-type-button-selected' : 'order-type-button'}
-                                    >
-                                        Delivery
-                                    </button>
-                                    <button
-                                        onClick={() => { return (setDeliver(false), setCollect(!collect))}}
-                                        className={ collect ? 'order-type-button-selected' : 'order-type-button'}
-                                    >
-                                        Collection
-                                    </button>
+                                <Button
+                                    onClick={() => { return (setDeliver(!deliver), setCollect(false))}}
+                                    className={ deliver ? 'order-type-button order-type-button-selected' : 'order-type-button'}
+                                    rightIcon={<MdDeliveryDining />}
+                                >
+                                    Delivery
+                                </Button>
+                                <Button
+                                    onClick={() => { return (setDeliver(false), setCollect(!collect))}}
+                                    className={ collect ? 'order-type-button order-type-button-selected' : 'order-type-button'}
+                                    rightIcon={<GiCardPickup />}
+                                >
+                                    Collection
+                                </Button>
                                 </div>
-                                <>
-                            </>
                             </>
                     }
                 </div>
@@ -165,24 +171,22 @@ export const ShoppingCart = (props: ShoppingCartProps) => {
                         </div>
                     </div>
                 }
-            </div>
+            </article>
             {
                 !checkOut &&
-                    <div className='cart-items'>
+                    <article className='cart-items'>
                         {
                             cartItems.map((item: any) => {
                                 return (
                                     <React.Fragment key={item.id}>
-                                        <hr />
                                         <CartSection key={id} course={item.id} {...item} />
                                     </React.Fragment>
                                 )
                             })
                         }
-                    </div>
+                    </article>
             }
-            
-        </div>
-      </animated.section>
+        </section>
+      </animated.main>
     );
 }

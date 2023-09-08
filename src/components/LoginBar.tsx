@@ -1,6 +1,7 @@
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-import { Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from '@chakra-ui/react'
+import { MoonIcon, SunIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
+import { Drawer, DrawerBody, Text, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, useColorMode, Icon, color, Button } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
+import { RiLoginCircleLine, RiLogoutCircleLine } from "react-icons/ri";
 
 export const LoginBar = (props: any) => {
 
@@ -32,23 +33,24 @@ export const LoginBar = (props: any) => {
                         <DrawerContent>
                             <DrawerCloseButton />
                             <DrawerHeader>
-                                <h1 className='text-section-title'>Hey, {props.values.firstName} {props.values.lastName.charAt(0)}!</h1>
-                                <p className='text-lead'>User Details</p>
+                                <div className='user-header'>
+                                    <h1 className='user-details-title'>Hey, {props.values.firstName} {props.values.lastName.charAt(0)}!</h1>
+                                </div>
                             </DrawerHeader>
                             <DrawerBody>
                                 <div className='user-details'>
                                     <div className='user-detail'>
-                                        <p><strong>Name:</strong></p>
-                                        <p>{props.values.firstName}</p>
-                                        <p>{props.values.lastName}</p>
+                                        <Text><strong>Name:</strong></Text>
+                                        <Text>{props.values.firstName}</Text>
+                                        <Text>{props.values.lastName}</Text>
                                     </div>
                                     <div className='user-detail'>
-                                        <p><strong>Email:</strong></p>
-                                        <p>{props.values.email}</p>
+                                        <Text><strong>Email:</strong></Text>
+                                        <Text>{props.values.email}</Text>
                                     </div>
                                     <div className='user-detail'>
-                                        <p><strong>Phone:</strong></p>
-                                        <p>{
+                                        <Text><strong>Phone:</strong></Text>
+                                        <Text>{
                                                 "(" +
                                                 props.values.phone.charAt(0) +
                                                 props.values.phone.charAt(1) +
@@ -63,47 +65,47 @@ export const LoginBar = (props: any) => {
                                                 props.values.phone.charAt(8) +
                                                 props.values.phone.charAt(9)
                                             }
-                                        </p>
+                                        </Text>
                                     </div>
                                     <div className='user-detail'>
-                                        <p><strong>Password:</strong></p>
-                                        <button type="button" onClick={() => setShowPassword(!showPassword)}>
+                                        <Text><strong>Password:</strong></Text>
+                                        <button className="password-button" type="button" onClick={() => setShowPassword(!showPassword)}>
                                         {
                                             showPassword
                                             ? <ViewIcon />
                                             : <ViewOffIcon />
                                         }
                                         </button>
-                                        <p className={ showPassword ? "show-password" : "hide-password"}>{props.values.password}</p>
+                                        <Text className={ showPassword ? "show-password" : "hide-password"}>{props.values.password}</Text>
                                     </div>
                                     <div className='user-detail'>
-                                        <p><strong>Address:</strong></p>
-                                        <p>{props.values.address}</p>
-                                        <p>{props.values.zip}</p>
+                                        <Text><strong>Address:</strong></Text>
+                                        <Text>{props.values.address}</Text>
+                                        <Text>{props.values.zip}</Text>
                                     </div>
                                     <div className='user-detail'>
-                                        <p><strong>Delivery:</strong></p>
+                                        <Text><strong>Delivery:</strong></Text>
                                         {
                                             props.zips.includes(Number(localStorage.getItem("zip")))
-                                            ?   <p className='delivery-success'>Congrats! Little Lemon can deliver to your address.</p>
-                                            :   <p className='delivery-failure'>Unfortunately, Little Lemon cannot offer delivery to your address.</p>
+                                            ?   <Text className='delivery-success'>Congrats! Little Lemon can deliver to your address.</Text>
+                                            :   <Text className='delivery-failure'>Unfortunately, Little Lemon cannot offer delivery to your address.</Text>
                                         }
                                     </div>
                                     <div className='user-detail'>
-                                        <p><strong>Reservations:</strong></p>
+                                        <Text><strong>Reservations:</strong></Text>
                                         {
                                             localStorage.getItem("bookingTime")
-                                            ?   <><p>{localStorage.getItem("bookingTime")} on {localStorage.getItem("bookingDate")}, party of {localStorage.getItem("bookingGuests")}</p></>
-                                            :   <p>You currently have no reservations.</p>
+                                            ?   <><Text>{localStorage.getItem("bookingTime")} on {localStorage.getItem("bookingDate")}, party of {localStorage.getItem("bookingGuests")}</Text></>
+                                            :   <Text>You currently have no reservations.</Text>
                                         }
                                     </div>
+                                    <Button
+                                        className="buttonh1"
+                                        onClick={() => props.setLoggedIn(false)}
+                                        leftIcon={<RiLogoutCircleLine />}
+                                    >Logout</Button>
                                 </div>
                             </DrawerBody>
-                            <DrawerFooter>
-                                <div className='user-buttons'>
-                                    <button className="buttonh1" onClick={() => props.setLoggedIn(false)}>Logout</button>
-                                </div>
-                            </DrawerFooter>
                         </DrawerContent>
                     </>
                 }
@@ -114,7 +116,7 @@ export const LoginBar = (props: any) => {
                             <DrawerCloseButton />
                             <DrawerHeader>
                                     <h1 className='text-section-title'>Welcome back, {localStorage.getItem("firstName")} {localStorage.getItem("lastName")?.charAt(0)}!</h1>
-                                    <p className='text-lead'>Please login to access your account.</p>
+                                    <Text className='text-lead'>Please login to access your account.</Text>
                             </DrawerHeader>
                             <DrawerBody>
                                 <form
@@ -132,7 +134,7 @@ export const LoginBar = (props: any) => {
                                             value={props.values.email}
                                             placeholder="Enter email"
                                             className="input-login" />
-                                        <p className="error">{props.touched.email && props.errors.email}</p>
+                                        <Text className="error">{props.touched.email && props.errors.email}</Text>
                                     </div>
                                     <div>
                                         <input
@@ -144,12 +146,14 @@ export const LoginBar = (props: any) => {
                                             value={props.values.loginPassword}
                                             placeholder="Enter password"
                                             className="input-login" />
-                                        <p className="error">{props.touched.password && props.errors.password}</p>
+                                        <Text className="error">{props.touched.password && props.errors.password}</Text>
                                     </div>
-                                    <button className="buttonh1" onClick={passwordCheck}>Login</button>
+                                    <Button
+                                        className="buttonh1"
+                                        onClick={passwordCheck}
+                                        rightIcon={<RiLoginCircleLine />}
+                                    >Login</Button>
                                 </form>
-                            </DrawerBody>
-                            <DrawerFooter>
                                 {
                                     <div className='text-lead login-error'>
                                         {
@@ -157,7 +161,7 @@ export const LoginBar = (props: any) => {
                                         }
                                     </div>
                                 }
-                            </DrawerFooter>
+                            </DrawerBody>
                         </DrawerContent>
                     </>
                 }
