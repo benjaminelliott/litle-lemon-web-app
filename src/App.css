@@ -1057,6 +1057,7 @@ select:focus{
 
 .user-header {
   display: flex;
+  flex-direction: column;
 }
 
 .user-details-title {
@@ -1324,7 +1325,7 @@ select:focus{
     left: -0.5rem;
   }
   .css-1o3pyl4 {
-    padding: 0 15vw;
+
   }
   .user-header, .user-details {
     width: 50%;
@@ -1386,6 +1387,10 @@ select:focus{
   }
   .login {
     flex-direction: row;
+  }
+  .user-header, .user-details {
+    width: 75%;
+    margin: auto;
   }
   .cart-options-buttons {
     flex-direction: row;

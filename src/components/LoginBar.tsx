@@ -115,52 +115,57 @@ export const LoginBar = (props: any) => {
                         <DrawerContent>
                             <DrawerCloseButton />
                             <DrawerHeader>
+                                <div className='user-header'>
                                     <h1 className='text-section-title'>Welcome back, {localStorage.getItem("firstName")} {localStorage.getItem("lastName")?.charAt(0)}!</h1>
                                     <Text className='text-lead'>Please login to access your account.</Text>
+                                </div>
+                                    
                             </DrawerHeader>
                             <DrawerBody>
-                                <form
-                                    className='login'
-                                    onSubmit={props.handleSubmit}
-                                >
-                                    <div>
-                                        <input
-                                            id="email"
-                                            type="email"
-                                            name="email"
-                                            autoComplete="email"
-                                            onChange={props.handleChange}
-                                            onBlur={props.handleBlur}
-                                            value={props.values.email}
-                                            placeholder="Enter email"
-                                            className="input-login" />
-                                        <Text className="error">{props.touched.email && props.errors.email}</Text>
-                                    </div>
-                                    <div>
-                                        <input
-                                            id="loginPassword"
-                                            type="password"
-                                            name="loginPassword"
-                                            onChange={props.handleChange}
-                                            onBlur={props.handleBlur}
-                                            value={props.values.loginPassword}
-                                            placeholder="Enter password"
-                                            className="input-login" />
-                                        <Text className="error">{props.touched.password && props.errors.password}</Text>
-                                    </div>
-                                    <Button
-                                        className="buttonh1"
-                                        onClick={passwordCheck}
-                                        rightIcon={<RiLoginCircleLine />}
-                                    >Login</Button>
-                                </form>
-                                {
-                                    <div className='text-lead login-error'>
-                                        {
-                                            incorrectLogin && <p>Incorrect login details</p>
-                                        }
-                                    </div>
-                                }
+                                <div className='user-details'>
+                                    <form
+                                        className='login'
+                                        onSubmit={props.handleSubmit}
+                                    >
+                                        <div>
+                                            <input
+                                                id="email"
+                                                type="email"
+                                                name="email"
+                                                autoComplete="email"
+                                                onChange={props.handleChange}
+                                                onBlur={props.handleBlur}
+                                                value={props.values.email}
+                                                placeholder="Enter email"
+                                                className="input-login" />
+                                            <Text className="error">{props.touched.email && props.errors.email}</Text>
+                                        </div>
+                                        <div>
+                                            <input
+                                                id="loginPassword"
+                                                type="password"
+                                                name="loginPassword"
+                                                onChange={props.handleChange}
+                                                onBlur={props.handleBlur}
+                                                value={props.values.loginPassword}
+                                                placeholder="Enter password"
+                                                className="input-login" />
+                                            <Text className="error">{props.touched.password && props.errors.password}</Text>
+                                        </div>
+                                        <Button
+                                            className="buttonh1"
+                                            onClick={passwordCheck}
+                                            rightIcon={<RiLoginCircleLine />}
+                                        >Login</Button>
+                                    </form>
+                                    {
+                                        <div className='text-lead login-error'>
+                                            {
+                                                incorrectLogin && <p>Incorrect login details</p>
+                                            }
+                                        </div>
+                                    }
+                                </div>
                             </DrawerBody>
                         </DrawerContent>
                     </>
