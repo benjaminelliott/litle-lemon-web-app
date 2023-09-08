@@ -146,7 +146,7 @@ main {
 }
 
 .nav-list-footer-social:hover {
-  scale: 1.5;
+  color: var(--p2);
 }
 
 .nav li {
