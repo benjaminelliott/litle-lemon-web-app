@@ -591,16 +591,8 @@ section {
   content: '🍋'
 }
 
-.order-item-name {
-
-}
-
 .order-item-amount::before {
   content: "x "
-}
-
-.order-item-price {
-
 }
 
 .order-item-price::before {
@@ -617,12 +609,8 @@ section {
   background-color: var(--h1);
   border-radius: 16px;
   padding: 2rem;
-
 }
 
-.total {
-
-}
 
 .total::before {
   content: '$ '
